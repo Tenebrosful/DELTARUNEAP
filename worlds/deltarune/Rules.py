@@ -99,8 +99,9 @@ def set_rules(world: "DeltaruneWorld"):
                 set_rule(multiworld.get_entrance("CH3: Cold Place Entrance", player), lambda state: state.has("ShadowMantle", player) and state.has("OddController", player) and state.has("ICE KEY", player) and state.has("SHELTER KEY", player))
         elif world.options.include_chapter_4.value == 0:
             # No future chapters = put macguffin items in logic, but if not "mandatory" then no secret boss items required
-            set_rule(multiworld.get_entrance("CH3: Cold Place Entrance", player), lambda state: state.has("Remote Battery", player, world.options.goal_macguffin_amount.value))
-        set_rule(multiworld.get_location("CH3: TV World - Man", player), lambda state: state.has("TripTicket", player))
+            set_rule(multiworld.get_entrance("CH3: Cold Place Entrance", player), lambda state: state.has("Remote Battery", player, world.options.goal_macguffin_amount.value))    
+        if world.options.chosen_route.current_key == "all_recruits" or world.options.chosen_route.current_key == "all_routes":
+            set_rule(multiworld.get_location("CH3: TV World - Man", player), lambda state: state.has("TripTicket", player))
         # MANTLE 1 requires OddController
         set_rule(multiworld.get_location("CH3: MANTLE - Out of Bounds Chest", player), lambda state: state.has("OddController", player))
         # MANTLE 2 requires OddController and ICE KEY
