@@ -50,6 +50,11 @@ def set_rules(world: "DeltaruneWorld"):
         # if you play in order and play chapter 1 first, you don't get the white ribbon Ralsei starts with
         if world.options.include_chapter_1.value == 1 and world.options.randomize_chapters.current_key == "in order":
             set_rule(multiworld.get_location("CH2: Castle Town - Twin Ribbon Fusion", player), lambda state: state.has("Pink Ribbon", player) and state.has("White Ribbon", player))
+        else:
+            set_rule(multiworld.get_location("CH2: Castle Town - Twin Ribbon Fusion", player), lambda state: state.has("Pink Ribbon", player))
+        if world.options.include_chapter_1.value == 1:
+            set_rule(multiworld.get_location("CH2: Castle Town - Spike Band Fusion", player), lambda state: state.has("IronShackle", player) and state.has("GlowWrist", player))
+        set_rule(multiworld.get_location("CH2: Castle Town - TensionBow Fusion", player), lambda state: state.has("TensionBit", player) and state.has("B.ShotBowtie", player))
         set_rule(multiworld.get_entrance("CH2: Cyber City Entrance", player), lambda state: state.has("Safety Vest", player))
         # sets "mandatory" secret boss logic. This doesn't apply in weird route since you have to fight Spamton NEO anyway
         if world.options.randomize_secret_bosses.current_key == "mandatory" and not world.options.chosen_route.current_key == "weird_route":
