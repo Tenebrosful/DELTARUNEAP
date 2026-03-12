@@ -1,8 +1,7 @@
-from BaseClasses import MultiWorld
 from enum import StrEnum
 from .. import DeltaruneWorld
-from ..Regions import link_deltarune_areas, DeltaruneRegion
-from .Locations import chapter1_locations
+from ..Regions import link_deltarune_areas, DeltaruneRegion, generic_create_regions
+from .Locations import chapter1_locations, chapter1_conditional_locations
 
 class Ch1Regions(StrEnum):  
   chapter_1       = "Chapter 1"
@@ -60,11 +59,5 @@ chapter1_mandatory_connections = [
 ]
 
 def create_regions(world: DeltaruneWorld):
-  if not world.include_chapter_1:
-    return
-  
-  for (region_name, exits) in chapter1_regions:
-    locations = [loc for loc in chapter1_locations if loc.region == region_name]
-    world.multiworld.regions += [DeltaruneRegion(world, region_name, exits, locations, [])]
-  
-  link_deltarune_areas(world, world.player, chapter1_mandatory_connections)
+  if not world.include_chapter_1: return
+  generic_create_regions(world, chapter1_regions, chapter1_locations, chapter1_conditional_locations, chapter1_mandatory_connections)

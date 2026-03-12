@@ -22,6 +22,17 @@ def DeltaruneRegion(world: DeltaruneWorld, region_name: str, exits: list[str], l
         
     return region
 
+def generic_create_regions(world: DeltaruneWorld, regions: list, locations: dict[str, LocationData], conditional_locations: dict[str, ConditionalLocationData], connections: list):
+    for (region_name, exits) in regions:
+        locations =     [location_name for location_name, location_data in locations.items() 
+                            if location_data.region == region_name]
+        
+        locations +=    [location_name for location_name, location_data in conditional_locations.items()
+                            if location_data.region == region_name and location_data.should_be_included()]
+        
+        world.multiworld.regions += [DeltaruneRegion(world, region_name, exits, locations, [])]
+  
+    link_deltarune_areas(world, world.player, connections)
 
 # (Region name, list of exits)
 deltarune_regions = [

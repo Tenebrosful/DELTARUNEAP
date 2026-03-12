@@ -17,7 +17,22 @@ class DeltaruneItem(Item):
     game: str = "Deltarune"
 
 class ItemIDs(Enum):
-    spincake = 1
+    dark_candy = 1
+    revivemint = 2
+    glowshard = 3
+    manual = 4
+    #nothing = 6
+    spincake = 7
+    darkburger = 8
+    lancer_cookie = 9
+    
+    
+    dd_burger = 22
+    
+    silver_card = 20008
+    twin_ribbon = 20009
+    spikeband = 20013
+    tensionbow = 20015
 
 item_table = {
     "Dark Candy": ItemData(1, ItemClassification.filler),
@@ -507,3 +522,15 @@ chapters = [
     "Chapter 4 Unlock",
     "This is where I would put my Chapter 5 Unlock... IF I HAD ONE!",
 ]
+
+def generic_create_items(world: DeltaruneWorld, items: dict[str, ItemData], conditional_items: dict[str, ConditionalItemData]):
+    itempool: list[Item] = []
+  
+    for item_name, item_data in items.items():
+        itempool += DeltaruneItem(item_name, item_data.classification, item_data.code, world.player)
+        
+    for item_name, item_data in conditional_items.items():
+        if item_data.should_be_included(world):
+            itempool += DeltaruneItem(item_name, item_data.classification, item_data.code, world.player)
+            
+    world.multiworld.itempool += itempool

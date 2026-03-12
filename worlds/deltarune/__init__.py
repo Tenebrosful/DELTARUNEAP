@@ -11,7 +11,8 @@ from worlds.AutoWorld import World, WebWorld
 from worlds.LauncherComponents import components, Component, launch_subprocess, Type, icon_paths
 from multiprocessing import Process
 
-from chapter_1 import Ch1Regions
+from cross_chapter import CrossChapterRegions, CrossChapterRules, CrossChapterItems
+from chapter_1 import Ch1Regions, Ch1Rules, Ch1Items
 
 def run_client():
     print('running deltarune client')
@@ -30,6 +31,7 @@ components.append(Component("DELTARUNE Client",
 icon_paths["deltarune"] = f"ap:{__name__}/icons/gay_deltarune.png"
 
 max_deltarune_chapter = 4
+fusion_access_chapter = [2, 4]
 
 def data_path(file_name: str):
     import pkgutil
@@ -286,17 +288,13 @@ class DeltaruneWorld(World):
 
         self.multiworld.itempool += itempool_converted
 
-    def set_rules(self):
-        set_rules(self)
-        set_completion_rules(self)
-
     def fill_slot_data(self):
         return self._get_deltarune_data()
 
-    def create_item(self, name: str) -> Item:
-        item_data = item_table[name]
-        item = DeltaruneItem(name, item_data.classification, item_data.code, self.player)
-        return item
+    
+    # Check if you have at least one chapter that give you access to fusions
+    def can_access_fusion(self) -> bool:
+        return self.has_at_least_one_chapter_included(fusion_access_chapter)
     
     # Check if at least one of specified chapters is included
     def has_at_least_one_chapter_included(self, chapters: list[int]) -> bool:
@@ -309,7 +307,15 @@ class DeltaruneWorld(World):
         for chapterToCheck in range(max_deltarune_chapter, 0, -1):
             if chapterToCheck == chapter: return True
             if getattr(self.options, f"include_chapter_{chapter}"): return False
-    
+            
+    def get_previous_in_order_chapter(self, chapter:int):
+        if chapter <= 1: return -1
+        
+        for chapterToCheck in range(chapter - 1, 0, -1):
+            if getattr(self.options, f"include_chapter_{chapter}"): return chapterToCheck
+        
+        return -1
+        
     def create_regions(self):
         CrossChapterRegions.create_regions(self)
         Ch1Regions.create_regions(self)
@@ -319,6 +325,16 @@ class DeltaruneWorld(World):
         # Ch5Regions.create_regions(self)
         # Ch6Regions.create_regions(self)
         # Ch7Regions.create_regions(self)
+        
+    def create_items(self):
+        CrossChapterItems.create_items(self)
+        Ch1Items.create_items(self)
+        Ch2Items.create_items(self)
+        Ch3Items.create_items(self)
+        Ch4Items.create_items(self)
+        # Ch5Items.create_items(self)
+        # Ch6Items.create_items(self)
+        # Ch7Items.create_items(self)
         
     def set_rules(self):
         CrossChapterRules.set_rules(self)

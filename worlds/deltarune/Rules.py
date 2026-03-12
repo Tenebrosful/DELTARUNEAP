@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 def set_rules(world: "DeltaruneWorld"):
     player = world.player
     multiworld = world.multiworld
-    if world.options.include_chapter_1.value == 1:
+    # if world.options.include_chapter_1.value == 1:
         # if all unlocked, obviously no unlocks required
         # if not world.options.randomize_chapters.current_key == "all_unlocked":
         #     set_rule(multiworld.get_entrance("Chapter 1 Entrance", player), lambda state: state.has("Chapter 1 Unlock", player))
@@ -36,17 +36,17 @@ def set_rules(world: "DeltaruneWorld"):
         # Need to be able to get to Jevil to get Seam to talk about him
         # set_rule(multiworld.get_location("CH1: Seam's Seap - Talk About Strange Prisoner", player), lambda state: state.can_reach("CH1: Card Castle", "Region", player))
         # sets "mandatory" secret boss logic
-        if world.options.randomize_secret_bosses.current_key == "mandatory":
-            # There are better ways to do this, but for now this if statement works.
-            if world.options.include_chapter_2.value == 0 and world.options.include_chapter_3.value == 0 and world.options.include_chapter_4.value == 0:
-                # No future chapters = put macguffin items in logic as well as the secret boss item
-                set_rule(multiworld.get_entrance("CH1: Light World Entrance", player), lambda state: state.has("King-Shaped Key Piece", player, world.options.goal_macguffin_amount.value) and state.has("Door Key", player))
-            else:
-                # Locked behind secret boss item if set to mandatory
-                set_rule(multiworld.get_entrance("CH1: Light World Entrance", player), lambda state: state.has("Door Key", player))
-        elif world.options.include_chapter_2.value == 0 and world.options.include_chapter_3.value == 0 and world.options.include_chapter_4.value == 0:
-            # No future chapters = put macguffin items in logic, but if not "mandatory" then no secret boss items required
-            set_rule(multiworld.get_entrance("CH1: Light World Entrance", player), lambda state: state.has("King-Shaped Key Piece", player, world.options.goal_macguffin_amount.value))
+        # if world.options.randomize_secret_bosses.current_key == "mandatory":
+        #     # There are better ways to do this, but for now this if statement works.
+        #     if world.options.include_chapter_2.value == 0 and world.options.include_chapter_3.value == 0 and world.options.include_chapter_4.value == 0:
+        #         # No future chapters = put macguffin items in logic as well as the secret boss item
+        #         set_rule(multiworld.get_entrance("CH1: Light World Entrance", player), lambda state: state.has("King-Shaped Key Piece", player, world.options.goal_macguffin_amount.value) and state.has("Door Key", player))
+        #     else:
+        #         # Locked behind secret boss item if set to mandatory
+        #         set_rule(multiworld.get_entrance("CH1: Light World Entrance", player), lambda state: state.has("Door Key", player))
+        # elif world.options.include_chapter_2.value == 0 and world.options.include_chapter_3.value == 0 and world.options.include_chapter_4.value == 0:
+        #     # No future chapters = put macguffin items in logic, but if not "mandatory" then no secret boss items required
+        #     set_rule(multiworld.get_entrance("CH1: Light World Entrance", player), lambda state: state.has("King-Shaped Key Piece", player, world.options.goal_macguffin_amount.value))
     if world.options.include_chapter_2.value == 1:
         # if all unlocked, obviously no unlocks required
         if not world.options.randomize_chapters.current_key == "all_unlocked":
