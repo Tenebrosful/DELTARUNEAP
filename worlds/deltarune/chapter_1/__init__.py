@@ -1,4 +1,4 @@
-import Items as Ch1Items
-import Locations as Ch1Locations
-import Regions as Ch1Regions
-import Rules as Ch1Rules
+from . import Items as Ch1Items
+from . import Locations as Ch1Locations
+from . import Regions as Ch1Regions
+from . import Rules as Ch1Rules

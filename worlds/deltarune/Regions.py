@@ -1,9 +1,26 @@
-from BaseClasses import MultiWorld
+from BaseClasses import MultiWorld, Region, Entrance
+from .. import DeltaruneWorld
+from .Locations import LocationData, ConditionalLocationData, DeltaruneLocation
 
 
-def link_deltarune_areas(world: MultiWorld, player: int):
-    for (exit, region) in mandatory_connections:
+def link_deltarune_areas(world: MultiWorld, player: int, connections: list[tuple[str, str]]):
+    for (exit, region) in connections:
         world.get_entrance(exit, player).connect(world.get_region(region, player))
+
+def DeltaruneRegion(world: DeltaruneWorld, region_name: str, exits: list[str], locations: list[LocationData], conditional_locations: list[ConditionalLocationData]) -> Region:
+    region = Region(region_name, world.player, world.multiworld)
+    
+    for location in locations:
+        region.locations += [DeltaruneLocation(world.player, location.name, location.id, region)]
+
+    for conditional_location in conditional_locations:
+        if conditional_location.should_be_included(world):
+            region.locations += [DeltaruneLocation(world.player, conditional_location.name, conditional_location.id, region)]
+            
+    for exit in exits:
+        region.exits += [Entrance(world.player, exit, region)]
+        
+    return region
 
 
 # (Region name, list of exits)

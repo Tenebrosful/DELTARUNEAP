@@ -1,6 +1,10 @@
 from worlds.generic.Rules import set_rule, add_rule
 from BaseClasses import CollectionState
 from typing import TYPE_CHECKING
+from chapter_1.Locations import chapter1_end_location
+from chapter_2.Locations import chapter2_end_location
+from chapter_3.Locations import chapter3_end_location
+from chapter_4.Locations import chapter4_end_location
 
 if TYPE_CHECKING:
     from . import DeltaruneWorld
@@ -11,26 +15,26 @@ def set_rules(world: "DeltaruneWorld"):
     multiworld = world.multiworld
     if world.options.include_chapter_1.value == 1:
         # if all unlocked, obviously no unlocks required
-        if not world.options.randomize_chapters.current_key == "all_unlocked":
-            set_rule(multiworld.get_entrance("Chapter 1 Entrance", player), lambda state: state.has("Chapter 1 Unlock", player))
-        set_rule(multiworld.get_entrance("CH1: Bake Sale Entrance", player), lambda state: state.has("Bake Sale Ticket", player))
-        set_rule(multiworld.get_entrance("CH1: Card Castle Entrance", player), lambda state: state.has("Castle Key", player))
-        # Warp Doors obviously require, well, the warp item
-        set_rule(multiworld.get_entrance("CH1: Bake Sale Warp", player), lambda state: state.has("Bake Sale Warp", player))
-        set_rule(multiworld.get_entrance("CH1: Castle Warp", player), lambda state: state.has("Castle Warp", player))
-        set_rule(multiworld.get_entrance("CH1: Bake Sale Warp Hub", player), lambda state: state.has("Bake Sale Warp", player))
-        set_rule(multiworld.get_entrance("CH1: Castle Warp Hub", player), lambda state: state.has("Castle Warp", player))
-        # I don't think you actually need to get to Card Castle to fix Door Key? Mewlif made this and I'm lowkirkenuinely too lazy to check :skull: 
-        set_rule(multiworld.get_location("CH1: Bake Sale - Repair Door Key", player), lambda state: state.can_reach("CH1: Card Castle", "Region", player) and state.has("Broken Key A", player) and state.has("Broken Key B", player) and state.has("Broken Key C", player))
-        set_rule(multiworld.get_location("CH1: Bake Sale - Repair Top Cake", player), lambda state: state.has("BrokenCake", player))
-        set_rule(multiworld.get_location("CH1: Field - Return Top Cake", player), lambda state: state.has("Top Cake", player))
-        set_rule(multiworld.get_location("CH1: Throw Away Manual", player), lambda state: state.has("Manual", player))
-        # Jevil requires Door Key
-        set_rule(multiworld.get_location("CH1: Card Castle - Jevil Defeat Item #1", player), lambda state: state.has("Door Key", player))
-        set_rule(multiworld.get_location("CH1: Card Castle - Jevil Defeat Item #2", player), lambda state: state.has("Door Key", player))
-        set_rule(multiworld.get_location("CH1: Card Castle - Jevil Defeat Item #3", player), lambda state: state.has("Door Key", player))
+        # if not world.options.randomize_chapters.current_key == "all_unlocked":
+        #     set_rule(multiworld.get_entrance("Chapter 1 Entrance", player), lambda state: state.has("Chapter 1 Unlock", player))
+        # set_rule(multiworld.get_entrance("CH1: Bake Sale Entrance", player), lambda state: state.has("Bake Sale Ticket", player))
+        # set_rule(multiworld.get_entrance("CH1: Card Castle Entrance", player), lambda state: state.has("Castle Key", player))
+        # # Warp Doors obviously require, well, the warp item
+        # set_rule(multiworld.get_entrance("CH1: Bake Sale Warp", player), lambda state: state.has("Bake Sale Warp", player))
+        # set_rule(multiworld.get_entrance("CH1: Castle Warp", player), lambda state: state.has("Castle Warp", player))
+        # set_rule(multiworld.get_entrance("CH1: Bake Sale Warp Hub", player), lambda state: state.has("Bake Sale Warp", player))
+        # set_rule(multiworld.get_entrance("CH1: Castle Warp Hub", player), lambda state: state.has("Castle Warp", player))
+        # # I don't think you actually need to get to Card Castle to fix Door Key? Mewlif made this and I'm lowkirkenuinely too lazy to check :skull: 
+        # set_rule(multiworld.get_location("CH1: Bake Sale - Repair Door Key", player), lambda state: state.can_reach("CH1: Card Castle", "Region", player) and state.has("Broken Key A", player) and state.has("Broken Key B", player) and state.has("Broken Key C", player))
+        # set_rule(multiworld.get_location("CH1: Bake Sale - Repair Top Cake", player), lambda state: state.has("BrokenCake", player))
+        # set_rule(multiworld.get_location("CH1: Field - Return Top Cake", player), lambda state: state.has("Top Cake", player))
+        # set_rule(multiworld.get_location("CH1: Throw Away Manual", player), lambda state: state.has("Manual", player))
+        # # Jevil requires Door Key
+        # set_rule(multiworld.get_location("CH1: Card Castle - Jevil Defeat Item #1", player), lambda state: state.has("Door Key", player))
+        # set_rule(multiworld.get_location("CH1: Card Castle - Jevil Defeat Item #2", player), lambda state: state.has("Door Key", player))
+        # set_rule(multiworld.get_location("CH1: Card Castle - Jevil Defeat Item #3", player), lambda state: state.has("Door Key", player))
         # Need to be able to get to Jevil to get Seam to talk about him
-        set_rule(multiworld.get_location("CH1: Seam's Seap - Talk About Strange Prisoner", player), lambda state: state.can_reach("CH1: Card Castle", "Region", player))
+        # set_rule(multiworld.get_location("CH1: Seam's Seap - Talk About Strange Prisoner", player), lambda state: state.can_reach("CH1: Card Castle", "Region", player))
         # sets "mandatory" secret boss logic
         if world.options.randomize_secret_bosses.current_key == "mandatory":
             # There are better ways to do this, but for now this if statement works.
@@ -126,39 +130,26 @@ def set_rules(world: "DeltaruneWorld"):
         # for future reference
         # if world.options.include_chapter_5.value == 0:
         set_rule(multiworld.get_entrance("CH4: Titan Fight Entrance", player), lambda state: state.has("Combination Lock Digit", player, world.options.goal_macguffin_amount.value))
-
-# Sets rules on completion condition
-def set_completion_rules(world: "DeltaruneWorld"):
+    
+def set_completion_rules(world: DeltaruneWorld):
     player = world.player
     multiworld = world.multiworld
-# Code by my brother; Thanks!
-# chapters to reach for completion condition to be true
-    chapter_reach = {4: "CH4: Titan Fight",
-                 3: "CH3: Cold Place",
-                 2: "CH2: Post-Chapter Castle Town",
-                 1: "CH1: Light World"}
-
-# copy the chapter numbers to a list so they don't get deleted in the loop
-    chapter_numbers = list(chapter_reach.keys())
-# loop over the chapter numbers
-    for chapter_number in chapter_numbers:
-    # if world.options does not include the chapter number
-        if getattr(world.options, f"include_chapter_{chapter_number}").value == 0:
-        # delete that chapter from the chapters to reach
-            del chapter_reach[chapter_number]
-
-# define the completion condition function
+    
+    chapter_completion_locations = []
+    
+    if world.options.include_chapter_1:
+        chapter_completion_locations.append(chapter1_end_location)
+    if world.options.include_chapter_2:
+        chapter_completion_locations.append(chapter2_end_location)
+    if world.options.include_chapter_3:
+        chapter_completion_locations.append(chapter3_end_location)
+    if world.options.include_chapter_4:
+        chapter_completion_locations.append(chapter4_end_location)
+    
     def completion_condition(state):
-# loop over the names of the chapters to reach
-        for chapter_name in chapter_reach.values():
-# if the given chapter name hasn't been reached yet
-            if not state.can_reach(chapter_name, "Region", player):
-# return false and end the function there
-                return False
-# if none of the chapters to reach were not reached
-# (they were all reached) then return true
+        for location in chapter_completion_locations:
+            if not state.can_reach(location, "Region", player):
+                 return False
         return True
-
-# set the multiworld completion condition of the player
-    # to the completion condition that was just defined above
+    
     multiworld.completion_condition[player] = completion_condition

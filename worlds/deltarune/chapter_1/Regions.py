@@ -1,7 +1,10 @@
 from BaseClasses import MultiWorld
 from enum import StrEnum
+from .. import DeltaruneWorld
+from ..Regions import link_deltarune_areas, DeltaruneRegion
+from .Locations import chapter1_locations
 
-class Regions(StrEnum):  
+class Ch1Regions(StrEnum):  
   chapter_1       = "Chapter 1"
   light_world     = "CH1: Light World"
   castle_town     = "CH1: Castle Town"
@@ -11,7 +14,8 @@ class Regions(StrEnum):
   card_castle     = "CH1: Card Castle"
   warp_hub        = "CH1: Warp Hub"
   
-class Entrance(StrEnum):
+class Ch1Entrances(StrEnum):
+  chapter1_entrance       = "Chapter 1 Entrance"
   castle_town_entrance    = "CH1: Castle Town Entrance"
   fields_entrance         = "CH1: Fields Entrance"
   forest_entrance         = "CH1: Forest Entrance"
@@ -19,26 +23,48 @@ class Entrance(StrEnum):
   card_castle_entrance    = "CH1: Card Castle Entrance"
   light_world_entrance    = "CH1: Light World Entrance"
   
+  # Warps
+  fields_warp             = "CH1: Fields Warp"
+  forest_warp             = "CH1: Forest Warp"
+  bake_sale_warp          = "CH1: Bake Sale Warp"
+  card_castle_warp        = "CH1: Card Castle Warp"
+  
+  # Warp Hubs
+  fields_warp_hub         = "CH1: Fields Warp Hub"
+  forest_warp_hub         = "CH1: Forest Warp Hub"
+  bake_sale_warp_hub      = "CH1: Bake Sale Warp Hub"
+  card_castle_warp_hub    = "CH1: Card Castle Warp Hub"
+  
 chapter1_regions = [
-  (Regions.chapter_1,       [Entrance.castle_town_entrance]),
-  (Regions.castle_town,     [Entrance.fields_entrance]),
-  (Regions.fields,          [Entrance.forest_entrance, Entrance.fields_warp]),
-  (Regions.forest,          [Entrance.bake_sale_entrance, Entrance.forest_warp]),
-  (Regions.bake_sale,       [Entrance.card_castle_entrance, Entrance.bake_sale_warp]),
-  (Regions.card_castle,     [Entrance.light_world_entrance, Entrance.card_castle_warp]),
-  (Regions.warp_hub,        [Entrance.fields_warp, Entrance.forest_warp, Entrance.bake_sale_warp, Entrance.card_castle_warp]),
-  (Regions.light_world,     []),
+  (Ch1Regions.chapter_1,       [Ch1Entrances.castle_town_entrance]),
+  (Ch1Regions.castle_town,     [Ch1Entrances.fields_entrance]),
+  (Ch1Regions.fields,          [Ch1Entrances.forest_entrance, Ch1Entrances.fields_warp]),
+  (Ch1Regions.forest,          [Ch1Entrances.bake_sale_entrance, Ch1Entrances.forest_warp]),
+  (Ch1Regions.bake_sale,       [Ch1Entrances.card_castle_entrance, Ch1Entrances.bake_sale_warp]),
+  (Ch1Regions.card_castle,     [Ch1Entrances.light_world_entrance, Ch1Entrances.card_castle_warp]),
+  (Ch1Regions.warp_hub,        [Ch1Entrances.fields_warp, Ch1Entrances.forest_warp, Ch1Entrances.bake_sale_warp, Ch1Entrances.card_castle_warp]),
+  (Ch1Regions.light_world,     []),
 ]
 
 chapter1_mandatory_connections = [
-  (Entrance.castle_town_entrance, Regions.castle_town),
-  (Entrance.fields_entrance,      Regions.fields),
-  (Entrance.forest_entrance,      Regions.forest),
-  (Entrance.bake_sale_entrance,   Regions.bake_sale),
-  (Entrance.card_castle_entrance, Regions.card_castle),
-  (Entrance.light_world_entrance, Regions.light_world),
-  (Entrance.fields_warp,          Regions.warp_hub),
-  (Entrance.forest_warp,          Regions.warp_hub),
-  (Entrance.bake_sale_warp,       Regions.warp_hub),
-  (Entrance.card_castle_warp,     Regions.warp_hub),
+  (Ch1Entrances.castle_town_entrance, Ch1Regions.castle_town),
+  (Ch1Entrances.fields_entrance,      Ch1Regions.fields),
+  (Ch1Entrances.forest_entrance,      Ch1Regions.forest),
+  (Ch1Entrances.bake_sale_entrance,   Ch1Regions.bake_sale),
+  (Ch1Entrances.card_castle_entrance, Ch1Regions.card_castle),
+  (Ch1Entrances.light_world_entrance, Ch1Regions.light_world),
+  (Ch1Entrances.fields_warp,          Ch1Regions.warp_hub),
+  (Ch1Entrances.forest_warp,          Ch1Regions.warp_hub),
+  (Ch1Entrances.bake_sale_warp,       Ch1Regions.warp_hub),
+  (Ch1Entrances.card_castle_warp,     Ch1Regions.warp_hub),
 ]
+
+def create_regions(world: DeltaruneWorld):
+  if not world.include_chapter_1:
+    return
+  
+  for (region_name, exits) in chapter1_regions:
+    locations = [loc for loc in chapter1_locations if loc.region == region_name]
+    world.multiworld.regions += [DeltaruneRegion(world, region_name, exits, locations, [])]
+  
+  link_deltarune_areas(world, world.player, chapter1_mandatory_connections)

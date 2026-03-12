@@ -11,6 +11,8 @@ from worlds.AutoWorld import World, WebWorld
 from worlds.LauncherComponents import components, Component, launch_subprocess, Type, icon_paths
 from multiprocessing import Process
 
+from chapter_1 import Ch1Regions
+
 def run_client():
     print('running deltarune client')
     from .DeltaruneClient import main  # lazy import
@@ -26,6 +28,8 @@ components.append(Component("DELTARUNE Client",
 
 #I apologize for the name of the icon - Emerald
 icon_paths["deltarune"] = f"ap:{__name__}/icons/gay_deltarune.png"
+
+max_deltarune_chapter = 4
 
 def data_path(file_name: str):
     import pkgutil
@@ -286,30 +290,6 @@ class DeltaruneWorld(World):
         set_rules(self)
         set_completion_rules(self)
 
-    def create_regions(self):
-        def DeltaruneRegion(region_name: str, exits=None):
-            if exits is None:
-                exits = []
-            ret = Region(region_name, self.player, self.multiworld)
-            ret.locations += [DeltaruneLocation(self.player, loc_name, loc_data.id, ret)
-                              for loc_name, loc_data in advancement_table.items()
-                              if loc_data.region == region_name and (
-                              (self.options.include_chapter_1 and loc_name.startswith("CH1: ")) or
-                              (self.options.include_chapter_2 and loc_name.startswith("CH2: ")) or
-                              (self.options.include_chapter_3 and loc_name.startswith("CH3: ")) or
-                              (self.options.include_chapter_4 and loc_name.startswith("CH4: ")) or
-                              not (loc_name.startswith("CH1: ") or loc_name.startswith("CH2: ")
-                                   or loc_name.startswith("CH3: ") or loc_name.startswith("CH4: "))) and
-                                   (loc_name not in exclusion_table[self.options.chosen_route.current_key]) and
-                                   not ((not self.options.include_t_rank) and loc_name in exclusion_table["t_rank"]) and
-                                   not ((self.options.include_chapter_2 and not self.options.include_chapter_1) and loc_name.startswith("CH2: Castle Town - Spike Band"))]
-            for exit in exits:
-                ret.exits.append(Entrance(self.player, exit, ret))
-            return ret
-
-        self.multiworld.regions += [DeltaruneRegion(*r) for r in deltarune_regions]
-        link_deltarune_areas(self.multiworld, self.player)
-
     def fill_slot_data(self):
         return self._get_deltarune_data()
 
@@ -324,3 +304,30 @@ class DeltaruneWorld(World):
 
     def have_all_chapters_included(self, chapters: list[int]) -> bool:
         return all(getattr(self.options, f"include_chapter_{chapter}").value == 1 for chapter in chapters)
+    
+    def is_final_chapter(self, chapter: int) -> bool:
+        for chapterToCheck in range(max_deltarune_chapter, 0, -1):
+            if chapterToCheck == chapter: return True
+            if getattr(self.options, f"include_chapter_{chapter}"): return False
+    
+    def create_regions(self):
+        CrossChapterRegions.create_regions(self)
+        Ch1Regions.create_regions(self)
+        Ch2Regions.create_regions(self)
+        Ch3Regions.create_regions(self)
+        Ch4Regions.create_regions(self)
+        # Ch5Regions.create_regions(self)
+        # Ch6Regions.create_regions(self)
+        # Ch7Regions.create_regions(self)
+        
+    def set_rules(self):
+        CrossChapterRules.set_rules(self)
+        Ch1Rules.set_rules(self)
+        Ch2Rules.set_rules(self)
+        Ch3Rules.set_rules(self)
+        Ch4Rules.set_rules(self)
+        # Ch5Rules.set_rules(self)
+        # Ch6Rules.set_rules(self)
+        # Ch7Rules.set_rules(self)
+        
+        set_completion_rules(self)

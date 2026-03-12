@@ -201,9 +201,9 @@ class LocationIDs(Enum):
     ch3_mantle_out_of_bounds_chest = 182
     ch3_mantle_northern_light_item = 183
     ch3_s_rank_room_susie_gift = 184
-    ch1_fountain_seal = 185
-    ch2_fountain_seal = 186
-    ch3_fountain_seal = 187
+    ch1_fountain_sealed = 185
+    ch2_fountain_sealed = 186
+    ch3_fountain_sealed = 187
     ch4_castle_town_lanino_elnina_challenge = 188
     ch4_castle_town_top_chef_gift = 189
     ch4_dark_sanctuary_jockington_prophecy_chest = 190
