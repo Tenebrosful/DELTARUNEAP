@@ -54,7 +54,8 @@ def set_rules(world: "DeltaruneWorld"):
             set_rule(multiworld.get_location("CH2: Castle Town - Twin Ribbon Fusion", player), lambda state: state.has("Pink Ribbon", player))
         if world.options.include_chapter_1.value == 1:
             set_rule(multiworld.get_location("CH2: Castle Town - Spike Band Fusion", player), lambda state: state.has("IronShackle", player) and state.has("GlowWrist", player))
-        set_rule(multiworld.get_location("CH2: Castle Town - TensionBow Fusion", player), lambda state: state.has("TensionBit", player) and state.has("B.ShotBowtie", player))
+        if world.options.chosen_route.current_key == "all_recruits" or world.options.chosen_route.current_key == "all_routes":
+            set_rule(multiworld.get_location("CH2: Castle Town - TensionBow Fusion", player), lambda state: state.has("TensionBit", player) and state.has("B.ShotBowtie", player))
         set_rule(multiworld.get_entrance("CH2: Cyber City Entrance", player), lambda state: state.has("Safety Vest", player))
         # sets "mandatory" secret boss logic. This doesn't apply in weird route since you have to fight Spamton NEO anyway
         if world.options.randomize_secret_bosses.current_key == "mandatory" and not world.options.chosen_route.current_key == "weird_route":

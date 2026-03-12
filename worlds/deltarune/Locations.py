@@ -186,7 +186,7 @@ advancement_table = {
     "CH3: Cold Place - Knight Defeat Item #2": AdvData(173, "CH3: Cold Place"),
     "CH3: Couch Cliffs - Warp Door": AdvData(174, "CH3: Couch Cliffs"),
     "CH3: Green Room - Warp Door": AdvData(175, "CH3: Green Room"),
-    "CH3: TV World - Entrance Warp Door": AdvData(176, "CH3: TV World"),
+    "CH3: TV World - Entrance Warp Door": AdvData(176, "CH3: Board 2"),
     "CH3: TV World - Goulden Sam Warp Door": AdvData(177, "CH3: Goulden Sam"),
     "CH3: Board 1 Extra Key": AdvData(179, "CH3: Board 1"),
     "CH3: Board 2 Extra Photo": AdvData(180, "CH3: Board 2"),
