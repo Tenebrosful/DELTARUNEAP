@@ -6,7 +6,7 @@ from .Regions import deltarune_regions, link_deltarune_areas
 from .Rules import set_rules, set_completion_rules
 from worlds.generic.Rules import exclusion_rules
 from BaseClasses import Region, Entrance, Tutorial, Item, ItemClassification
-from .Options import DeltaruneOptions
+from .Options import DeltaruneOptions, RandomizeChapterOptions
 from worlds.AutoWorld import World, WebWorld
 from worlds.LauncherComponents import components, Component, launch_subprocess, Type, icon_paths
 from multiprocessing import Process
@@ -289,6 +289,8 @@ class DeltaruneWorld(World):
     def fill_slot_data(self):
         return self._get_deltarune_data()
 
+    def is_all_chapters_unlocked(self):
+        return self.options.randomize_chapters.value == RandomizeChapterOptions.all_unlocked
     
     # Check if you have at least one chapter that give you access to fusions
     def can_access_fusion(self) -> bool:

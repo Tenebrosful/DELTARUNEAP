@@ -25,14 +25,52 @@ class ItemIDs(Enum):
     spincake = 7
     darkburger = 8
     lancer_cookie = 9
+    #nothing = 10
+    clubsandwich = 11
+    heartsdonut = 12
+    chocdiamond = 13
+    #nothing = 14
+    rouxlsroux = 15
     
     
     dd_burger = 22
     
+    chapter_1_egg = 10002
+    brokencake = 10003
+    broken_key_a = 10004
+    door_key = 10005
+    broken_key_b = 10006
+    broken_key_c = 10007
+    
+    bake_sale_ticket = 11001
+    # king_chess_piece = 11002
+    castle_key = 11003
+    top_cake = 11004
+    joe_life_savings = 11006
+    
+    amber_card = 20001
+    dice_brace = 20002
+    pink_ribbon = 20003
+    white_ribbon = 20004
+    ironshackle = 20005
+    jevilstail = 20007
     silver_card = 20008
     twin_ribbon = 20009
     spikeband = 20013
     tensionbow = 20015
+    
+    devilsknife = 30007
+    
+    king_shape_key_piece = 70000
+    key_gen_2_segment = 70001
+    remote_battery = 70002
+    combinaison_lock_digit = 70003
+    
+    chapter_1_unlock = 90000
+    chapter_2_unlock = 90001
+    chapter_3_unlock = 90002
+    chapter_4_unlock = 90003
+    chapter_5_unlock = 90004
 
 item_table = {
     "Dark Candy": ItemData(1, ItemClassification.filler),
