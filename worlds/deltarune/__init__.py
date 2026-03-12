@@ -86,15 +86,13 @@ class DeltaruneWorld(World):
         }
 
     def get_filler_item_name(self):
-        junk_pool: dict[str, int] = dict()
-        if self.options.include_chapter_1:
-            junk_pool.update(junk_weights_ch1)
-        if self.options.include_chapter_2:
-            junk_pool.update(junk_weights_ch2)
-        if self.options.include_chapter_3:
-            junk_pool.update(junk_weights_ch3)
-        if self.options.include_chapter_4:
-            junk_pool.update(junk_weights_ch4)
+        junk_pool: dict[str, int] = CrossChapterItems.get_filler_items(self)
+        
+        if self.options.include_chapter_1: junk_pool.update(Ch1Items.get_filler_items(self))
+        if self.options.include_chapter_2: junk_pool.update(Ch2Items.get_filler_items(self))
+        if self.options.include_chapter_3: junk_pool.update(Ch3Items.get_filler_items(self))
+        if self.options.include_chapter_4: junk_pool.update(Ch4Items.get_filler_items(self))
+        
         return self.random.choices(list(junk_pool.keys()), weights=list(junk_pool.values()))[0]
 
     def create_items(self):
@@ -318,32 +316,32 @@ class DeltaruneWorld(World):
         
     def create_regions(self):
         CrossChapterRegions.create_regions(self)
-        Ch1Regions.create_regions(self)
-        Ch2Regions.create_regions(self)
-        Ch3Regions.create_regions(self)
-        Ch4Regions.create_regions(self)
-        # Ch5Regions.create_regions(self)
-        # Ch6Regions.create_regions(self)
-        # Ch7Regions.create_regions(self)
+        if self.include_chapter_1: Ch1Regions.create_regions(self)
+        if self.include_chapter_2: Ch2Regions.create_regions(self)
+        if self.include_chapter_3: Ch3Regions.create_regions(self)
+        if self.include_chapter_4: Ch4Regions.create_regions(self)
+        # if self.include_chapter_5: Ch5Regions.create_regions(self)
+        # if self.include_chapter_6: Ch6Regions.create_regions(self)
+        # if self.include_chapter_7: Ch7Regions.create_regions(self)
         
     def create_items(self):
         CrossChapterItems.create_items(self)
-        Ch1Items.create_items(self)
-        Ch2Items.create_items(self)
-        Ch3Items.create_items(self)
-        Ch4Items.create_items(self)
-        # Ch5Items.create_items(self)
-        # Ch6Items.create_items(self)
-        # Ch7Items.create_items(self)
+        if self.include_chapter_1: Ch1Items.create_items(self)
+        if self.include_chapter_2: Ch2Items.create_items(self)
+        if self.include_chapter_3: Ch3Items.create_items(self)
+        if self.include_chapter_4: Ch4Items.create_items(self)
+        # if self.include_chapter_5: Ch5Items.create_items(self)
+        # if self.include_chapter_6: Ch6Items.create_items(self)
+        # if self.include_chapter_7: Ch7Items.create_items(self)
         
     def set_rules(self):
         CrossChapterRules.set_rules(self)
-        Ch1Rules.set_rules(self)
-        Ch2Rules.set_rules(self)
-        Ch3Rules.set_rules(self)
-        Ch4Rules.set_rules(self)
-        # Ch5Rules.set_rules(self)
-        # Ch6Rules.set_rules(self)
-        # Ch7Rules.set_rules(self)
+        if self.include_chapter_1: Ch1Rules.set_rules(self)
+        if self.include_chapter_2: Ch2Rules.set_rules(self)
+        if self.include_chapter_3: Ch3Rules.set_rules(self)
+        if self.include_chapter_4: Ch4Rules.set_rules(self)
+        # if self.include_chapter_5: Ch5Rules.set_rules(self)
+        # if self.include_chapter_6: Ch6Rules.set_rules(self)
+        # if self.include_chapter_7: Ch7Rules.set_rules(self)
         
         set_completion_rules(self)

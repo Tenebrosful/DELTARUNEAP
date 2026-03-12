@@ -534,3 +534,13 @@ def generic_create_items(world: DeltaruneWorld, items: dict[str, ItemData], cond
             itempool += DeltaruneItem(item_name, item_data.classification, item_data.code, world.player)
             
     world.multiworld.itempool += itempool
+    
+def get_generic_filler_items(world: DeltaruneWorld, items: dict[str, ItemData], conditional_items: dict[str, ConditionalItemData]):
+    filler_items = []
+  
+    filler_items += [item_name for item_name, item_data in items.items() if item_data.classification == ItemClassification.filler]
+    filler_items += [item_name for item_name, item_data in conditional_items.items() if item_data.classification == ItemClassification.filler and item_data.should_be_included(world)]
+    
+    weigth = 100 / len(filler_items)
+    
+    return [filler_item for filler_item in map(lambda item_name: {item_name: weigth}, filler_items)]

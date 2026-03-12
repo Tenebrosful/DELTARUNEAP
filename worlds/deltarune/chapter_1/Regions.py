@@ -59,5 +59,4 @@ chapter1_mandatory_connections = [
 ]
 
 def create_regions(world: DeltaruneWorld):
-  if not world.include_chapter_1: return
   generic_create_regions(world, chapter1_regions, chapter1_locations, chapter1_conditional_locations, chapter1_mandatory_connections)

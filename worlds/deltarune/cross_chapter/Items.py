@@ -41,5 +41,5 @@ cross_chapter_conditional_items = {
 def create_items(world: DeltaruneWorld):
   generic_create_items(world, create_items, cross_chapter_conditional_items)
   
-def get_cross_chapter_filler_items(world: DeltaruneWorld):
+def get_filler_items(world: DeltaruneWorld):
   return get_generic_filler_items(world, cross_chapter_items, cross_chapter_conditional_items)

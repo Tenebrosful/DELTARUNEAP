@@ -6,9 +6,6 @@ from .Items import Ch1Items
 from .Locations import Ch1Locations
 
 def set_rules(world: DeltaruneWorld): 
-  if not world.options.include_chapter_1:
-    return
-  
   player = world.player
   multiworld = world.multiworld
   
