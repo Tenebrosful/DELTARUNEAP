@@ -1,7 +1,7 @@
 from .Items import DeltaruneItem, item_table, non_key_items_ch1, non_key_items_ch2, non_key_items_ch3, non_key_items_ch3_weird, non_key_items_ch4, key_items_ch1, key_items_ch3, key_items_ch3_weird, key_items_ch4, \
     junk_weights_ch1, junk_weights_ch3, junk_weights_ch4, warp_doors, secret_boss_rewards, key_items_ch2, junk_weights_ch2, key_items_ch2_weird, hidden_items, \
     non_key_items_ch2_weird, key_items_ch2_all, chapters
-from .Locations import DeltaruneAdvancement, advancement_table, exclusion_table
+from .Locations import DeltaruneLocation, advancement_table, exclusion_table
 from .Regions import deltarune_regions, link_deltarune_areas
 from .Rules import set_rules, set_completion_rules
 from worlds.generic.Rules import exclusion_rules
@@ -291,7 +291,7 @@ class DeltaruneWorld(World):
             if exits is None:
                 exits = []
             ret = Region(region_name, self.player, self.multiworld)
-            ret.locations += [DeltaruneAdvancement(self.player, loc_name, loc_data.id, ret)
+            ret.locations += [DeltaruneLocation(self.player, loc_name, loc_data.id, ret)
                               for loc_name, loc_data in advancement_table.items()
                               if loc_data.region == region_name and (
                               (self.options.include_chapter_1 and loc_name.startswith("CH1: ")) or
@@ -317,3 +317,10 @@ class DeltaruneWorld(World):
         item_data = item_table[name]
         item = DeltaruneItem(name, item_data.classification, item_data.code, self.player)
         return item
+    
+    # Check if at least one of specified chapters is included
+    def has_at_least_one_chapter_included(self, chapters: list[int]) -> bool:
+        return any(getattr(self.options, f"include_chapter_{chapter}").value == 1 for chapter in chapters)
+
+    def have_all_chapters_included(self, chapters: list[int]) -> bool:
+        return all(getattr(self.options, f"include_chapter_{chapter}").value == 1 for chapter in chapters)

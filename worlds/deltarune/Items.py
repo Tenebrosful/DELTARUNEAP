@@ -1,4 +1,6 @@
 from BaseClasses import Item, ItemClassification
+from enum import Enum
+from . import DeltaruneWorld
 import typing
 
 
@@ -6,10 +8,16 @@ class ItemData(typing.NamedTuple):
     code: typing.Optional[int]
     classification: any
 
+class ConditionalItemData(typing.NamedTuple):
+    code: typing.Optional[int]
+    classification: any
+    should_be_included: typing.Callable[[DeltaruneWorld], bool]
 
 class DeltaruneItem(Item):
     game: str = "Deltarune"
 
+class ItemIDs(Enum):
+    spincake = 1
 
 item_table = {
     "Dark Candy": ItemData(1, ItemClassification.filler),
@@ -23,6 +31,7 @@ item_table = {
     "HeartsDonut": ItemData(12, ItemClassification.filler),
     "ChocDiamond": ItemData(13, ItemClassification.filler),
     "RouxlsRoux": ItemData(15, ItemClassification.filler),
+    
     "CD Bagel": ItemData(16, ItemClassification.filler),
     "Kris Tea": ItemData(18, ItemClassification.filler),
     "Noelle Tea": ItemData(19, ItemClassification.filler),
@@ -47,6 +56,7 @@ item_table = {
     "Rhapsotea": ItemData(61, ItemClassification.filler),
     "Scarlixir": ItemData(62, ItemClassification.filler),
     "BitterTear": ItemData(63, ItemClassification.useful),
+    
     "CH1 Egg": ItemData(10002, ItemClassification.useful),
     "BrokenCake": ItemData(10003, ItemClassification.progression),
     "Broken Key A": ItemData(10004, ItemClassification.progression),
