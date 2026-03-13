@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING
 from BaseClasses import ItemClassification
 
 if TYPE_CHECKING:
-    from . import DeltaruneWorld
+    from .. import DeltaruneWorld
     
 class CCItems(StrEnum):
   
@@ -43,13 +43,13 @@ cross_chapter_items = {
 
 cross_chapter_conditional_items = {
   # Fusions
-  CCItems.dd_burger:    ConditionalItemData(ItemIDs.dd_burger.value,    ItemClassification.filler,    lambda world: world.can_access_fusion()),
-  CCItems.silver_card:  ConditionalItemData(ItemIDs.silver_card.value,  ItemClassification.useful,    lambda world: world.can_access_fusion()),
-  CCItems.twin_ribbon:  ConditionalItemData(ItemIDs.twin_ribbon.value,  ItemClassification.useful,    lambda world: world.can_access_fusion()),
+  CCItems.dd_burger.value:    ConditionalItemData(ItemIDs.dd_burger.value,    ItemClassification.filler,    lambda world: world.can_access_fusion()),
+  CCItems.silver_card.value:  ConditionalItemData(ItemIDs.silver_card.value,  ItemClassification.useful,    lambda world: world.can_access_fusion()),
+  CCItems.twin_ribbon.value:  ConditionalItemData(ItemIDs.twin_ribbon.value,  ItemClassification.useful,    lambda world: world.can_access_fusion()),
   # Require IronShackle that is exclusive to chapter 1
-  CCItems.spikeband:    ConditionalItemData(ItemIDs.spikeband.value,    ItemClassification.useful,    lambda world: world.can_access_fusion() and world.include_chapter(1)),
+  CCItems.spikeband.value:    ConditionalItemData(ItemIDs.spikeband.value,    ItemClassification.useful,    lambda world: world.can_access_fusion() and world.include_chapter(1)),
   # Require B.ShotBowtie that is exclusive to chapter 2
-  CCItems.tensionbow:   ConditionalItemData(ItemIDs.tensionbow.value,   ItemClassification.useful,    lambda world: world.can_access_fusion() and world.include_chapter(2)),
+  CCItems.tensionbow.value:   ConditionalItemData(ItemIDs.tensionbow.value,   ItemClassification.useful,    lambda world: world.can_access_fusion() and world.include_chapter(2)),
 }
 
 def create_items(world: "DeltaruneWorld"):

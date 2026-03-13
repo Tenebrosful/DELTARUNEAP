@@ -9,8 +9,8 @@ from worlds.AutoWorld import World, WebWorld
 from worlds.LauncherComponents import components, Component, Type, icon_paths
 from multiprocessing import Process
 
-from .cross_chapter import CCLocationsAndRegions, CCRules, CCItems
-from .chapter_1 import Ch1LocationAndRegions, Ch1Rules, Ch1Items
+from .cross_chapter import Items as CCItems, LocationsAndRegions as CCLocationsAndRegions, Rules as CCRules
+from .chapter_1 import LocationsAndRegions as Ch1LocationAndRegions, Rules as Ch1Rules, Items as Ch1Items
 
 def run_client():
     print('running deltarune client')
@@ -309,6 +309,9 @@ class DeltaruneWorld(World):
     def include_chapter(self, chapter: int) -> bool:
         return getattr(self.options, f"include_chapter_{chapter}").value == 1
 
+    def is_warps_randomized(self) -> bool:
+        return self.options.randomize_warp_doors
+        
     def is_chapters_in_order(self):
         return self.options.randomize_chapters == RandomizeChapterOptions.in_order
 
@@ -402,7 +405,7 @@ class DeltaruneWorld(World):
         if starting_chapter == -1: return
         
         item_name = f"Chapter {starting_chapter} Unlock"
-        print(item_name)
+
         item_pool.remove(item_name)
         self.multiworld.push_precollected(self.create_item(item_name))
             

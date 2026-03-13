@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 from ..chapter_1.LocationsAndRegions import Ch1Locations
 
 if TYPE_CHECKING:
-    from . import DeltaruneWorld
+    from .. import DeltaruneWorld
 
 def set_rules(world: "DeltaruneWorld"):
     player = world.player

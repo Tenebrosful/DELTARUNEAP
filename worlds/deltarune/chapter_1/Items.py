@@ -5,7 +5,7 @@ from BaseClasses import ItemClassification
 from enum import StrEnum
 
 if TYPE_CHECKING:
-    from . import DeltaruneWorld
+    from .. import DeltaruneWorld
 
 class Ch1Items(StrEnum):
   chapter_1_unlock = "Chapter 1 Unlock"
@@ -56,55 +56,55 @@ class Ch1Items(StrEnum):
   card_castle_warp = "Card Castle Warp"
   
 chapter1_items = {
-  Ch1Items.dark_candy:     ItemData(ItemIDs.dark_candy.value,    ItemClassification.filler),
-  CCItems.dark_burger:     ItemData(ItemIDs.darkburger.value,    ItemClassification.filler),
-  Ch1Items.clubsSandwich:  ItemData(ItemIDs.clubsandwich.value,  ItemClassification.filler),
-  Ch1Items.heartsdonut:    ItemData(ItemIDs.heartsdonut.value,   ItemClassification.filler),
-  Ch1Items.chocdiamond:    ItemData(ItemIDs.chocdiamond.value,   ItemClassification.filler),
-  Ch1Items.rouxlsroux:     ItemData(ItemIDs.rouxlsroux.value,    ItemClassification.filler),
+  Ch1Items.dark_candy.value:     ItemData(ItemIDs.dark_candy.value,    ItemClassification.filler),
+  CCItems.dark_burger.value:     ItemData(ItemIDs.darkburger.value,    ItemClassification.filler),
+  Ch1Items.clubsSandwich.value:  ItemData(ItemIDs.clubsandwich.value,  ItemClassification.filler),
+  Ch1Items.heartsdonut.value:    ItemData(ItemIDs.heartsdonut.value,   ItemClassification.filler),
+  Ch1Items.chocdiamond.value:    ItemData(ItemIDs.chocdiamond.value,   ItemClassification.filler),
+  Ch1Items.rouxlsroux.value:     ItemData(ItemIDs.rouxlsroux.value,    ItemClassification.filler),
   
-  CCItems.dark_dollars_40:  ItemData(ItemIDs.dark_dollars_40.value, ItemClassification.useful),
-  Ch1Items.dice_brace:      ItemData(ItemIDs.dice_brace.value,      ItemClassification.useful),
-  Ch1Items.jevilstail:      ItemData(ItemIDs.jevilstail.value,      ItemClassification.useful),
-  Ch1Items.devilsknife:     ItemData(ItemIDs.devilsknife.value,     ItemClassification.useful),
-  CCItems.spincake:         ItemData(ItemIDs.spincake.value,        ItemClassification.useful),
-  CCItems.spokysword:       ItemData(ItemIDs.spookysword.value,     ItemClassification.useful),
-  Ch1Items.brave_ax:        ItemData(ItemIDs.brave_ax.value,        ItemClassification.useful),
+  CCItems.dark_dollars_40.value:  ItemData(ItemIDs.dark_dollars_40.value, ItemClassification.useful),
+  Ch1Items.dice_brace.value:      ItemData(ItemIDs.dice_brace.value,      ItemClassification.useful),
+  Ch1Items.jevilstail.value:      ItemData(ItemIDs.jevilstail.value,      ItemClassification.useful),
+  Ch1Items.devilsknife.value:     ItemData(ItemIDs.devilsknife.value,     ItemClassification.useful),
+  CCItems.spincake.value:         ItemData(ItemIDs.spincake.value,        ItemClassification.useful),
+  CCItems.spokysword.value:       ItemData(ItemIDs.spookysword.value,     ItemClassification.useful),
+  Ch1Items.brave_ax.value:        ItemData(ItemIDs.brave_ax.value,        ItemClassification.useful),
   
   # ReviveMint x2
-  CCItems.revive_mint:     ItemData(ItemIDs.revivemint.value,    ItemClassification.useful, 2),
+  CCItems.revive_mint.value:     ItemData(ItemIDs.revivemint.value,    ItemClassification.useful, 2),
   
-  Ch1Items.manual:         ItemData(ItemIDs.manual.value,        ItemClassification.progression, 2),
+  Ch1Items.manual.value:         ItemData(ItemIDs.manual.value,        ItemClassification.progression, 2),
   
-  Ch1Items.egg:            ItemData(ItemIDs.chapter_1_egg.value,     ItemClassification.useful),
-  Ch1Items.castle_moss:    ItemData(ItemIDs.joe_life_savings.value,  ItemClassification.useful),
+  Ch1Items.egg.value:            ItemData(ItemIDs.chapter_1_egg.value,     ItemClassification.useful),
+  Ch1Items.castle_moss.value:    ItemData(ItemIDs.joe_life_savings.value,  ItemClassification.useful),
   
   # Blockers
-  Ch1Items.bake_sale_ticket: ItemData(ItemIDs.bake_sale_ticket.value,  ItemClassification.progression),
-  Ch1Items.castle_key:       ItemData(ItemIDs.castle_key.value,        ItemClassification.progression),
+  Ch1Items.bake_sale_ticket.value: ItemData(ItemIDs.bake_sale_ticket.value,  ItemClassification.progression),
+  Ch1Items.castle_key.value:       ItemData(ItemIDs.castle_key.value,        ItemClassification.progression),
   
-  # Warps
-  Ch1Items.fields_warp:       ItemData(ItemIDs.fields_warp.value,       ItemClassification.progression),
-  Ch1Items.forest_warp:       ItemData(ItemIDs.forest_warp.value,       ItemClassification.progression),
-  Ch1Items.bake_sale_warp:    ItemData(ItemIDs.bake_sale_warp.value,    ItemClassification.progression),
-  Ch1Items.card_castle_warp:  ItemData(ItemIDs.card_castle_warp.value,  ItemClassification.progression),
+  Ch1Items.brokencake.value:     ItemData(ItemIDs.brokencake.value,    ItemClassification.progression),
+  Ch1Items.top_cake.value:       ItemData(ItemIDs.top_cake.value,      ItemClassification.progression),
+  CCItems.glowshard.value:       ItemData(ItemIDs.glowshard.value,     ItemClassification.progression),
+  Ch1Items.ironshackle.value:    ItemData(ItemIDs.ironshackle.value,   ItemClassification.progression),
   
-  Ch1Items.brokencake:     ItemData(ItemIDs.brokencake.value,    ItemClassification.progression),
-  Ch1Items.top_cake:       ItemData(ItemIDs.top_cake.value,      ItemClassification.progression),
-  CCItems.glowshard:       ItemData(ItemIDs.glowshard.value,     ItemClassification.progression),
-  Ch1Items.ironshackle:    ItemData(ItemIDs.ironshackle.value,   ItemClassification.progression),
-  
-  Ch1Items.broken_key_a:   ItemData(ItemIDs.broken_key_a.value,  ItemClassification.progression),
-  Ch1Items.broken_key_b:   ItemData(ItemIDs.broken_key_b.value,  ItemClassification.progression),
-  Ch1Items.broken_key_c:   ItemData(ItemIDs.broken_key_c.value,  ItemClassification.progression),
-  Ch1Items.door_key:       ItemData(ItemIDs.door_key.value,      ItemClassification.progression),
+  Ch1Items.broken_key_a.value:   ItemData(ItemIDs.broken_key_a.value,  ItemClassification.progression),
+  Ch1Items.broken_key_b.value:   ItemData(ItemIDs.broken_key_b.value,  ItemClassification.progression),
+  Ch1Items.broken_key_c.value:   ItemData(ItemIDs.broken_key_c.value,  ItemClassification.progression),
+  Ch1Items.door_key.value:       ItemData(ItemIDs.door_key.value,      ItemClassification.progression),
     
-  CCItems.white_ribbon: ItemData(ItemIDs.white_ribbon.value, ItemClassification.progression),
+  CCItems.white_ribbon.value: ItemData(ItemIDs.white_ribbon.value, ItemClassification.progression),
 }
 
 chapter1_conditional_items = {
-  Ch1Items.chapter_1_unlock:     ConditionalItemData(ItemIDs.chapter_1_unlock.value,     ItemClassification.progression, lambda world: not world.is_all_chapters_unlocked()),
-  Ch1Items.king_shape_key_piece: ConditionalItemData(ItemIDs.king_shape_key_piece.value, ItemClassification.progression, lambda world: world.is_final_chapter(1))
+  # Warps
+  Ch1Items.fields_warp.value:       ConditionalItemData(ItemIDs.fields_warp.value,       ItemClassification.progression, lambda world: world.is_warps_randomized()),
+  Ch1Items.forest_warp.value:       ConditionalItemData(ItemIDs.forest_warp.value,       ItemClassification.progression, lambda world: world.is_warps_randomized()),
+  Ch1Items.bake_sale_warp.value:    ConditionalItemData(ItemIDs.bake_sale_warp.value,    ItemClassification.progression, lambda world: world.is_warps_randomized()),
+  Ch1Items.card_castle_warp.value:  ConditionalItemData(ItemIDs.card_castle_warp.value,  ItemClassification.progression, lambda world: world.is_warps_randomized()),
+  
+  Ch1Items.chapter_1_unlock.value:     ConditionalItemData(ItemIDs.chapter_1_unlock.value,     ItemClassification.progression, lambda world: not world.is_all_chapters_unlocked()),
+  Ch1Items.king_shape_key_piece.value: ConditionalItemData(ItemIDs.king_shape_key_piece.value, ItemClassification.progression, lambda world: world.is_final_chapter(1))
 }
 
 def create_items(world: "DeltaruneWorld") -> list[DeltaruneItem]:

@@ -6,7 +6,7 @@ from .Items import Ch1Items
 from ..cross_chapter.LocationsAndRegions import CCEntrances
 
 if TYPE_CHECKING:
-    from . import DeltaruneWorld
+    from .. import DeltaruneWorld
 
 def set_rules(world: "DeltaruneWorld"): 
   player = world.player
