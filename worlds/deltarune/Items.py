@@ -8,11 +8,13 @@ if TYPE_CHECKING:
 class ItemData(NamedTuple):
     code: Optional[int]
     classification: any
+    amount: Optional[int] = 1
 
 class ConditionalItemData(NamedTuple):
     code: Optional[int]
     classification: any
     should_be_included: Callable[["DeltaruneWorld"], bool]
+    amount: Optional[int] = 1
 
 class DeltaruneItem(Item):
     game: str = "Deltarune"
@@ -71,6 +73,11 @@ class ItemIDs(Enum):
     dark_dollars_100 = 40100
     dark_dollars_250 = 40250
     dark_dollars_500 = 40500
+    
+    fields_warp = 50000
+    forest_warp = 50001
+    bake_sale_warp = 50002
+    card_castle_warp = 50003
     
     king_shape_key_piece = 70000
     key_gen_2_segment = 70001
@@ -572,23 +579,25 @@ chapters = [
     "This is where I would put my Chapter 5 Unlock... IF I HAD ONE!",
 ]
 
-def generic_create_items(world: "DeltaruneWorld", items: dict[str, ItemData], conditional_items: dict[str, ConditionalItemData]) -> list[DeltaruneItem]:
-    itempool: list[DeltaruneItem] = []
+def generic_create_items(world: "DeltaruneWorld", items: dict[str, ItemData], conditional_items: dict[str, ConditionalItemData]) -> list[str]:
+    item_pool: list[str] = []
   
     for item_name, item_data in items.items():
-        itempool.append(DeltaruneItem(item_name, item_data.classification, item_data.code, world.player))
+        item_pool += [item_name] * item_data.amount
         
     for item_name, item_data in conditional_items.items():
         if item_data.should_be_included(world):
-            itempool.append(DeltaruneItem(item_name, item_data.classification, item_data.code, world.player))
-            
-    return itempool
+            item_pool += [item_name] * item_data.amount
+
+    return item_pool
     
 def generic_get_filler_items(world: "DeltaruneWorld", items: dict[str, ItemData], conditional_items: dict[str, ConditionalItemData]) -> dict[str, float]:
     filler_items = []
   
     filler_items += [item_name for item_name, item_data in items.items() if item_data.classification == ItemClassification.filler]
     filler_items += [item_name for item_name, item_data in conditional_items.items() if item_data.classification == ItemClassification.filler and item_data.should_be_included(world)]
+    
+    if len(filler_items) == 0: return {}
     
     weigth = 100 / len(filler_items)
     

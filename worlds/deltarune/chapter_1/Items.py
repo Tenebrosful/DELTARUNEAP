@@ -72,16 +72,22 @@ chapter1_items = {
   Ch1Items.brave_ax:        ItemData(ItemIDs.brave_ax.value,        ItemClassification.useful),
   
   # ReviveMint x2
-  CCItems.revive_mint:     ItemData(ItemIDs.revivemint.value,    ItemClassification.useful),
-  CCItems.revive_mint:     ItemData(ItemIDs.revivemint.value,    ItemClassification.useful),
+  CCItems.revive_mint:     ItemData(ItemIDs.revivemint.value,    ItemClassification.useful, 2),
   
-  # Before throw away
-  Ch1Items.manual:         ItemData(ItemIDs.manual.value,        ItemClassification.progression),
-  # After throw away
-  Ch1Items.manual:         ItemData(ItemIDs.manual.value,        ItemClassification.useful),
+  Ch1Items.manual:         ItemData(ItemIDs.manual.value,        ItemClassification.progression, 2),
   
   Ch1Items.egg:            ItemData(ItemIDs.chapter_1_egg.value,     ItemClassification.useful),
   Ch1Items.castle_moss:    ItemData(ItemIDs.joe_life_savings.value,  ItemClassification.useful),
+  
+  # Blockers
+  Ch1Items.bake_sale_ticket: ItemData(ItemIDs.bake_sale_ticket.value,  ItemClassification.progression),
+  Ch1Items.castle_key:       ItemData(ItemIDs.castle_key.value,        ItemClassification.progression),
+  
+  # Warps
+  Ch1Items.fields_warp:       ItemData(ItemIDs.fields_warp.value,       ItemClassification.progression),
+  Ch1Items.forest_warp:       ItemData(ItemIDs.forest_warp.value,       ItemClassification.progression),
+  Ch1Items.bake_sale_warp:    ItemData(ItemIDs.bake_sale_warp.value,    ItemClassification.progression),
+  Ch1Items.card_castle_warp:  ItemData(ItemIDs.card_castle_warp.value,  ItemClassification.progression),
   
   Ch1Items.brokencake:     ItemData(ItemIDs.brokencake.value,    ItemClassification.progression),
   Ch1Items.top_cake:       ItemData(ItemIDs.top_cake.value,      ItemClassification.progression),
@@ -92,10 +98,7 @@ chapter1_items = {
   Ch1Items.broken_key_b:   ItemData(ItemIDs.broken_key_b.value,  ItemClassification.progression),
   Ch1Items.broken_key_c:   ItemData(ItemIDs.broken_key_c.value,  ItemClassification.progression),
   Ch1Items.door_key:       ItemData(ItemIDs.door_key.value,      ItemClassification.progression),
-  
-  Ch1Items.bake_sale_ticket: ItemData(ItemIDs.bake_sale_ticket.value,  ItemClassification.progression),
-  Ch1Items.castle_key:       ItemData(ItemIDs.castle_key.value,        ItemClassification.progression),
-  
+    
   CCItems.white_ribbon: ItemData(ItemIDs.white_ribbon.value, ItemClassification.progression),
 }
 

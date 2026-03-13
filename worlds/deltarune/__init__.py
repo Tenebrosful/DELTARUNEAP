@@ -309,8 +309,11 @@ class DeltaruneWorld(World):
     def include_chapter(self, chapter: int) -> bool:
         return getattr(self.options, f"include_chapter_{chapter}").value == 1
 
+    def is_chapters_in_order(self):
+        return self.options.randomize_chapters == RandomizeChapterOptions.in_order
+
     def is_all_chapters_unlocked(self):
-        return self.options.randomize_chapters.value == RandomizeChapterOptions.all_unlocked
+        return self.options.randomize_chapters == RandomizeChapterOptions.all_unlocked
     
     # Check if you have at least one chapter that give you access to fusions
     def can_access_fusion(self) -> bool:
@@ -323,6 +326,17 @@ class DeltaruneWorld(World):
     def have_all_chapters_included(self, chapters: list[int]) -> bool:
         return all(getattr(self.options, f"include_chapter_{chapter}").value == 1 for chapter in chapters)
     
+    def get_first_chapter(self) -> int:
+        for chapterToCheck in range (1, max_deltarune_chapter + 1, 1):
+            if self.include_chapter(chapterToCheck): return chapterToCheck
+            return -1
+    
+    def get_playable_chapters(self) -> list[int]:
+        playable_chapters = []
+        for chapterToCheck in range(1, max_deltarune_chapter + 1, 1):
+            if getattr(self.options, f"include_chapter_{chapterToCheck}"): playable_chapters.append(chapterToCheck)
+        return playable_chapters
+    
     def is_final_chapter(self, chapter: int) -> bool:
         for chapterToCheck in range(max_deltarune_chapter, 0, -1):
             if chapterToCheck == chapter: return True
@@ -332,6 +346,14 @@ class DeltaruneWorld(World):
         if chapter <= 1: return -1
         
         for chapterToCheck in range(chapter - 1, 0, -1):
+            if getattr(self.options, f"include_chapter_{chapter}"): return chapterToCheck
+        
+        return -1
+    
+    def get_next_in_order_chapter(self, chapter:int):
+        if chapter > max_deltarune_chapter: return -1
+        
+        for chapterToCheck in range(1, max_deltarune_chapter + 1, 1):
             if getattr(self.options, f"include_chapter_{chapter}"): return chapterToCheck
         
         return -1
@@ -349,9 +371,9 @@ class DeltaruneWorld(World):
         link_deltarune_areas(self.multiworld, self.player, every_connections)
         
     def create_items(self):
-        item_pool = []
+        item_pool: list[str] = []
         
-        CCItems.create_items(self)
+        item_pool += CCItems.create_items(self)
         if self.include_chapter(1): item_pool += Ch1Items.create_items(self)
         # if self.include_chapter(2): Ch2Items.create_items(self)
         # if self.include_chapter(3): Ch3Items.create_items(self)
@@ -360,6 +382,31 @@ class DeltaruneWorld(World):
         # if self.include_chapter(6): Ch6Items.create_items(self)
         # if self.include_chapter(7): Ch7Items.create_items(self)
         
+        self.handle_chapter_keys(item_pool)
+        
+        item_pool_converted = [item for item in map(lambda name: self.create_item(name), item_pool)]
+        self.handle_item_unfill_and_overflows(item_pool_converted)
+
+        self.multiworld.itempool += item_pool_converted
+        
+    def handle_chapter_keys(self, item_pool: list):
+        if self.is_all_chapters_unlocked(): return
+        
+        starting_chapter = -1
+        
+        if self.is_chapters_in_order():
+            starting_chapter = self.get_first_chapter()
+        elif self.options.randomize_chapters == RandomizeChapterOptions.randomized:
+            starting_chapter = self.random.choice(self.get_playable_chapters())
+            
+        if starting_chapter == -1: return
+        
+        item_name = f"Chapter {starting_chapter} Unlock"
+        print(item_name)
+        item_pool.remove(item_name)
+        self.multiworld.push_precollected(self.create_item(item_name))
+            
+    def handle_item_unfill_and_overflows(self, item_pool: list[DeltaruneItem]):
         # Remove random junk items if the item pool overflows       
         if len(item_pool) > len(self.multiworld.get_unfilled_locations(self.player)):
             print(len(item_pool) - len(self.multiworld.get_unfilled_locations(self.player)))
@@ -369,8 +416,6 @@ class DeltaruneWorld(World):
         # Fill remaining items with randomly generated junk
         while len(item_pool) < len(self.multiworld.get_unfilled_locations(self.player)):
             item_pool.append(self.create_filler())
-
-        self.multiworld.itempool += item_pool
         
     def set_rules(self):
         CCRules.set_rules(self)

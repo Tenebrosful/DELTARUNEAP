@@ -8,7 +8,6 @@ if TYPE_CHECKING:
 
 def link_deltarune_areas(world: MultiWorld, player: int, connections: list[tuple[str, str]]):
     for (exit, region) in connections:
-        print(f"Connecting {region} to {exit}")
         world.get_entrance(exit, player).connect(world.get_region(region, player))
 
 def DeltaruneRegion(world: "DeltaruneWorld", region_name: str, exits: list[str], locations: dict[str, LocationData | ConditionalLocationData]) -> Region:
@@ -20,14 +19,12 @@ def DeltaruneRegion(world: "DeltaruneWorld", region_name: str, exits: list[str],
     for exit in exits:
         region.exits += [Entrance(world.player, exit, region)]
         
-    print(region)
-        
     return region
 
 def generic_create_regions(world: "DeltaruneWorld", regions: list, locations: dict[str, LocationData], conditional_locations: dict[str, ConditionalLocationData]):
-    locations_in_region: dict[str, LocationData | ConditionalLocationData] = {}
-    
     for (region_name, exits) in regions:       
+        locations_in_region: dict[str, LocationData | ConditionalLocationData] = {}
+        
         locations_in_region.update([location for location in locations.items() 
                                 if location[1].region == region_name])
         

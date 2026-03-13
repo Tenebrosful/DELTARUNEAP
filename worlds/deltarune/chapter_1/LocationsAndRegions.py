@@ -99,6 +99,7 @@ chapter1_locations = {
   Ch1Locations.field_return_top_cake:                 LocationData(LocationIDs.ch1_field_return_top_cake.value,                  Ch1Regions.fields),
   Ch1Locations.field_maze_of_death_chest:             LocationData(LocationIDs.ch1_field_maze_of_death_chest.value,              Ch1Regions.fields),
   Ch1Locations.field_chest_before_great_board:        LocationData(LocationIDs.ch1_field_chest_before_great_board.value,         Ch1Regions.fields),
+  Ch1Locations.field_warp_door:                       LocationData(LocationIDs.ch1_field_warp_door.value,                        Ch1Regions.fields),
   
   Ch1Locations.seam_seap_talk_about_strange_prisoner: LocationData(LocationIDs.ch1_seam_seap_talk_about_strange_prisoner.value,  Ch1Regions.fields),
   Ch1Locations.seam_seap_1:                           LocationData(LocationIDs.ch1_seam_seap_1.value,                            Ch1Regions.fields),
@@ -162,6 +163,10 @@ chapter1_mandatory_connections = [
   (Ch1Entrances.forest_warp,          Ch1Regions.warp_hub),
   (Ch1Entrances.bake_sale_warp,       Ch1Regions.warp_hub),
   (Ch1Entrances.card_castle_warp,     Ch1Regions.warp_hub),
+  (Ch1Entrances.fields_warp_hub,      Ch1Regions.fields),
+  (Ch1Entrances.forest_warp_hub,      Ch1Regions.forest),
+  (Ch1Entrances.bake_sale_warp_hub,   Ch1Regions.bake_sale),
+  (Ch1Entrances.card_castle_warp_hub, Ch1Regions.card_castle),
 ]
 
 def create_regions(world: "DeltaruneWorld"):

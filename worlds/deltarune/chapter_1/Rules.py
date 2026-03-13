@@ -31,6 +31,11 @@ def set_rules(world: "DeltaruneWorld"):
   set_rule(multiworld.get_entrance(Ch1Entrances.forest_warp_hub,      player), lambda state: state.has(Ch1Items.forest_warp, player))
   set_rule(multiworld.get_entrance(Ch1Entrances.bake_sale_warp_hub,   player), lambda state: state.has(Ch1Items.bake_sale_warp, player))
   set_rule(multiworld.get_entrance(Ch1Entrances.card_castle_warp_hub, player), lambda state: state.has(Ch1Items.card_castle_warp, player))
+  if not world.options.randomize_warp_doors:
+        multiworld.get_location(Ch1Locations.field_warp_door, player).place_locked_item(world.create_item(Ch1Items.fields_warp))
+        multiworld.get_location(Ch1Locations.forest_warp_door, player).place_locked_item(world.create_item(Ch1Items.forest_warp))
+        multiworld.get_location(Ch1Locations.bake_sale_warp_door, player).place_locked_item(world.create_item(Ch1Items.bake_sale_warp))
+        multiworld.get_location(Ch1Locations.card_castle_warp_door, player).place_locked_item(world.create_item(Ch1Items.card_castle_warp))
   
   # Mandatory Secret boss option and macguffin
   if world.options.randomize_secret_bosses.current_key == RandomizeSecretBossesOptions.mandatory:
