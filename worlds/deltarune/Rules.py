@@ -130,25 +130,62 @@ def set_rules(world: "DeltaruneWorld"):
         # if world.options.include_chapter_5.value == 0:
         set_rule(multiworld.get_entrance("CH4: Titan Fight Entrance", player), lambda state: state.has("Combination Lock Digit", player, world.options.goal_macguffin_amount.value))
     
+# def set_completion_rules(world: "DeltaruneWorld"):
+#     player = world.player
+#     multiworld = world.multiworld
+    
+#     chapter_completion_regions = []
+    
+#     if world.options.include_chapter_1:
+#         chapter_completion_regions.append(chapter1_end_region)
+#     # if world.options.include_chapter_2:
+#     #     chapter_completion_locations.append(chapter2_end_location)
+#     # if world.options.include_chapter_3:
+#     #     chapter_completion_locations.append(chapter3_end_location)
+#     # if world.options.include_chapter_4:
+#     #     chapter_completion_locations.append(chapter4_end_location)
+    
+#     def completion_condition(state):
+#         for region in chapter_completion_regions:
+#             if not state.can_reach(region, "Region", player):
+#                 return False
+#         return True
+    
+#     multiworld.completion_condition[player] = completion_condition
+
 def set_completion_rules(world: "DeltaruneWorld"):
     player = world.player
     multiworld = world.multiworld
-    
-    chapter_completion_regions = []
-    
-    if world.options.include_chapter_1:
-        chapter_completion_regions.append(chapter1_end_region)
-    # if world.options.include_chapter_2:
-    #     chapter_completion_locations.append(chapter2_end_location)
-    # if world.options.include_chapter_3:
-    #     chapter_completion_locations.append(chapter3_end_location)
-    # if world.options.include_chapter_4:
-    #     chapter_completion_locations.append(chapter4_end_location)
-    
+    # Code by my brother; Thanks!
+    # chapters to reach for completion condition to be true
+    chapter_reach = {
+                    # 4: "CH4: Titan Fight",
+                    # 3: "CH3: Cold Place",
+                    # 2: "CH2: Post-Chapter Castle Town",
+                    1: "CH1: Light World"
+                 }
+
+    # copy the chapter numbers to a list so they don't get deleted in the loop
+    chapter_numbers = list(chapter_reach.keys())
+    # loop over the chapter numbers
+    for chapter_number in chapter_numbers:
+    # if world.options does not include the chapter number
+        if getattr(world.options, f"include_chapter_{chapter_number}").value == 0:
+        # delete that chapter from the chapters to reach
+            del chapter_reach[chapter_number]
+
+    # define the completion condition function
     def completion_condition(state):
-        for region in chapter_completion_regions:
-            if not state.can_reach(region, "Region", player):
-                 return False
+    # loop over the names of the chapters to reach
+        for chapter_name in chapter_reach.values():
+    # if the given chapter name hasn't been reached yet
+            if not state.can_reach(chapter_name, "Region", player):
+    # return false and end the function there
+                return False
+    # if none of the chapters to reach were not reached
+    # (they were all reached) then return true
         return True
-    
+
+    # set the multiworld completion condition of the player
+    # to the completion condition that was just defined above
     multiworld.completion_condition[player] = completion_condition
