@@ -107,6 +107,8 @@ chapter1_locations = {
   Ch1Locations.seam_seap_4:                           LocationData(LocationIDs.ch1_seam_seap_4.value,                            Ch1Regions.fields),
   
   Ch1Locations.forest_warp_door:                      LocationData(LocationIDs.ch1_forest_warp_door.value,                       Ch1Regions.forest),
+  Ch1Locations.forest_coat_rack_chest:                LocationData(LocationIDs.ch1_forest_coat_rack_chest.value,                 Ch1Regions.forest),
+  Ch1Locations.forest_letter_block_chest:             LocationData(LocationIDs.ch1_forest_letter_block_chest.value,              Ch1Regions.forest),
   
   Ch1Locations.bake_sale_warp_door:                   LocationData(LocationIDs.ch1_bake_sale_warp_door.value,                    Ch1Regions.bake_sale),
   Ch1Locations.bake_sale_repair_door_key:             LocationData(LocationIDs.ch1_bake_repair_door_key.value,                   Ch1Regions.bake_sale),
@@ -116,8 +118,6 @@ chapter1_locations = {
   Ch1Locations.bake_sale_spade_stand:                 LocationData(LocationIDs.ch1_bake_spade_stand.value,                       Ch1Regions.bake_sale),
   Ch1Locations.forest_scissor_dancers_chest:          LocationData(LocationIDs.ch1_forest_scissor_dancers_chest.value,           Ch1Regions.bake_sale),
   Ch1Locations.forest_hidden_chest_near_dancers:      LocationData(LocationIDs.ch1_forest_hidden_chest_near_dancers.value,       Ch1Regions.bake_sale),
-  Ch1Locations.forest_coat_rack_chest:                LocationData(LocationIDs.ch1_forest_coat_rack_chest.value,                 Ch1Regions.bake_sale),
-  Ch1Locations.forest_letter_block_chest:             LocationData(LocationIDs.ch1_forest_letter_block_chest.value,              Ch1Regions.bake_sale),
   Ch1Locations.forest_chest_near_worm:                LocationData(LocationIDs.ch1_forest_chest_near_worm.value,                 Ch1Regions.bake_sale),
   Ch1Locations.forest_man:                            LocationData(LocationIDs.ch1_forest_man.value,                             Ch1Regions.bake_sale),
   
@@ -165,4 +165,4 @@ chapter1_mandatory_connections = [
 ]
 
 def create_regions(world: "DeltaruneWorld"):
-  generic_create_regions(world, chapter1_regions, chapter1_locations, chapter1_conditional_locations, chapter1_mandatory_connections)
+  generic_create_regions(world, chapter1_regions, chapter1_locations, chapter1_conditional_locations)

@@ -1,4 +1,4 @@
-from ..Items import ItemIDs, ItemData, ConditionalItemData, generic_create_items, generic_get_filler_items
+from ..Items import ItemIDs, ItemData, ConditionalItemData, generic_create_items, generic_get_filler_items, DeltaruneItem
 from ..cross_chapter.Items import CCItems
 from typing import TYPE_CHECKING
 from BaseClasses import ItemClassification
@@ -104,8 +104,8 @@ chapter1_conditional_items = {
   Ch1Items.king_shape_key_piece: ConditionalItemData(ItemIDs.king_shape_key_piece.value, ItemClassification.progression, lambda world: world.is_final_chapter(1))
 }
 
-def create_items(world: "DeltaruneWorld"):
-  generic_create_items(world, chapter1_items, chapter1_conditional_items)
+def create_items(world: "DeltaruneWorld") -> list[DeltaruneItem]:
+  return generic_create_items(world, chapter1_items, chapter1_conditional_items)
   
 def get_filler_items(world: "DeltaruneWorld"):
   return generic_get_filler_items(world, chapter1_items, chapter1_conditional_items)

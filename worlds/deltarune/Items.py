@@ -572,7 +572,7 @@ chapters = [
     "This is where I would put my Chapter 5 Unlock... IF I HAD ONE!",
 ]
 
-def generic_create_items(world: "DeltaruneWorld", items: dict[str, ItemData], conditional_items: dict[str, ConditionalItemData]):
+def generic_create_items(world: "DeltaruneWorld", items: dict[str, ItemData], conditional_items: dict[str, ConditionalItemData]) -> list[DeltaruneItem]:
     itempool: list[DeltaruneItem] = []
   
     for item_name, item_data in items.items():
@@ -582,9 +582,9 @@ def generic_create_items(world: "DeltaruneWorld", items: dict[str, ItemData], co
         if item_data.should_be_included(world):
             itempool.append(DeltaruneItem(item_name, item_data.classification, item_data.code, world.player))
             
-    world.multiworld.itempool += itempool
+    return itempool
     
-def generic_get_filler_items(world: "DeltaruneWorld", items: dict[str, ItemData], conditional_items: dict[str, ConditionalItemData]):
+def generic_get_filler_items(world: "DeltaruneWorld", items: dict[str, ItemData], conditional_items: dict[str, ConditionalItemData]) -> dict[str, float]:
     filler_items = []
   
     filler_items += [item_name for item_name, item_data in items.items() if item_data.classification == ItemClassification.filler]
@@ -592,4 +592,5 @@ def generic_get_filler_items(world: "DeltaruneWorld", items: dict[str, ItemData]
     
     weigth = 100 / len(filler_items)
     
-    return [filler_item for filler_item in map(lambda item_name: {item_name: weigth}, filler_items)]
+    # return map(lambda item_name: {item_name: weigth}, filler_items)
+    return {item_name: weigth for item_name in filler_items}

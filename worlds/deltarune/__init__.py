@@ -1,6 +1,9 @@
-from .Items import item_table
+from worlds.deltarune.Regions import link_deltarune_areas
+
+from .Items import DeltaruneItem, ItemData, ConditionalItemData
 from .Rules import set_completion_rules
-from BaseClasses import Tutorial
+from .Locations import LocationData, ConditionalLocationData
+from BaseClasses import ItemClassification, Tutorial
 from .Options import DeltaruneOptions, RandomizeChapterOptions
 from worlds.AutoWorld import World, WebWorld
 from worlds.LauncherComponents import components, Component, Type, icon_paths
@@ -28,18 +31,20 @@ icon_paths["deltarune"] = f"ap:{__name__}/icons/gay_deltarune.png"
 max_deltarune_chapter = 4
 fusion_access_chapter = [2, 4]
 
-every_items = {
+every_items: dict[str, ItemData | ConditionalItemData] = {
     **CCItems.cross_chapter_items,
     **CCItems.cross_chapter_conditional_items,
     **Ch1Items.chapter1_items,
     **Ch1Items.chapter1_conditional_items
 }
 
-every_locations = {
+every_locations: dict[str, LocationData | ConditionalItemData] = {
     **CCLocationsAndRegions.cross_chapter_locations,
     **CCLocationsAndRegions.cross_chapter_conditional_locations,
     **Ch1LocationAndRegions.chapter1_locations
 }
+
+every_connections = CCLocationsAndRegions.cross_chapter_mandatory_connections + Ch1LocationAndRegions.chapter1_mandatory_connections
 
 def data_path(file_name: str):
     import pkgutil
@@ -92,6 +97,10 @@ class DeltaruneWorld(World):
             "death_link": bool(self.options.death_link.value),
             "item_balancing": bool(self.options.item_balancing.value),
         }
+        
+    def create_item(self, name: str) -> DeltaruneItem:
+        item_data = every_items[name]
+        return DeltaruneItem(name, item_data.classification, item_data.code, self.player)
 
     def get_filler_item_name(self):
         junk_pool: dict[str, int] = CCItems.get_filler_items(self)
@@ -337,15 +346,31 @@ class DeltaruneWorld(World):
         # if self.include_chapter(6): Ch6LocationAndRegions.create_regions(self)
         # if self.include_chapter(7): Ch7LocationAndRegions.create_regions(self)
         
+        link_deltarune_areas(self.multiworld, self.player, every_connections)
+        
     def create_items(self):
+        item_pool = []
+        
         CCItems.create_items(self)
-        if self.include_chapter(1): Ch1Items.create_items(self)
+        if self.include_chapter(1): item_pool += Ch1Items.create_items(self)
         # if self.include_chapter(2): Ch2Items.create_items(self)
         # if self.include_chapter(3): Ch3Items.create_items(self)
         # if self.include_chapter(4): Ch4Items.create_items(self)
         # if self.include_chapter(5): Ch5Items.create_items(self)
         # if self.include_chapter(6): Ch6Items.create_items(self)
         # if self.include_chapter(7): Ch7Items.create_items(self)
+        
+        # Remove random junk items if the item pool overflows       
+        if len(item_pool) > len(self.multiworld.get_unfilled_locations(self.player)):
+            print(len(item_pool) - len(self.multiworld.get_unfilled_locations(self.player)))
+            while len(item_pool) > len(self.multiworld.get_unfilled_locations(self.player)):
+                item_pool.remove(self.random.choice([item for item in item_pool if item.classification == ItemClassification.filler]))
+                
+        # Fill remaining items with randomly generated junk
+        while len(item_pool) < len(self.multiworld.get_unfilled_locations(self.player)):
+            item_pool.append(self.create_filler())
+
+        self.multiworld.itempool += item_pool
         
     def set_rules(self):
         CCRules.set_rules(self)
