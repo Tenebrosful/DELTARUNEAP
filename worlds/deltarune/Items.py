@@ -1,17 +1,18 @@
 from BaseClasses import Item, ItemClassification
 from enum import Enum
-from . import DeltaruneWorld
-import typing
+from typing import TYPE_CHECKING, NamedTuple, Optional, Callable
 
+if TYPE_CHECKING:
+    from . import DeltaruneWorld
 
-class ItemData(typing.NamedTuple):
-    code: typing.Optional[int]
+class ItemData(NamedTuple):
+    code: Optional[int]
     classification: any
 
-class ConditionalItemData(typing.NamedTuple):
-    code: typing.Optional[int]
+class ConditionalItemData(NamedTuple):
+    code: Optional[int]
     classification: any
-    should_be_included: typing.Callable[[DeltaruneWorld], bool]
+    should_be_included: Callable[["DeltaruneWorld"], bool]
 
 class DeltaruneItem(Item):
     game: str = "Deltarune"
@@ -59,7 +60,17 @@ class ItemIDs(Enum):
     spikeband = 20013
     tensionbow = 20015
     
+    spookysword = 30005
+    brave_ax = 30006
     devilsknife = 30007
+    
+    dark_dollar_1 = 40001
+    dark_dollars_20 = 40020
+    dark_dollars_40 = 40040
+    dark_dollars_80 = 40080
+    dark_dollars_100 = 40100
+    dark_dollars_250 = 40250
+    dark_dollars_500 = 40500
     
     king_shape_key_piece = 70000
     key_gen_2_segment = 70001
@@ -561,19 +572,19 @@ chapters = [
     "This is where I would put my Chapter 5 Unlock... IF I HAD ONE!",
 ]
 
-def generic_create_items(world: DeltaruneWorld, items: dict[str, ItemData], conditional_items: dict[str, ConditionalItemData]):
-    itempool: list[Item] = []
+def generic_create_items(world: "DeltaruneWorld", items: dict[str, ItemData], conditional_items: dict[str, ConditionalItemData]):
+    itempool: list[DeltaruneItem] = []
   
     for item_name, item_data in items.items():
-        itempool += DeltaruneItem(item_name, item_data.classification, item_data.code, world.player)
+        itempool.append(DeltaruneItem(item_name, item_data.classification, item_data.code, world.player))
         
     for item_name, item_data in conditional_items.items():
         if item_data.should_be_included(world):
-            itempool += DeltaruneItem(item_name, item_data.classification, item_data.code, world.player)
+            itempool.append(DeltaruneItem(item_name, item_data.classification, item_data.code, world.player))
             
     world.multiworld.itempool += itempool
     
-def get_generic_filler_items(world: DeltaruneWorld, items: dict[str, ItemData], conditional_items: dict[str, ConditionalItemData]):
+def generic_get_filler_items(world: "DeltaruneWorld", items: dict[str, ItemData], conditional_items: dict[str, ConditionalItemData]):
     filler_items = []
   
     filler_items += [item_name for item_name, item_data in items.items() if item_data.classification == ItemClassification.filler]

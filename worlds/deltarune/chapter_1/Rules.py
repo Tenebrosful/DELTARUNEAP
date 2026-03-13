@@ -1,17 +1,20 @@
 from worlds.generic.Rules import set_rule
-from .. import DeltaruneWorld
-from ..Options import RandomizeChapterOptions, RandomizeSecretBosses
-from .Regions import Ch1Entrances, Ch1Regions
+from typing import TYPE_CHECKING
+from ..Options import RandomizeChapterOptions, RandomizeSecretBossesOptions
+from .LocationsAndRegions import Ch1Entrances, Ch1Regions, Ch1Locations
 from .Items import Ch1Items
-from .Locations import Ch1Locations
+from ..cross_chapter.LocationsAndRegions import CCEntrances
 
-def set_rules(world: DeltaruneWorld): 
+if TYPE_CHECKING:
+    from . import DeltaruneWorld
+
+def set_rules(world: "DeltaruneWorld"): 
   player = world.player
   multiworld = world.multiworld
   
   # Chapter unlock
   if not world.options.randomize_chapters.current_key == RandomizeChapterOptions.all_unlocked:
-    set_rule(multiworld.get_entrance(Ch1Entrances.chapter1_entrance,  player), lambda state: state.has(Ch1Items.chapter_1_unlock, player))
+    set_rule(multiworld.get_entrance(CCEntrances.chapter1_entrance,  player), lambda state: state.has(Ch1Items.chapter_1_unlock, player))
     
   # Region lockers
   set_rule(multiworld.get_entrance(Ch1Entrances.bake_sale_entrance,   player), lambda state: state.has(Ch1Items.bake_sale_ticket, player))
@@ -30,7 +33,7 @@ def set_rules(world: DeltaruneWorld):
   set_rule(multiworld.get_entrance(Ch1Entrances.card_castle_warp_hub, player), lambda state: state.has(Ch1Items.card_castle_warp, player))
   
   # Mandatory Secret boss option and macguffin
-  if world.options.randomize_secret_bosses.current_key == RandomizeSecretBosses.mandatory:
+  if world.options.randomize_secret_bosses.current_key == RandomizeSecretBossesOptions.mandatory:
     if world.is_final_chapter(1):
       set_rule(multiworld.get_entrance(Ch1Entrances.light_world_entrance, player), lambda state: 
                                                                                           state.has(Ch1Items.king_shape_key_piece, player, world.options.goal_macguffin_amount.value)

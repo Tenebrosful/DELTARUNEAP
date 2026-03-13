@@ -1,16 +1,18 @@
 from BaseClasses import Location
-import typing
+from typing import TYPE_CHECKING, NamedTuple, Optional, Callable
 from enum import Enum
-from . import DeltaruneWorld
 
-class LocationData(typing.NamedTuple):
-  id: typing.Optional[int]
+if TYPE_CHECKING:
+    from . import DeltaruneWorld
+
+class LocationData(NamedTuple):
+  id: Optional[int]
   region: str
 
-class ConditionalLocationData(typing.NamedTuple):
-    id: typing.Optional[int]
+class ConditionalLocationData(NamedTuple):
+    id: Optional[int]
     region: str
-    should_be_included: typing.Callable[[DeltaruneWorld], bool]
+    should_be_included: Callable[["DeltaruneWorld"], bool]
   
 class DeltaruneLocation(Location):
   game: str = "Deltarune"

@@ -1,38 +1,39 @@
 from BaseClasses import MultiWorld, Region, Entrance
-from .. import DeltaruneWorld
+from typing import TYPE_CHECKING
 from .Locations import LocationData, ConditionalLocationData, DeltaruneLocation
+
+if TYPE_CHECKING:
+    from . import DeltaruneWorld
 
 
 def link_deltarune_areas(world: MultiWorld, player: int, connections: list[tuple[str, str]]):
     for (exit, region) in connections:
         world.get_entrance(exit, player).connect(world.get_region(region, player))
 
-def DeltaruneRegion(world: DeltaruneWorld, region_name: str, exits: list[str], locations: list[LocationData], conditional_locations: list[ConditionalLocationData]) -> Region:
+def DeltaruneRegion(world: "DeltaruneWorld", region_name: str, exits: list[str], locations: dict[str, LocationData | ConditionalLocationData]) -> Region:
     region = Region(region_name, world.player, world.multiworld)
     
-    for location in locations:
-        region.locations += [DeltaruneLocation(world.player, location.name, location.id, region)]
-
-    for conditional_location in conditional_locations:
-        if conditional_location.should_be_included(world):
-            region.locations += [DeltaruneLocation(world.player, conditional_location.name, conditional_location.id, region)]
+    for location_name, location_data in locations.items():
+        region.locations += [DeltaruneLocation(world.player, location_name, location_data.id, region)]
             
     for exit in exits:
         region.exits += [Entrance(world.player, exit, region)]
         
     return region
 
-def generic_create_regions(world: DeltaruneWorld, regions: list, locations: dict[str, LocationData], conditional_locations: dict[str, ConditionalLocationData], connections: list):
-    for (region_name, exits) in regions:
-        locations =     [location_name for location_name, location_data in locations.items() 
-                            if location_data.region == region_name]
+def generic_create_regions(world: "DeltaruneWorld", regions: list, locations: dict[str, LocationData], conditional_locations: dict[str, ConditionalLocationData], connections: list):
+    locations_in_region: dict[str, LocationData | ConditionalLocationData] = {}
+    
+    for (region_name, exits) in regions:       
+        locations_in_region.update([location for location in locations.items() 
+                                if location[1].region == region_name])
         
-        locations +=    [location_name for location_name, location_data in conditional_locations.items()
-                            if location_data.region == region_name and location_data.should_be_included()]
+        locations_in_region.update([location for location in conditional_locations.items()
+                                if location[1].region == region_name and location[1].should_be_included(world)])
         
-        world.multiworld.regions += [DeltaruneRegion(world, region_name, exits, locations, [])]
+        world.multiworld.regions += [DeltaruneRegion(world, region_name, exits, locations_in_region)]
   
-    link_deltarune_areas(world, world.player, connections)
+    link_deltarune_areas(world.multiworld, world.player, connections)
 
 # (Region name, list of exits)
 deltarune_regions = [

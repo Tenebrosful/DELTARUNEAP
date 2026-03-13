@@ -1,10 +1,9 @@
 from worlds.generic.Rules import set_rule, add_rule
-from BaseClasses import CollectionState
 from typing import TYPE_CHECKING
-from chapter_1.Locations import chapter1_end_location
-from chapter_2.Locations import chapter2_end_location
-from chapter_3.Locations import chapter3_end_location
-from chapter_4.Locations import chapter4_end_location
+from .chapter_1.LocationsAndRegions import chapter1_end_region
+# from .chapter_2.Locations import chapter2_end_location
+# from .chapter_3.Locations import chapter3_end_location
+# from .chapter_4.Locations import chapter4_end_location
 
 if TYPE_CHECKING:
     from . import DeltaruneWorld
@@ -131,24 +130,24 @@ def set_rules(world: "DeltaruneWorld"):
         # if world.options.include_chapter_5.value == 0:
         set_rule(multiworld.get_entrance("CH4: Titan Fight Entrance", player), lambda state: state.has("Combination Lock Digit", player, world.options.goal_macguffin_amount.value))
     
-def set_completion_rules(world: DeltaruneWorld):
+def set_completion_rules(world: "DeltaruneWorld"):
     player = world.player
     multiworld = world.multiworld
     
-    chapter_completion_locations = []
+    chapter_completion_regions = []
     
     if world.options.include_chapter_1:
-        chapter_completion_locations.append(chapter1_end_location)
-    if world.options.include_chapter_2:
-        chapter_completion_locations.append(chapter2_end_location)
-    if world.options.include_chapter_3:
-        chapter_completion_locations.append(chapter3_end_location)
-    if world.options.include_chapter_4:
-        chapter_completion_locations.append(chapter4_end_location)
+        chapter_completion_regions.append(chapter1_end_region)
+    # if world.options.include_chapter_2:
+    #     chapter_completion_locations.append(chapter2_end_location)
+    # if world.options.include_chapter_3:
+    #     chapter_completion_locations.append(chapter3_end_location)
+    # if world.options.include_chapter_4:
+    #     chapter_completion_locations.append(chapter4_end_location)
     
     def completion_condition(state):
-        for location in chapter_completion_locations:
-            if not state.can_reach(location, "Region", player):
+        for region in chapter_completion_regions:
+            if not state.can_reach(region, "Region", player):
                  return False
         return True
     

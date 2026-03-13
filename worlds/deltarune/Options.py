@@ -81,7 +81,7 @@ class RandomizeSecretBosses(Choice):
     option_mandatory = 2
     default = 0
 
-class RandomizeSecretBosses(StrEnum):
+class RandomizeSecretBossesOptions(StrEnum):
     false = "false"
     true = "true"
     mandatory = "mandatory"
