@@ -162,6 +162,15 @@ class DeltaruneContext(CommonContext):
         await self.get_username()
         await self.send_connect()
 
+    def clear_deltarune_files_disconnect(self):
+        path = self.save_game_folder
+        self.finished_game = False
+        for root, dirs, files in os.walk(path):
+            for file in files:
+                if file.endswith((".item", ".mine", ".flag", ".hint")):
+                    os.remove(os.path.join(root, file))
+
+
     def clear_deltarune_files(self):
         path = self.save_game_folder
         self.finished_game = False
@@ -172,11 +181,13 @@ class DeltaruneContext(CommonContext):
                 elif file.endswith((".item", ".victory", ".route", ".mine", ".flag", ".hint", ".complete")):
                     os.remove(os.path.join(root, file))
 
-    # no delete files on connect/lost connect, but disconnecting manually and closing the client still does
+    # no delete certain files on connect/lost connect, but disconnecting manually and closing the client still deletes all
     async def connect(self, address: typing.Optional[str] = None):
+        self.clear_deltarune_files_disconnect()
         await super().connect(address)
 
     async def disconnect(self, allow_autoreconnect: bool = False):
+        self.clear_deltarune_files_disconnect()
         await super().disconnect(allow_autoreconnect)
 
     async def connection_closed(self):
