@@ -59,7 +59,7 @@ class LocationIDs(Enum):
     ch2_castle_town_clover_rematch_challenge    = 38
     ch2_castle_town_top_chef_gift               = 39
     cc_castle_town_dd_burger_fusion             = 40
-    ch2_castle_town_silver_card_fusion          = 41
+    cc_castle_town_silver_card_fusion          = 41
     ch2_castle_town_spike_band_fusion           = 42
     ch2_cyber_field_first_chest                 = 43
     ch2_cyber_field_nubert_chest                = 44
@@ -257,6 +257,7 @@ class LocationIDs(Enum):
     ch2_lost_poppup = 1076
     ch2_lost_ambyu_lance = 1077
     ch2_lost_maus = 1078
+    ch2_lost_swatchlings = 1087
     ch2_lost_tasque_manager = 1088
     ch2_lost_mauswheel = 1089
     ch2_lost_werewerewire = 1094

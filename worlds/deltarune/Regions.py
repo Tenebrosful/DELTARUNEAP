@@ -5,6 +5,8 @@ from .Locations import LocationData, ConditionalLocationData, DeltaruneLocation
 if TYPE_CHECKING:
     from . import DeltaruneWorld
 
+fusion_access_region = "Fusion access"
+fusion_access_entrance = "Fusion access Entrance"
 
 def link_deltarune_areas(world: MultiWorld, player: int, connections: list[tuple[str, str]]):
     for (exit, region) in connections:

@@ -12,7 +12,6 @@ class Ch1Items(StrEnum):
   
   # Healing Items
   dark_candy = "Dark Candy"
-  clubsSandwich = "ClubSandwich"
   heartsdonut = "HeartsDonut"
   chocdiamond = "ChocDiamond"
   rouxlsroux = "RouxlsRoux"
@@ -24,11 +23,13 @@ class Ch1Items(StrEnum):
   devilsknife = "Devilsknife"
   
   # Weapons
+  spokysword = "Spookysword"
   brave_ax = "Brave Ax"
+  ragger = "Ragger"
+  daintyscarf = "DaintyScarf"
   
   egg = "CH1 Egg"
   castle_moss = "Castle Moss"
-  joe_life_savings = "Joe's Life Savings"
   
   manual = "Manual"
   
@@ -58,26 +59,26 @@ class Ch1Items(StrEnum):
 chapter1_items = {
   Ch1Items.dark_candy.value:     ItemData(ItemIDs.dark_candy.value,    ItemClassification.filler),
   CCItems.dark_burger.value:     ItemData(ItemIDs.darkburger.value,    ItemClassification.filler),
-  Ch1Items.clubsSandwich.value:  ItemData(ItemIDs.clubsandwich.value,  ItemClassification.filler),
   Ch1Items.heartsdonut.value:    ItemData(ItemIDs.heartsdonut.value,   ItemClassification.filler),
   Ch1Items.chocdiamond.value:    ItemData(ItemIDs.chocdiamond.value,   ItemClassification.filler),
   Ch1Items.rouxlsroux.value:     ItemData(ItemIDs.rouxlsroux.value,    ItemClassification.filler),
+  CCItems.amber_card.value:      ItemData(ItemIDs.amber_card.value,    ItemClassification.filler),
   
+  CCItems.clubsSandwich.value:    ItemData(ItemIDs.clubsandwich.value,    ItemClassification.useful),
   CCItems.dark_dollars_40.value:  ItemData(ItemIDs.dark_dollars_40.value, ItemClassification.useful),
   Ch1Items.dice_brace.value:      ItemData(ItemIDs.dice_brace.value,      ItemClassification.useful),
-  Ch1Items.jevilstail.value:      ItemData(ItemIDs.jevilstail.value,      ItemClassification.useful),
-  Ch1Items.devilsknife.value:     ItemData(ItemIDs.devilsknife.value,     ItemClassification.useful),
   CCItems.spincake.value:         ItemData(ItemIDs.spincake.value,        ItemClassification.useful),
-  CCItems.spokysword.value:       ItemData(ItemIDs.spookysword.value,     ItemClassification.useful),
+  Ch1Items.spokysword.value:      ItemData(ItemIDs.spookysword.value,     ItemClassification.useful),
   Ch1Items.brave_ax.value:        ItemData(ItemIDs.brave_ax.value,        ItemClassification.useful),
+  Ch1Items.ragger.value:          ItemData(ItemIDs.ragger.value,          ItemClassification.useful),
+  Ch1Items.daintyscarf.value:     ItemData(ItemIDs.daintyscarf.value,     ItemClassification.useful),
+
+  CCItems.revive_mint.value:      ItemData(ItemIDs.revivemint.value,      ItemClassification.useful, 2),
   
-  # ReviveMint x2
-  CCItems.revive_mint.value:     ItemData(ItemIDs.revivemint.value,    ItemClassification.useful, 2),
   
-  Ch1Items.manual.value:         ItemData(ItemIDs.manual.value,        ItemClassification.progression, 2),
   
-  Ch1Items.egg.value:            ItemData(ItemIDs.chapter_1_egg.value,     ItemClassification.useful),
-  Ch1Items.castle_moss.value:    ItemData(ItemIDs.joe_life_savings.value,  ItemClassification.useful),
+  Ch1Items.manual.value:          ItemData(ItemIDs.manual.value,        ItemClassification.useful),
+  "[P]" + Ch1Items.manual.value:  ItemData(ItemIDs.manual.value,        ItemClassification.progression),
   
   # Blockers
   Ch1Items.bake_sale_ticket.value: ItemData(ItemIDs.bake_sale_ticket.value,  ItemClassification.progression),
@@ -87,16 +88,25 @@ chapter1_items = {
   Ch1Items.top_cake.value:       ItemData(ItemIDs.top_cake.value,      ItemClassification.progression),
   CCItems.glowshard.value:       ItemData(ItemIDs.glowshard.value,     ItemClassification.progression),
   Ch1Items.ironshackle.value:    ItemData(ItemIDs.ironshackle.value,   ItemClassification.progression),
-  
-  Ch1Items.broken_key_a.value:   ItemData(ItemIDs.broken_key_a.value,  ItemClassification.progression),
-  Ch1Items.broken_key_b.value:   ItemData(ItemIDs.broken_key_b.value,  ItemClassification.progression),
-  Ch1Items.broken_key_c.value:   ItemData(ItemIDs.broken_key_c.value,  ItemClassification.progression),
-  Ch1Items.door_key.value:       ItemData(ItemIDs.door_key.value,      ItemClassification.progression),
     
   CCItems.white_ribbon.value: ItemData(ItemIDs.white_ribbon.value, ItemClassification.progression),
 }
 
 chapter1_conditional_items = {
+  # Hidden Items
+  Ch1Items.egg.value:             ConditionalItemData(ItemIDs.chapter_1_egg.value,     ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
+  Ch1Items.castle_moss.value:     ConditionalItemData(ItemIDs.castle_moss.value,       ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
+  
+  Ch1Items.broken_key_a.value:   ConditionalItemData(ItemIDs.broken_key_a.value,  ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),
+  Ch1Items.broken_key_b.value:   ConditionalItemData(ItemIDs.broken_key_b.value,  ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),
+  Ch1Items.broken_key_c.value:   ConditionalItemData(ItemIDs.broken_key_c.value,  ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),
+  Ch1Items.door_key.value:       ConditionalItemData(ItemIDs.door_key.value,      ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),
+  
+  # Secret boss
+  Ch1Items.jevilstail.value:        ConditionalItemData(ItemIDs.jevilstail.value,       ItemClassification.useful, lambda world: world.is_secret_bosses_randomized()),
+  Ch1Items.devilsknife.value:       ConditionalItemData(ItemIDs.devilsknife.value,      ItemClassification.useful, lambda world: world.is_secret_bosses_randomized()),
+  CCItems.shadowcrystal.value:      ConditionalItemData(ItemIDs.shadowcrystal.value,    ItemClassification.useful, lambda world: world.is_secret_bosses_randomized()),
+  
   # Warps
   Ch1Items.fields_warp.value:       ConditionalItemData(ItemIDs.fields_warp.value,       ItemClassification.progression, lambda world: world.is_warps_randomized()),
   Ch1Items.forest_warp.value:       ConditionalItemData(ItemIDs.forest_warp.value,       ItemClassification.progression, lambda world: world.is_warps_randomized()),

@@ -4,7 +4,7 @@ from .Items import DeltaruneItem, ItemData, ConditionalItemData
 from .Rules import set_completion_rules
 from .Locations import LocationData, ConditionalLocationData
 from BaseClasses import ItemClassification, Tutorial
-from .Options import DeltaruneOptions, RandomizeChapterOptions
+from .Options import DeltaruneOptions, RandomizeChapterOptions, ChosenRouteOptions, RandomizeSecretBossesOptions
 from worlds.AutoWorld import World, WebWorld
 from worlds.LauncherComponents import components, Component, Type, icon_paths
 from multiprocessing import Process
@@ -99,6 +99,7 @@ class DeltaruneWorld(World):
         }
         
     def create_item(self, name: str) -> DeltaruneItem:
+        if (name.startswith("[P]")): name = name.removeprefix("[P]")
         item_data = every_items[name]
         return DeltaruneItem(name, item_data.classification, item_data.code, self.player)
 
@@ -310,7 +311,7 @@ class DeltaruneWorld(World):
         return getattr(self.options, f"include_chapter_{chapter}").value == 1
 
     def is_warps_randomized(self) -> bool:
-        return self.options.randomize_warp_doors
+        return self.options.randomize_warp_doors.value == 1
         
     def is_chapters_in_order(self):
         return self.options.randomize_chapters == RandomizeChapterOptions.in_order
@@ -318,9 +319,33 @@ class DeltaruneWorld(World):
     def is_all_chapters_unlocked(self):
         return self.options.randomize_chapters == RandomizeChapterOptions.all_unlocked
     
+    def is_all_recruits(self):
+        return self.options.chosen_route == ChosenRouteOptions.all_recruits or self.is_all_routes()
+    
+    def is_weird_route(self):
+        return self.options.chosen_route == ChosenRouteOptions.weird_route or self.is_all_routes()
+    
+    def is_all_routes(self):
+        return self.options.chosen_route == ChosenRouteOptions.all_routes
+    
+    def is_secret_bosses_randomized(self):
+        return self.options.randomize_secret_bosses == RandomizeSecretBossesOptions.true or self.is_secret_bosses_mandatory()
+        
+    def is_secret_bosses_mandatory(self):
+        return self.options.randomize_secret_bosses == RandomizeSecretBossesOptions.mandatory
+    
+    def is_hidden_items_randomized(self):
+        return self.options.include_hidden_items.value == 1
+    
     # Check if you have at least one chapter that give you access to fusions
     def can_access_fusion(self) -> bool:
         return self.has_at_least_one_chapter_included(fusion_access_chapter)
+    
+    def count_chapter_included(self, chapters=list(range(1,max_deltarune_chapter + 1))):
+        count = 0
+        for chapterToCheck in chapters:
+            if getattr(self.options, f"include_chapter_{chapterToCheck}").value == 1: count += 1
+        return count
     
     # Check if at least one of specified chapters is included
     def has_at_least_one_chapter_included(self, chapters: list[int]) -> bool:

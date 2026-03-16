@@ -1,4 +1,3 @@
-from BaseClasses import Location
 from enum import StrEnum
 from ..Locations import LocationIDs, LocationData
 from ..Regions import generic_create_regions
@@ -57,13 +56,13 @@ class Ch1Locations(StrEnum):
   
 class Ch1Regions(StrEnum):  
   chapter_1       = "Chapter 1"
-  light_world     = "CH1: Light World"
   castle_town     = "CH1: Castle Town"
   fields          = "CH1: Fields"
   forest          = "CH1: Forest"
   bake_sale       = "CH1: Bake Sale"
   card_castle     = "CH1: Card Castle"
   warp_hub        = "CH1: Warp Hub"
+  light_world     = "CH1: Light World"
   
 class Ch1Entrances(StrEnum):
   castle_town_entrance    = "CH1: Castle Town Entrance"
@@ -139,7 +138,7 @@ chapter1_conditional_locations: dict = {
   
 }
 
-chapter1_end_region = Ch1Regions.light_world
+chapter1_end_region = Ch1Regions.light_world.value
   
 chapter1_regions = [
   (Ch1Regions.chapter_1.value,       [Ch1Entrances.castle_town_entrance.value]),

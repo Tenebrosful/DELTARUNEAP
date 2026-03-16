@@ -1,6 +1,7 @@
 from worlds.generic.Rules import set_rule, add_rule
 from typing import TYPE_CHECKING
 from .chapter_1.LocationsAndRegions import chapter1_end_region
+from .chapter_2.LocationsAndRegions import chapter2_end_region
 # from .chapter_2.Locations import chapter2_end_location
 # from .chapter_3.Locations import chapter3_end_location
 # from .chapter_4.Locations import chapter4_end_location
@@ -161,8 +162,8 @@ def set_completion_rules(world: "DeltaruneWorld"):
     chapter_reach = {
                     # 4: "CH4: Titan Fight",
                     # 3: "CH3: Cold Place",
-                    # 2: "CH2: Post-Chapter Castle Town",
-                    1: "CH1: Light World"
+                    2: chapter2_end_region,
+                    1: chapter1_end_region
                  }
 
     # copy the chapter numbers to a list so they don't get deleted in the loop
