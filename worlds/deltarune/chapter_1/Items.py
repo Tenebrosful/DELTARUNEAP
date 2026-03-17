@@ -75,10 +75,7 @@ chapter1_items = {
 
   CCItems.revive_mint.value:      ItemData(ItemIDs.revivemint.value,      ItemClassification.useful, 2),
   
-  
-  
-  Ch1Items.manual.value:          ItemData(ItemIDs.manual.value,        ItemClassification.useful),
-  "[P]" + Ch1Items.manual.value:  ItemData(ItemIDs.manual.value,        ItemClassification.progression),
+  Ch1Items.manual.value:          ItemData(ItemIDs.manual.value,        ItemClassification.progression | ItemClassification.useful, 2),
   
   # Blockers
   Ch1Items.bake_sale_ticket.value: ItemData(ItemIDs.bake_sale_ticket.value,  ItemClassification.progression),

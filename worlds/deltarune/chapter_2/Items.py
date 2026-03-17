@@ -90,38 +90,41 @@ chapter2_items = {
   # Noelle royal pin
   Ch2Items.royalpin.value:          ItemData(ItemIDs.royalpin.value,          ItemClassification.useful),
   
-  Ch2Items.tensionbit.value:          ItemData(ItemIDs.tensionbit.value,  ItemClassification.progression),
-  "[P]" + Ch2Items.glowwrist.value:   ItemData(ItemIDs.glowwrist.value,   ItemClassification.progression),
+  Ch2Items.tensionbit.value:          ItemData(ItemIDs.tensionbit.value,  ItemClassification.progression | ItemClassification.useful),
+  Ch2Items.glowwrist.value:           ItemData(ItemIDs.glowwrist.value,   ItemClassification.progression | ItemClassification.useful, 2),
   CCItems.pink_ribbon.value:          ItemData(ItemIDs.pink_ribbon.value, ItemClassification.progression),
-  Ch2Items.safety_vest.value:         ItemData(ItemIDs.safety_vest,       ItemClassification.progression),
+  Ch2Items.safety_vest.value:         ItemData(ItemIDs.safety_vest.value,       ItemClassification.progression),
+  Ch2Items.cyber_field_warp.value:    ItemData(ItemIDs.cyber_field_warp.value,  ItemClassification.progression),
+  Ch2Items.trash_zone_warp.value:     ItemData(ItemIDs.trash_zone_warp.value,   ItemClassification.progression),
+  Ch2Items.mansion_warp.value:        ItemData(ItemIDs.mansion_warp.value,      ItemClassification.progression),
   
 }
 
 chapter2_conditional_items = {
-  Ch2Items.butjuice.value:        ConditionalItemData(ItemIDs.butjuice.value,     ItemClassification.filler, lambda world: not world.is_weird_route()),
-  Ch2Items.spagetticode.value:    ConditionalItemData(ItemIDs.spagetticode.value, ItemClassification.filler, lambda world: not world.is_weird_route()),
-  Ch2Items.spoison.value:     ConditionalItemData(ItemIDs.spoison.value,    ItemClassification.filler, lambda world: not world.is_weird_route()),
-  Ch2Items.kris_tea.value:    ConditionalItemData(ItemIDs.kris_tea.value,   ItemClassification.filler, lambda world: not world.is_weird_route()),
-  Ch2Items.noelle_tea.value:  ConditionalItemData(ItemIDs.noelle_tea.value, ItemClassification.filler, lambda world: not world.is_weird_route()),
-  Ch2Items.ralsei_tea.value:  ConditionalItemData(ItemIDs.ralsei_tea.value, ItemClassification.filler, lambda world: not world.is_weird_route()),
-  Ch2Items.susie_tea.value:   ConditionalItemData(ItemIDs.susie_tea.value,  ItemClassification.filler, lambda world: not world.is_weird_route()),
-  Ch2Items.spoison.value:     ConditionalItemData(ItemIDs.spoison.value,    ItemClassification.filler, lambda world: not world.is_weird_route()),
-  Ch2Items.royalpin.value:    ConditionalItemData(ItemIDs.royalpin.value,   ItemClassification.filler, lambda world: not world.is_weird_route()),
-  Ch2Items.frayedbowtie.value:ConditionalItemData(ItemIDs.frayedbowtie.value,ItemClassification.filler, lambda world: not world.is_weird_route()),
+  Ch2Items.butjuice.value:        ConditionalItemData(ItemIDs.butjuice.value,     ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.spagetticode.value:    ConditionalItemData(ItemIDs.spagetticode.value, ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.spoison.value:     ConditionalItemData(ItemIDs.spoison.value,    ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.kris_tea.value:    ConditionalItemData(ItemIDs.kris_tea.value,   ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.noelle_tea.value:  ConditionalItemData(ItemIDs.noelle_tea.value, ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.ralsei_tea.value:  ConditionalItemData(ItemIDs.ralsei_tea.value, ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.susie_tea.value:   ConditionalItemData(ItemIDs.susie_tea.value,  ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.spoison.value:     ConditionalItemData(ItemIDs.spoison.value,    ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.royalpin.value:    ConditionalItemData(ItemIDs.royalpin.value,   ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.frayedbowtie.value:ConditionalItemData(ItemIDs.frayedbowtie.value,ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
   
-  CCItems.glowshard.value:    ConditionalItemData(ItemIDs.glowshard.value,      ItemClassification.useful, lambda world: not world.is_weird_route()),
-  Ch2Items.egg.value:         ConditionalItemData(ItemIDs.chapter_2_egg.value,  ItemClassification.useful, lambda world: not world.is_weird_route() and world.is_hidden_items_randomized()),
-  Ch2Items.city_moss.value:   ConditionalItemData(ItemIDs.city_moss.value,      ItemClassification.useful, lambda world: not world.is_weird_route() and world.is_hidden_items_randomized()),
-  CCItems.dogdollard.value:   ConditionalItemData(ItemIDs.dogdollar.value,      ItemClassification.useful, lambda world: not world.is_weird_route() and world.is_hidden_items_randomized()),
-  Ch2Items.revivedust.value:  ConditionalItemData(ItemIDs.revivedust.value,     ItemClassification.useful, lambda world: not world.is_weird_route()),
-  Ch2Items.chainmail.value:   ConditionalItemData(ItemIDs.chainmail.value,      ItemClassification.useful, lambda world: not world.is_weird_route()),
-  Ch2Items.brokenswd.value:   ConditionalItemData(ItemIDs.brokenswd.value,      ItemClassification.useful, lambda world: not world.is_weird_route()),
+  CCItems.glowshard.value:    ConditionalItemData(ItemIDs.glowshard.value,      ItemClassification.useful, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.egg.value:         ConditionalItemData(ItemIDs.chapter_2_egg.value,  ItemClassification.useful, lambda world: (not world.is_weird_route() or world.is_all_routes()) and world.is_hidden_items_randomized()),
+  Ch2Items.city_moss.value:   ConditionalItemData(ItemIDs.city_moss.value,      ItemClassification.useful, lambda world: (not world.is_weird_route() or world.is_all_routes()) and world.is_hidden_items_randomized()),
+  CCItems.dogdollard.value:   ConditionalItemData(ItemIDs.dogdollar.value,      ItemClassification.useful, lambda world: (not world.is_weird_route() or world.is_all_routes()) and world.is_hidden_items_randomized()),
+  Ch2Items.revivedust.value:  ConditionalItemData(ItemIDs.revivedust.value,     ItemClassification.useful, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.chainmail.value:   ConditionalItemData(ItemIDs.chainmail.value,      ItemClassification.useful, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.brokenswd.value:   ConditionalItemData(ItemIDs.brokenswd.value,      ItemClassification.useful, lambda world: not world.is_weird_route() or world.is_all_routes()),
   
-  Ch2Items.mansion_reservation.value: ConditionalItemData(ItemIDs.mansion_reservation,  ItemClassification.progression, lambda world: not world.is_weird_route()),
+  Ch2Items.mansion_reservation.value: ConditionalItemData(ItemIDs.mansion_reservation.value,  ItemClassification.progression, lambda world: not world.is_weird_route() or world.is_all_routes()),
   
   # Weird route
   Ch2Items.freezering.value:  ConditionalItemData(ItemIDs.freezering.value,     ItemClassification.useful, lambda world: world.is_weird_route()),
-  Ch2Items.thornring.value:   ConditionalItemData(ItemIDs.thornring.value,      ItemClassification.useful, lambda world: world.is_weird_route()),
+  Ch2Items.thornring.value:   ConditionalItemData(ItemIDs.thornring.value,      ItemClassification.progression | ItemClassification.useful, lambda world: world.is_weird_route()),
   Ch2Items.chapter_2_unlock.value:  ConditionalItemData(ItemIDs.chapter_2_unlock.value, ItemClassification.progression, lambda world: not world.is_all_chapters_unlocked()),
   Ch2Items.keygen_2_segment.value: ConditionalItemData(ItemIDs.key_gen_2_segment.value, ItemClassification.progression, lambda world: world.is_final_chapter(2)),
   

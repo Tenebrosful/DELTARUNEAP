@@ -15,21 +15,23 @@ def set_rules(world: "DeltaruneWorld"):
   
   # Chapter unlock
   if not world.is_all_chapters_unlocked():
-    set_rule(multiworld.get_entrance(CCEntrances.chapter_2_entranceh,  player), lambda state: state.has(Ch2Items.chapter_2_unlock, player))
+    set_rule(multiworld.get_entrance(CCEntrances.chapter_2_entrance,  player), lambda state: state.has(Ch2Items.chapter_2_unlock, player))
 
-  if world.is_weird_route():
-    set_weird_route_rules()
+  if world.is_all_routes():
+    set_all_routes_rules(world)
+  elif world.is_weird_route():
+    set_weird_route_rules(world)
   elif world.is_all_recruits():
-    set_weird_route_rules()
-  elif world.is_all_routes():
-    set_all_routes_rules()
+    set_all_recruits_rules(world)
+    
+  if world.is_all_recruits():
+    set_rule(multiworld.get_entrance(Ch2Entrances.mansion_entrance, player), lambda state: state.has(Ch2Items.mansion_reservation, player))
+    set_rule(multiworld.get_location(Ch2Locations.mansion_basement_chest, player), lambda state: state.has(Ch2Items.keygen, player))
+    set_rule(multiworld.get_location(Ch2Locations.mansion_basement_mechanism, player), lambda state: state.has(Ch2Items.keygen, player))
     
   # Region lockers
   set_rule(multiworld.get_entrance(Ch2Entrances.cyber_city_entrance,   player), lambda state: state.has(Ch2Items.safety_vest, player))
   # Mansion have special logic, need either thornring or mansion reservation depending of the route
-  
-  set_rule(multiworld.get_location(Ch2Locations.mansion_basement_chest, player), lambda state: state.has(Ch2Items.keygen, player))
-  set_rule(multiworld.get_location(Ch2Locations.mansion_basement_mechanism, player), lambda state: state.has(Ch2Items.keygen, player))
   
   # set_rule(multiworld.get_entrance(Ch2Entrances.cyber_field_entrance,          player), lambda state: state.has(Ch2Items.cyber_field_warp, player))
   # set_rule(multiworld.get_entrance(Ch2Entrances.cyber_city_entrance,          player), lambda state: state.has(Ch2Items.trash_zone_warp, player))
@@ -55,7 +57,6 @@ def set_weird_route_rules(world: "DeltaruneWorld"):
   
   set_rule(multiworld.get_entrance(Ch2Entrances.mansion_entrance, player), lambda state: state.has(Ch2Items.thornring, player))
   
-  
   if world.is_final_chapter(2):
     set_rule(multiworld.get_entrance(Ch2Entrances.post_chapter_castle_town_entrance, player), lambda state: 
                                                                                         state.has(Ch2Items.keygen_2_segment, player, world.options.goal_macguffin_amount.value)
@@ -79,11 +80,9 @@ def set_all_recruits_rules(world: "DeltaruneWorld"):
   player = world.player
   multiworld = world.multiworld
   
-  set_rule(multiworld.get_entrance(Ch2Entrances.mansion_entrance, player), lambda state: state.has(Ch2Items.mansion_reservation, player))
-  
-  set_rule(multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_1, player), lambda state: state.has(Ch2Items.emptydisk, player) and state.has(Ch2Items.keygen))
-  set_rule(multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_2, player), lambda state: state.has(Ch2Items.emptydisk, player) and state.has(Ch2Items.keygen))
-  set_rule(multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_3, player), lambda state: state.has(Ch2Items.emptydisk, player) and state.has(Ch2Items.keygen))
+  set_rule(multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_1, player), lambda state: state.has(Ch2Items.emptydisk, player) and state.has(Ch2Items.keygen, player))
+  set_rule(multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_2, player), lambda state: state.has(Ch2Items.emptydisk, player) and state.has(Ch2Items.keygen, player))
+  set_rule(multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_3, player), lambda state: state.has(Ch2Items.emptydisk, player) and state.has(Ch2Items.keygen, player))
   
   if world.is_secret_bosses_mandatory():
     if world.is_final_chapter(2):
@@ -92,7 +91,7 @@ def set_all_recruits_rules(world: "DeltaruneWorld"):
                                                                                       and state.has(Ch2Items.emptydisk, player)
                                                                                       and state.has(Ch2Items.keygen))
     else:
-      set_rule(multiworld.get_entrance(Ch2Entrances.post_chapter_castle_town_entrance, player), lambda state: state.has(Ch2Items.emptydisk, player) and state.has(Ch2Items.keygen))
+      set_rule(multiworld.get_entrance(Ch2Entrances.post_chapter_castle_town_entrance, player), lambda state: state.has(Ch2Items.emptydisk, player) and state.has(Ch2Items.keygen, player))
   elif world.is_final_chapter(2):
     set_rule(multiworld.get_entrance(Ch2Entrances.post_chapter_castle_town_entrance, player), lambda state: state.has(Ch2Items.keygen_2_segment, player, world.options.goal_macguffin_amount.value))
 

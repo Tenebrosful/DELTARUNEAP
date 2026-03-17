@@ -11,6 +11,7 @@ from multiprocessing import Process
 
 from .cross_chapter import Items as CCItems, LocationsAndRegions as CCLocationsAndRegions, Rules as CCRules
 from .chapter_1 import LocationsAndRegions as Ch1LocationAndRegions, Rules as Ch1Rules, Items as Ch1Items
+from .chapter_2 import LocationsAndRegions as Ch2LocationAndRegions, Rules as Ch2Rules, Items as Ch2Items
 
 def run_client():
     print('running deltarune client')
@@ -35,16 +36,19 @@ every_items: dict[str, ItemData | ConditionalItemData] = {
     **CCItems.cross_chapter_items,
     **CCItems.cross_chapter_conditional_items,
     **Ch1Items.chapter1_items,
-    **Ch1Items.chapter1_conditional_items
+    **Ch1Items.chapter1_conditional_items,
+    **Ch2Items.chapter2_items,
+    **Ch2Items.chapter2_conditional_items,
 }
 
 every_locations: dict[str, LocationData | ConditionalItemData] = {
     **CCLocationsAndRegions.cross_chapter_locations,
     **CCLocationsAndRegions.cross_chapter_conditional_locations,
-    **Ch1LocationAndRegions.chapter1_locations
+    **Ch1LocationAndRegions.chapter1_locations,
+    **Ch1LocationAndRegions.chapter1_conditional_locations,
+    **Ch2LocationAndRegions.chapter2_locations,
+    **Ch2LocationAndRegions.chapter2_conditional_locations,
 }
-
-every_connections = CCLocationsAndRegions.cross_chapter_mandatory_connections + Ch1LocationAndRegions.chapter1_mandatory_connections
 
 def data_path(file_name: str):
     import pkgutil
@@ -99,15 +103,15 @@ class DeltaruneWorld(World):
         }
         
     def create_item(self, name: str) -> DeltaruneItem:
-        if (name.startswith("[P]")): name = name.removeprefix("[P]")
         item_data = every_items[name]
+
         return DeltaruneItem(name, item_data.classification, item_data.code, self.player)
 
     def get_filler_item_name(self):
         junk_pool: dict[str, int] = CCItems.get_filler_items(self)
         
         if self.options.include_chapter_1: junk_pool.update(Ch1Items.get_filler_items(self))
-        # if self.options.include_chapter_2: junk_pool.update(Ch2Items.get_filler_items(self))
+        if self.options.include_chapter_2: junk_pool.update(Ch2Items.get_filler_items(self))
         # if self.options.include_chapter_3: junk_pool.update(Ch3Items.get_filler_items(self))
         # if self.options.include_chapter_4: junk_pool.update(Ch4Items.get_filler_items(self))
         
@@ -387,9 +391,15 @@ class DeltaruneWorld(World):
         return -1
         
     def create_regions(self):
+        every_connections = CCLocationsAndRegions.get_cross_chapter_mandatory_connection(self)
+        
         CCLocationsAndRegions.create_regions(self)
-        if self.include_chapter(1): Ch1LocationAndRegions.create_regions(self)
-        # if self.include_chapter(2): Ch2LocationAndRegions.create_regions(self)
+        if self.include_chapter(1): 
+            Ch1LocationAndRegions.create_regions(self)
+            every_connections += Ch1LocationAndRegions.chapter1_mandatory_connections
+        if self.include_chapter(2):
+            Ch2LocationAndRegions.create_regions(self)
+            every_connections += Ch2LocationAndRegions.chapter2_mandatory_connections
         # if self.include_chapter(3): Ch3LocationAndRegions.create_regions(self)
         # if self.include_chapter(4): Ch4LocationAndRegions.create_regions(self)
         # if self.include_chapter(5): Ch5LocationAndRegions.create_regions(self)
@@ -403,7 +413,7 @@ class DeltaruneWorld(World):
         
         item_pool += CCItems.create_items(self)
         if self.include_chapter(1): item_pool += Ch1Items.create_items(self)
-        # if self.include_chapter(2): Ch2Items.create_items(self)
+        if self.include_chapter(2): item_pool += Ch2Items.create_items(self)
         # if self.include_chapter(3): Ch3Items.create_items(self)
         # if self.include_chapter(4): Ch4Items.create_items(self)
         # if self.include_chapter(5): Ch5Items.create_items(self)
@@ -416,6 +426,8 @@ class DeltaruneWorld(World):
         self.handle_item_unfill_and_overflows(item_pool_converted)
 
         self.multiworld.itempool += item_pool_converted
+        
+        print(self.multiworld.itempool)
         
     def handle_chapter_keys(self, item_pool: list):
         if self.is_all_chapters_unlocked(): return
@@ -448,7 +460,7 @@ class DeltaruneWorld(World):
     def set_rules(self):
         CCRules.set_rules(self)
         if self.include_chapter(1): Ch1Rules.set_rules(self)
-        # if self.include_chapter(2): Ch2Rules.set_rules(self)
+        if self.include_chapter(2): Ch2Rules.set_rules(self)
         # if self.include_chapter(3): Ch3Rules.set_rules(self)
         # if self.include_chapter(4): Ch4Rules.set_rules(self)
         # if self.include_chapter(5): Ch5Rules.set_rules(self)
