@@ -63,6 +63,8 @@ class Ch2Items(StrEnum):
   trash_zone_warp = "Trash Zone Warp"
   mansion_warp = "Mansion Warp"
   
+chapter2_macguffin_item = Ch2Items.keygen_2_segment.value
+
 chapter2_items = {
   Ch2Items.cd_bagel.value:        ItemData(ItemIDs.cd_bagel.value,          ItemClassification.filler),
   Ch2Items.glowwrist.value:       ItemData(ItemIDs.glowwrist.value,         ItemClassification.filler),
@@ -125,8 +127,10 @@ chapter2_conditional_items = {
   # Weird route
   Ch2Items.freezering.value:  ConditionalItemData(ItemIDs.freezering.value,     ItemClassification.useful, lambda world: world.is_weird_route()),
   Ch2Items.thornring.value:   ConditionalItemData(ItemIDs.thornring.value,      ItemClassification.progression | ItemClassification.useful, lambda world: world.is_weird_route()),
-  Ch2Items.chapter_2_unlock.value:  ConditionalItemData(ItemIDs.chapter_2_unlock.value, ItemClassification.progression, lambda world: not world.is_all_chapters_unlocked()),
-  Ch2Items.keygen_2_segment.value: ConditionalItemData(ItemIDs.key_gen_2_segment.value, ItemClassification.progression, lambda world: world.is_final_chapter(2)),
+  
+  Ch2Items.chapter_2_unlock.value:  ConditionalItemData(ItemIDs.chapter_2_unlock.value, ItemClassification.progression, lambda world: world.is_chapters_randomized()),
+  # Amount is handle in __init__.py handle_macguffins_items()
+  Ch2Items.keygen_2_segment.value: ConditionalItemData(ItemIDs.key_gen_2_segment.value, ItemClassification.progression, lambda world: world.is_final_chapter(2), 0),
   
   # Secret Boss
   Ch2Items.emptydisk.value:   ConditionalItemData(ItemIDs.emptydisk.value,  ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),

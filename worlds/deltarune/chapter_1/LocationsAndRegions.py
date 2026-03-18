@@ -48,9 +48,9 @@ class Ch1Locations(StrEnum):
   card_castle_rudinn_gift   = "CH1: Card Castle - Rudinn Gift"
   card_castle_2f_chest      = "CH1: Card Castle - 2F Chest"
   card_castle_4f_chest      = "CH1: Card Castle - 4F Chest"
-  card_castle_jevil_1       = "CH1: Card Castle - Jevil Defeat Item #1"
-  card_castle_jevil_2       = "CH1: Card Castle - Jevil Defeat Item #2"
-  card_castle_jevil_3       = "CH1: Card Castle - Jevil Defeat Item #3"
+  card_castle_jevil_1       = "CH1: Card Castle - Jevil Defeat Item 1"
+  card_castle_jevil_2       = "CH1: Card Castle - Jevil Defeat Item 2"
+  card_castle_jevil_3       = "CH1: Card Castle - Jevil Defeat Item 3"
   
   fountain_sealed = "CH1: Card Kingdom - Fountain Sealed"
   

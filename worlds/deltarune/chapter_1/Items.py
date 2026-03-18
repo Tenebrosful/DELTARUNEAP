@@ -4,8 +4,7 @@ from typing import TYPE_CHECKING
 from BaseClasses import ItemClassification
 from enum import StrEnum
 
-if TYPE_CHECKING:
-    from .. import DeltaruneWorld
+if TYPE_CHECKING: from .. import DeltaruneWorld
 
 class Ch1Items(StrEnum):
   chapter_1_unlock = "Chapter 1 Unlock"
@@ -56,6 +55,8 @@ class Ch1Items(StrEnum):
   fields_warp = "Fields Warp"
   card_castle_warp = "Card Castle Warp"
   
+chapter1_macguffin_item = Ch1Items.king_shape_key_piece.value
+
 chapter1_items = {
   Ch1Items.dark_candy.value:     ItemData(ItemIDs.dark_candy.value,    ItemClassification.filler),
   CCItems.dark_burger.value:     ItemData(ItemIDs.darkburger.value,    ItemClassification.filler),
@@ -110,8 +111,9 @@ chapter1_conditional_items = {
   Ch1Items.bake_sale_warp.value:    ConditionalItemData(ItemIDs.bake_sale_warp.value,    ItemClassification.progression, lambda world: world.is_warps_randomized()),
   Ch1Items.card_castle_warp.value:  ConditionalItemData(ItemIDs.card_castle_warp.value,  ItemClassification.progression, lambda world: world.is_warps_randomized()),
   
-  Ch1Items.chapter_1_unlock.value:     ConditionalItemData(ItemIDs.chapter_1_unlock.value,     ItemClassification.progression, lambda world: not world.is_all_chapters_unlocked()),
-  Ch1Items.king_shape_key_piece.value: ConditionalItemData(ItemIDs.king_shape_key_piece.value, ItemClassification.progression, lambda world: world.is_final_chapter(1))
+  Ch1Items.chapter_1_unlock.value:     ConditionalItemData(ItemIDs.chapter_1_unlock.value,     ItemClassification.progression, lambda world: world.is_chapters_randomized()),
+  # Amount is handle in __init__.py handle_macguffins_items()
+  Ch1Items.king_shape_key_piece.value: ConditionalItemData(ItemIDs.king_shape_key_piece.value, ItemClassification.progression, lambda world: world.is_final_chapter(1), 0)
 }
 
 def create_items(world: "DeltaruneWorld") -> list[DeltaruneItem]:

@@ -153,6 +153,8 @@ chapter2_locations = {
   Ch2Locations.mansion_spamton_neo_defeat_item_2.value:     LocationData(LocationIDs.ch2_mansion_spamton_neo_defeat_item_2.value,     Ch2Regions.mansion.value),
   Ch2Locations.mansion_spamton_neo_defeat_item_3.value:     LocationData(LocationIDs.ch2_mansion_spamton_neo_defeat_item_3.value,     Ch2Regions.mansion.value),
   
+  Ch2Locations.fountain_sealed.value:                       LocationData(LocationIDs.ch2_fountain_sealed.value,                       Ch2Regions.post_chapter_castle_town),
+  
   Ch2Locations.cyber_field_warp_door.value:                 LocationData(LocationIDs.ch2_cyber_field_warp_door.value,                 Ch2Regions.cyber_field.value),
   Ch2Locations.trash_zone_warp_door.value:                  LocationData(LocationIDs.ch2_trash_zone_warp_door.value,                  Ch2Regions.cyber_city.value),
   Ch2Locations.mansion_warp_door.value:                     LocationData(LocationIDs.ch2_mansion_warp_door.value,                     Ch2Regions.mansion.value),

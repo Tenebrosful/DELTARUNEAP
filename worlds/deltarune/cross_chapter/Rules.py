@@ -4,9 +4,10 @@ from ..chapter_1.Items import Ch1Items
 from ..chapter_1.LocationsAndRegions import Ch1Locations
 from ..chapter_2.Items import Ch2Items
 from ..chapter_2.LocationsAndRegions import Ch2Locations
+from ..chapter_3.Items import Ch3Items
+from ..chapter_3.LocationsAndRegions import Ch3Locations
 
-if TYPE_CHECKING:
-    from .. import DeltaruneWorld
+if TYPE_CHECKING: from .. import DeltaruneWorld
 
 def set_rules(world: "DeltaruneWorld"):
     player = world.player
@@ -14,17 +15,26 @@ def set_rules(world: "DeltaruneWorld"):
   
     if world.is_chapters_in_order():
         playable_chapters = world.get_playable_chapters()
-      
+        
+        print(f"Playable chapters : {playable_chapters}")
+        
         for current_chapter in playable_chapters:
             next_chapter = world.get_next_in_order_chapter(current_chapter)
-            if next_chapter == -1: break
+            print(f"Next chapter of {current_chapter} is {next_chapter}")
+            if next_chapter == -1 or current_chapter == 4: break
             
-            get_location(world, current_chapter).place_locked_item(world.create_item(get_unlock_item(next_chapter), player))
+            print(get_location(world, current_chapter))
+            print(world.create_item(get_unlock_item(world, next_chapter)))
+            get_location(world, current_chapter).place_locked_item(world.create_item(get_unlock_item(world, next_chapter)))
 
 def get_location(world: "DeltaruneWorld", chapter: int):
+    print(f"Looking for {chapter} end location")
     if chapter == 1: return world.multiworld.get_location(Ch1Locations.fountain_sealed, world.player)
     if chapter == 2: return world.multiworld.get_location(Ch2Locations.fountain_sealed, world.player)
+    if chapter == 3: return world.multiworld.get_location(Ch3Locations.fountain_sealed, world.player)
     
 def get_unlock_item(world: "DeltaruneWorld", chapter: int):
+    print(f"Looking for {chapter} unlock")
     if chapter == 1: return Ch1Items.chapter_1_unlock
     if chapter == 2: return Ch2Items.chapter_2_unlock
+    if chapter == 3: return Ch3Items.chapter_3_unlock

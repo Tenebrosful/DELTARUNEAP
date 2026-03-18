@@ -2,8 +2,7 @@ from BaseClasses import Location
 from typing import TYPE_CHECKING, NamedTuple, Optional, Callable
 from enum import Enum
 
-if TYPE_CHECKING:
-    from . import DeltaruneWorld
+if TYPE_CHECKING: from . import DeltaruneWorld
 
 class LocationData(NamedTuple):
   id: Optional[int]
@@ -17,7 +16,6 @@ class ConditionalLocationData(NamedTuple):
 class DeltaruneLocation(Location):
   game: str = "Deltarune"
 
-    
 class LocationIDs(Enum):
     ch1_unknown_hidden_item         = 1
     ch1_field_dark_candy_tree_1     = 2
@@ -147,7 +145,7 @@ class LocationIDs(Enum):
     ch3_green_room_vending_machine_7 = 126
     ch3_green_room_vending_machine_8 = 127
     ch3_green_room_board_1_ramb_gift = 128
-    ch3_recruit_watercooler = 129
+    ch3_recruit_water_cooler = 129
     ch3_b_rank_room_golden_prize_1 = 130
     ch3_b_rank_room_golden_prize_2 = 131
     ch3_b_rank_room_golden_prize_3 = 132
@@ -167,14 +165,14 @@ class LocationIDs(Enum):
     ch3_board_2_t_rank      = 146
     ch3_green_room_board_2_ramb_gift = 147
     ch3_tv_world_chest_near_shadowmen = 148
-    ch3_tv_world_board_puzzle_1 = 149
+    ch3_tv_world_board_puzzle_1_chest = 149
     ch3_tv_world_trash_can_1 = 150
     ch3_tv_world_trash_can_2 = 151
     ch3_tv_world_trash_can_3 = 152
     ch3_water_cooler_chest = 153
     ch3_tv_world_trash_can_4 = 154
     ch3_tv_world_trash_can_5 = 155
-    ch3_tv_world_board_puzzle_2 = 156
+    ch3_tv_world_board_puzzle_2_chest = 156
     ch3_tv_world_serious_trashy_chest = 157
     ch3_tv_world_bonus_zone_chest_1 = 158
     ch3_tv_world_bonus_zone_chest_2 = 159
@@ -189,7 +187,7 @@ class LocationIDs(Enum):
     ch3_recruit_pippins = 168
     ch3_tv_world_tripticket = 169
     ch3_tv_world_man = 170
-    ch3_mantle_defeat = 171
+    ch3_sword_3_mantle_defeat = 171
     ch3_cold_place_knight_defeat_item_1 = 172
     ch3_cold_place_knight_defeat_item_2 = 173
     ch3_couch_cliffs_warp_door = 174
@@ -200,8 +198,8 @@ class LocationIDs(Enum):
     ch3_board_1_extra_key = 179
     ch3_board_2_extra_photo = 180
     ch3_board_2_moss = 181
-    ch3_mantle_out_of_bounds_chest = 182
-    ch3_mantle_northern_light_item = 183
+    ch3_sword_1_ice_key = 182
+    ch3_sword_2_shelter_key = 183
     ch3_s_rank_room_susie_gift = 184
     ch1_fountain_sealed = 185
     ch2_fountain_sealed = 186
@@ -275,128 +273,3 @@ class LocationIDs(Enum):
     ch4_lost_wicabel = 1222
     ch4_lost_winglade = 1223
     ch4_lost_organikk = 1224
-
-exclusion_table = {
-    "t_rank": {
-        "CH3: Board 1 T-Rank",
-        "CH3: Board 2 T-Rank",
-    },
-    "all_routes": {
-    },
-    "least_recruits": {
-        "CH2: Recruit Werewire",
-        "CH2: Recruit Tasque",
-        "CH2: Recruit Virovirokun",
-        "CH2: Recruit Poppup",
-        "CH2: Recruit Ambyu-lance",
-        "CH2: Recruit Maus",
-        "CH2: Recruit Swatchling",
-        "CH2: Recruit Tasque Manager",
-        "CH2: Recruit Mauswheel",
-        "CH2: Recruit Werewerewire",
-        "CH2: Cyber City - Man",
-        "CH2: Castle Town - Tasque Manager Says Challenge",
-        "CH2: Castle Town - Ch2 All Stars Challenge",
-        "CH3: Recruit Water Cooler",
-        "CH3: Recruit Elnina",
-        "CH3: Recruit Lanino",
-        "CH3: Recruit Shadowguy",
-        "CH3: Recruit Shuttah",
-        "CH3: Recruit Zapper",
-        "CH3: Recruit Ribbick",
-        "CH3: Recruit Pippins",
-        "CH3: TV World - TripTicket",
-        "CH3: TV World - Man",
-        "CH4: Recruit Guei",
-        "CH4: Recruit Balthizard",
-        "CH4: Recruit Bibliox",
-        "CH4: Recruit Mizzle",
-        "CH4: Recruit Miss Mizzle",
-        "CH4: Recruit Wicabel",
-        "CH4: Recruit Winglade",
-        "CH4: Recruit Organikk",
-    },
-    "weird_route": {
-        "CH2: Recruit Werewire",
-        "CH2: Recruit Tasque",
-        "CH2: Recruit Virovirokun",
-        "CH2: Recruit Poppup",
-        "CH2: Recruit Ambyu-lance",
-        "CH2: Recruit Maus",
-        "CH2: Recruit Swatchling",
-        "CH2: Recruit Tasque Manager",
-        "CH2: Recruit Mauswheel",
-        "CH2: Recruit Werewerewire",
-        "CH2: Cyber City - Purchase Mannequin",
-        "CH2: Cyber City - Annoying Dog...?",
-        "CH2: Cyber City - Man",
-        "CH2: Swatch's Cafe 1",
-        "CH2: Swatch's Cafe 2",
-        "CH2: Swatch's Cafe 3",
-        "CH2: Swatch's Cafe 4",
-        "CH2: Mansion - Sculpture Room Chest",
-        "CH2: Mansion - Platter Chest",
-        "CH2: Mansion - Painting Chest",
-        "CH2: Mansion - Tunnel of Love Chest",
-        "CH2: Spamton's Shop 1",
-        "CH2: Spamton's Shop 2",
-        "CH2: Spamton's Shop 3",
-        "CH2: Spamton's Shop 4",
-        "CH2: Mansion - Basement Chest",
-        "CH2: Mansion - Basement Mechanism",
-        "CH2: Castle Town - Tasque Manager Says Challenge",
-        "CH2: Castle Town - Ch2 All Stars Challenge",
-        "CH2: Cyber City - Purchase Kris Tea",
-        "CH2: Cyber City - Purchase Noelle Tea",
-        "CH2: Cyber City - Purchase Susie Tea",
-        "CH2: Cyber City - Purchase Ralsei Tea",
-        "CH2: Cyber City - Moss",
-        "CH2: Castle Town - TensionBow Fusion",
-        "CH3: Recruit Water Cooler",
-        "CH3: Recruit Shadowguy",
-        "CH3: Recruit Shuttah",
-        "CH3: Recruit Zapper",
-        "CH3: Recruit Ribbick",
-        "CH3: Recruit Pippins",
-        "CH3: TV World - TripTicket",
-        "CH3: TV World - Man",
-        "CH4: Recruit Guei",
-        "CH4: Recruit Balthizard",
-        "CH4: Recruit Bibliox",
-        "CH4: Recruit Mizzle",
-        "CH4: Recruit Miss Mizzle",
-        "CH4: Recruit Wicabel",
-        "CH4: Recruit Winglade",
-        "CH4: Recruit Organikk",
-    },
-    "all_recruits": {
-        """CH2: Cyber City - "Purchase" FreezeRing""",
-        "CH2: Cyber City - Purchase ThornRing",
-        "CH2: Lost Werewire",
-        "CH2: Lost Tasque",
-        "CH2: Lost Virovirokun",
-        "CH2: Lost Poppup",
-        "CH2: Lost Ambyu-lance",
-        "CH2: Lost Maus",
-        "CH2: Lost Tasque Manager",
-        "CH2: Lost Mauswheel",
-        "CH2: Lost Werewerewire",
-        "CH3: Lost Water Cooler",
-        "CH3: Lost Shadowguy",
-        "CH3: Lost Shuttah",
-        "CH3: Lost Zapper",
-        "CH3: Lost Ribbick",
-        "CH3: Lost Pippins",
-        "CH4: Lost Guei",
-        "CH4: Lost Balthizard",
-        "CH4: Lost Bibliox",
-        "CH4: Lost Mizzle",
-        "CH4: Lost Miss Mizzle",
-        "CH4: Lost Wicabel",
-        "CH4: Lost Winglade",
-        "CH4: Lost Organikk",
-    }
-}
-
-events_table = {
-}

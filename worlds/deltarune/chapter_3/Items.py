@@ -60,6 +60,8 @@ class Ch3Items(StrEnum):
     
     remote_battery = "Remote Battery"
     
+chapter3_macguffin_item = Ch3Items.remote_battery.value
+
 chapter3_items = {
     Ch3Items.point_1.value:     ItemData(ItemIDs.point_1.value,     ItemClassification.filler),
     Ch3Items.points_2.value:    ItemData(ItemIDs.points_2.value,    ItemClassification.filler),
@@ -83,6 +85,9 @@ chapter3_items = {
 
     CCItems.white_ribbon.value: ItemData(ItemIDs.white_ribbon.value,    ItemClassification.progression),
     CCItems.pink_ribbon.value:  ItemData(ItemIDs.pink_ribbon.value,     ItemClassification.progression),
+    
+    Ch3Items.board_2_cartridge.value:   ItemData(ItemIDs.board_2_cartridge.value, ItemClassification.progression),
+    Ch3Items.vip_pass.value:            ItemData(ItemIDs.vip_pass.value, ItemClassification.progression),
 }
 
 chapter3_conditional_items = {
@@ -100,10 +105,15 @@ chapter3_conditional_items = {
     CCItems.shadowcrystal.value:    ConditionalItemData(ItemIDs.shadowcrystal.value,ItemClassification.useful, lambda world: world.is_secret_bosses_randomized()),
     
     Ch3Items.egg.value:             ConditionalItemData(ItemIDs.chapter_3_egg.value,   ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
-    Ch3Items.odd_controller.value:  ConditionalItemData(ItemIDs.oddcontroller.value,   ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
-    Ch3Items.ice_key.value:         ConditionalItemData(ItemIDs.ice_key.value,         ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
-    Ch3Items.shelter_key.value:     ConditionalItemData(ItemIDs.shelter_key.value,     ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
+    Ch3Items.board_moss.value:      ConditionalItemData(ItemIDs.board_moss.value,      ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
     
+    Ch3Items.chapter_3_unlock.value:  ConditionalItemData(ItemIDs.chapter_3_unlock.value, ItemClassification.progression, lambda world: world.is_chapters_randomized()),
+    # Amount is handle in __init__.py handle_macguffins_items()
+    Ch3Items.remote_battery.value:    ConditionalItemData(ItemIDs.chapter_3_unlock.value, ItemClassification.progression, lambda world: world.is_final_chapter(3), 0),
+    
+    Ch3Items.odd_controller.value:  ConditionalItemData(ItemIDs.oddcontroller.value,   ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),
+    Ch3Items.ice_key.value:         ConditionalItemData(ItemIDs.ice_key.value,         ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),
+    Ch3Items.shelter_key.value:     ConditionalItemData(ItemIDs.shelter_key.value,     ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),
     Ch3Items.tripticket.value:      ConditionalItemData(ItemIDs.tripticket.value,      ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),
 }
 
