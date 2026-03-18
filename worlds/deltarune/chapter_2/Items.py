@@ -96,10 +96,6 @@ chapter2_items = {
   Ch2Items.glowwrist.value:           ItemData(ItemIDs.glowwrist.value,         ItemClassification.progression | ItemClassification.useful, 2),
   CCItems.pink_ribbon.value:          ItemData(ItemIDs.pink_ribbon.value,       ItemClassification.progression),
   Ch2Items.safety_vest.value:         ItemData(ItemIDs.safety_vest.value,       ItemClassification.progression),
-  Ch2Items.cyber_field_warp.value:    ItemData(ItemIDs.cyber_field_warp.value,  ItemClassification.progression),
-  Ch2Items.trash_zone_warp.value:     ItemData(ItemIDs.trash_zone_warp.value,   ItemClassification.progression),
-  Ch2Items.mansion_warp.value:        ItemData(ItemIDs.mansion_warp.value,      ItemClassification.progression),
-  
 }
 
 chapter2_conditional_items = {
