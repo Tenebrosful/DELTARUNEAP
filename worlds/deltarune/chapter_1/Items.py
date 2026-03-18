@@ -73,7 +73,7 @@ chapter1_items = {
   Ch1Items.ragger.value:          ItemData(ItemIDs.ragger.value,          ItemClassification.useful),
   Ch1Items.daintyscarf.value:     ItemData(ItemIDs.daintyscarf.value,     ItemClassification.useful),
 
-  CCItems.revive_mint.value:      ItemData(ItemIDs.revivemint.value,      ItemClassification.useful, 2),
+  CCItems.revivemint.value:      ItemData(ItemIDs.revivemint.value,      ItemClassification.useful, 2),
   
   Ch1Items.manual.value:          ItemData(ItemIDs.manual.value,          ItemClassification.progression | ItemClassification.useful, 2),
   

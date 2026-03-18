@@ -46,13 +46,13 @@ def set_rules(world: "DeltaruneWorld"):
   
   # Hidden items
   if not world.is_hidden_items_randomized():
-    multiworld.get_location(Ch3Locations.tv_world_man, player).place_locked_item(world.create_item(Ch3Items.egg))
     multiworld.get_location(Ch3Locations.board_2_moss, player).place_locked_item(world.create_item(Ch3Items.board_moss))
     multiworld.get_location(Ch3Locations.s_rank_room_oddcontroller, player).place_locked_item(world.create_item(Ch3Items.odd_controller))
     multiworld.get_location(Ch3Locations.mantle_out_of_bounds_chest, player).place_locked_item(world.create_item(Ch3Items.ice_key))
     multiworld.get_location(Ch3Locations.mantle_northern_light_item, player).place_locked_item(world.create_item(Ch3Items.shelter_key))
     # Location not available in weird route to avoid potential soft-lock due to Zapper Lost
-    if (not world.is_weird_route()):
+    if (not world.is_weird_route() or world.is_all_routes()):
+      multiworld.get_location(Ch3Locations.tv_world_man, player).place_locked_item(world.create_item(Ch3Items.egg))
       multiworld.get_location(Ch3Locations.tv_world_tripticket, player).place_locked_item(world.create_item(Ch3Items.tripticket))
 
 

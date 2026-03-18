@@ -171,7 +171,6 @@ chapter3_locations = {
   Ch3Locations.tv_world_bonus_zone_chest_2.value:   LocationData(LocationIDs.ch3_tv_world_bonus_zone_chest_2.value,   Ch3Regions.goulden_sam),
   Ch3Locations.tv_world_bonus_zone_chest_3.value:   LocationData(LocationIDs.ch3_tv_world_bonus_zone_chest_3.value,   Ch3Regions.goulden_sam),
   Ch3Locations.tv_world_chest_outside_green_room.value:   LocationData(LocationIDs.ch3_tv_world_chest_outside_green_room.value,   Ch3Regions.goulden_sam),
-  Ch3Locations.tv_world_man.value:                        LocationData(LocationIDs.ch3_tv_world_man.value,                        Ch3Regions.goulden_sam),
   
   # SWORD
   Ch3Locations.mantle_out_of_bounds_chest.value:       LocationData(LocationIDs.ch3_mantle_out_of_bounds_chest.value,       Ch3Regions.board_1),
@@ -192,7 +191,8 @@ chapter3_locations = {
 
 chapter3_conditional_locations = {
   # Prevent potential unreachable softlock
-  Ch3Locations.tv_world_tripticket.value: ConditionalLocationData(LocationIDs.ch3_tv_world_tripticket.value,     Ch3Regions.goulden_sam, lambda world: not world.is_weird_route()),
+  Ch3Locations.tv_world_man.value:        ConditionalLocationData(LocationIDs.ch3_tv_world_man.value,            Ch3Regions.goulden_sam, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch3Locations.tv_world_tripticket.value: ConditionalLocationData(LocationIDs.ch3_tv_world_tripticket.value,     Ch3Regions.goulden_sam, lambda world: not world.is_weird_route() or world.is_all_routes()),
   
   # T-Rank
   Ch3Locations.board_1_t_rank.value: ConditionalLocationData(LocationIDs.ch3_board_1_t_rank.value, Ch3Regions.board_1, lambda world: world.options.include_t_rank == 1),

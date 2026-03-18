@@ -79,7 +79,7 @@ chapter3_items = {
     Ch3Items.saber10.value:     ItemData(ItemIDs.saber10.value,     ItemClassification.useful),
     Ch3Items.flexscarf.value:   ItemData(ItemIDs.flexscarf.value,   ItemClassification.useful),
     
-    CCItems.revive_mint.value:  ItemData(ItemIDs.revivemint.value,  ItemClassification.useful, 2),
+    CCItems.revivemint.value:  ItemData(ItemIDs.revivemint.value,  ItemClassification.useful, 2),
     
     CCItems.execbuffet.value:   ItemData(ItemIDs.execbuffet.value,  ItemClassification.useful),
 
@@ -96,7 +96,7 @@ chapter3_conditional_items = {
     Ch3Items.tennatie.value:        ConditionalItemData(ItemIDs.tennatie.value,     ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
     Ch3Items.tensionmax.value:      ConditionalItemData(ItemIDs.tensionmax.value,   ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
     Ch3Items.blue_ribbon.value:     ConditionalItemData(ItemIDs.blue_ribbon.value,  ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
-    CCItems.revive_mint.value:      ConditionalItemData(ItemIDs.blue_ribbon.value,  ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
+    CCItems.revivemint.value:       ConditionalItemData(ItemIDs.revivemint.value,    ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
     CCItems.dogdollard.value:       ConditionalItemData(ItemIDs.dogdollar.value,    ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
     
     Ch3Items.shadowmantle.value:    ConditionalItemData(ItemIDs.shadowmantle.value, ItemClassification.useful, lambda world: world.is_secret_bosses_randomized()),

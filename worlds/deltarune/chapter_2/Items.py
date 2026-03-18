@@ -80,7 +80,7 @@ chapter2_items = {
   Ch2Items.lightcandy.value:        ItemData(ItemIDs.lightcandy.value,        ItemClassification.useful),
   CCItems.spincake.value:           ItemData(ItemIDs.spincake.value,          ItemClassification.useful),
   
-  CCItems.revive_mint.value:        ItemData(ItemIDs.revivemint.value,        ItemClassification.useful, 2),
+  CCItems.revivemint.value:        ItemData(ItemIDs.revivemint.value,        ItemClassification.useful, 2),
   
   Ch2Items.mechasaber.value:        ItemData(ItemIDs.mechasaber.value,        ItemClassification.useful),
   Ch2Items.autoaxe.value:           ItemData(ItemIDs.autoaxe.value,           ItemClassification.useful),
