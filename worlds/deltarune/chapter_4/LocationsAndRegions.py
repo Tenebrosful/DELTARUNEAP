@@ -131,9 +131,9 @@ chapter4_conditional_locations = {
   Ch4Locations.recruit_bibliox.value:      ConditionalLocationData(LocationIDs.ch4_recruit_bibliox.value,     Ch4Regions.dark_sanctuary,              lambda world: world.is_all_recruits()),
   Ch4Locations.recruit_mizzle.value:       ConditionalLocationData(LocationIDs.ch4_recruit_mizzle.value,      Ch4Regions.dark_sanctuary,              lambda world: world.is_all_recruits()),
   Ch4Locations.recruit_miss_mizzle.value:  ConditionalLocationData(LocationIDs.ch4_recruit_miss_mizzle.value, Ch4Regions.dark_sanctuary_claimbclaws,  lambda world: world.is_all_recruits()),
-  Ch4Locations.recruit_wicabel.value:      ConditionalLocationData(LocationIDs.ch4_recruit_guei.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_all_recruits()),
-  Ch4Locations.recruit_wingblade.value:    ConditionalLocationData(LocationIDs.ch4_recruit_guei.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_all_recruits()),
-  Ch4Locations.recruit_organikk.value:     ConditionalLocationData(LocationIDs.ch4_recruit_guei.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_all_recruits()),
+  Ch4Locations.recruit_wicabel.value:      ConditionalLocationData(LocationIDs.ch4_recruit_wicabel.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_all_recruits()),
+  Ch4Locations.recruit_wingblade.value:    ConditionalLocationData(LocationIDs.ch4_recruit_winglade.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_all_recruits()),
+  Ch4Locations.recruit_organikk.value:     ConditionalLocationData(LocationIDs.ch4_recruit_organikk.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_all_recruits()),
   
   # Losts
   Ch4Locations.lost_guei.value:         ConditionalLocationData(LocationIDs.ch4_lost_guei.value,        Ch4Regions.dark_sanctuary,              lambda world: world.is_weird_route()),
@@ -141,9 +141,9 @@ chapter4_conditional_locations = {
   Ch4Locations.lost_bibliox.value:      ConditionalLocationData(LocationIDs.ch4_lost_bibliox.value,     Ch4Regions.dark_sanctuary,              lambda world: world.is_weird_route()),
   Ch4Locations.lost_mizzle.value:       ConditionalLocationData(LocationIDs.ch4_lost_mizzle.value,      Ch4Regions.dark_sanctuary,              lambda world: world.is_weird_route()),
   Ch4Locations.lost_miss_mizzle.value:  ConditionalLocationData(LocationIDs.ch4_lost_miss_mizzle.value, Ch4Regions.dark_sanctuary_claimbclaws,  lambda world: world.is_weird_route()),
-  Ch4Locations.lost_wicabel.value:      ConditionalLocationData(LocationIDs.ch4_lost_guei.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_weird_route()),
-  Ch4Locations.lost_wingblade.value:    ConditionalLocationData(LocationIDs.ch4_lost_guei.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_weird_route()),
-  Ch4Locations.lost_organikk.value:     ConditionalLocationData(LocationIDs.ch4_lost_guei.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_weird_route()),
+  Ch4Locations.lost_wicabel.value:      ConditionalLocationData(LocationIDs.ch4_lost_wicabel.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_weird_route()),
+  Ch4Locations.lost_wingblade.value:    ConditionalLocationData(LocationIDs.ch4_lost_winglade.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_weird_route()),
+  Ch4Locations.lost_organikk.value:     ConditionalLocationData(LocationIDs.ch4_lost_organikk.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_weird_route()),
 }
 
 chapter4_regions = [
