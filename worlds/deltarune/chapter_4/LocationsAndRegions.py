@@ -105,6 +105,11 @@ chapter4_locations = {
   Ch4Locations.dark_sanctuary_hidden_climbing_chest.value:      LocationData(LocationIDs.ch4_dark_sanctuary_hidden_climbing_chest.value,      Ch4Regions.dark_sanctuary),
   Ch4Locations.dark_sanctuary_sheetmusic.value:                 LocationData(LocationIDs.ch4_dark_sanctuary_sheetmusic.value,                 Ch4Regions.dark_sanctuary),
   
+  Ch4Locations.old_man_shop_1.value:                            LocationData(LocationIDs.ch4_old_man_shop_1.value,                            Ch4Regions.dark_sanctuary),
+  Ch4Locations.old_man_shop_2.value:                            LocationData(LocationIDs.ch4_old_man_shop_2.value,                            Ch4Regions.dark_sanctuary),
+  Ch4Locations.old_man_shop_3.value:                            LocationData(LocationIDs.ch4_old_man_shop_3.value,                            Ch4Regions.dark_sanctuary),
+  Ch4Locations.old_man_shop_4.value:                            LocationData(LocationIDs.ch4_old_man_shop_4.value,                            Ch4Regions.dark_sanctuary),
+  
   Ch4Locations.dark_sanctuary_hammer_of_justice_defeat_item_1.value:  LocationData(LocationIDs.ch4_dark_sanctuary_hammer_of_justice_defeat_item_1.value,  Ch4Regions.dark_sanctuary_claimbclaws),
   Ch4Locations.dark_sanctuary_hammer_of_justice_defeat_item_2.value:  LocationData(LocationIDs.ch4_dark_sanctuary_hammer_of_justice_defeat_item_2.value,  Ch4Regions.dark_sanctuary_claimbclaws),
   
