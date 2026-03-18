@@ -10,7 +10,6 @@ class Ch1Items(StrEnum):
   chapter_1_unlock = "Chapter 1 Unlock"
   
   # Healing Items
-  dark_candy = "Dark Candy"
   heartsdonut = "HeartsDonut"
   chocdiamond = "ChocDiamond"
   rouxlsroux = "RouxlsRoux"
@@ -58,7 +57,7 @@ class Ch1Items(StrEnum):
 chapter1_macguffin_item = Ch1Items.king_shape_key_piece.value
 
 chapter1_items = {
-  Ch1Items.dark_candy.value:     ItemData(ItemIDs.dark_candy.value,    ItemClassification.filler),
+  CCItems.dark_candy.value:      ItemData(ItemIDs.dark_candy.value,    ItemClassification.filler),
   CCItems.dark_burger.value:     ItemData(ItemIDs.darkburger.value,    ItemClassification.filler),
   Ch1Items.heartsdonut.value:    ItemData(ItemIDs.heartsdonut.value,   ItemClassification.filler),
   Ch1Items.chocdiamond.value:    ItemData(ItemIDs.chocdiamond.value,   ItemClassification.filler),
@@ -76,7 +75,7 @@ chapter1_items = {
 
   CCItems.revive_mint.value:      ItemData(ItemIDs.revivemint.value,      ItemClassification.useful, 2),
   
-  Ch1Items.manual.value:          ItemData(ItemIDs.manual.value,        ItemClassification.progression | ItemClassification.useful, 2),
+  Ch1Items.manual.value:          ItemData(ItemIDs.manual.value,          ItemClassification.progression | ItemClassification.useful, 2),
   
   # Blockers
   Ch1Items.bake_sale_ticket.value: ItemData(ItemIDs.bake_sale_ticket.value,  ItemClassification.progression),

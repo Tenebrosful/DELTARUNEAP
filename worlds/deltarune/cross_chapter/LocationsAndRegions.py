@@ -5,6 +5,7 @@ from ..Regions import generic_create_regions, fusion_access_region, fusion_acces
 from ..chapter_1.LocationsAndRegions import Ch1Regions
 from ..chapter_2.LocationsAndRegions import Ch2Regions
 from ..chapter_3.LocationsAndRegions import Ch3Regions
+from ..chapter_4.LocationsAndRegions import Ch4Regions
 
 if TYPE_CHECKING: from .. import DeltaruneWorld
 
@@ -24,6 +25,7 @@ class CCEntrances(StrEnum):
   chapter_1_entrance = "Chapter 1 Entrance"
   chapter_2_entrance = "Chapter 2 Entrance"
   chapter_3_entrance = "Chapter 3 Entrance"
+  chapter_4_entrance = "Chapter 4 Entrance"
 
 cross_chapter_locations: dict = {
   
@@ -48,6 +50,7 @@ def get_cross_chapter_regions(world: "DeltaruneWorld"):
   if world.include_chapter(1): chapter_entraces.append(CCEntrances.chapter_1_entrance.value)
   if world.include_chapter(2): chapter_entraces.append(CCEntrances.chapter_2_entrance.value)
   if world.include_chapter(3): chapter_entraces.append(CCEntrances.chapter_3_entrance.value)
+  if world.include_chapter(4): chapter_entraces.append(CCEntrances.chapter_4_entrance.value)
   
   regions.append((CCRegions.hub.value, chapter_entraces))
   
@@ -62,6 +65,7 @@ def get_cross_chapter_mandatory_connection(world: "DeltaruneWorld"):
   if world.include_chapter(1): connections.append((CCEntrances.chapter_1_entrance.value, Ch1Regions.chapter_1.value))
   if world.include_chapter(2): connections.append((CCEntrances.chapter_2_entrance.value, Ch2Regions.chapter_2.value))
   if world.include_chapter(3): connections.append((CCEntrances.chapter_3_entrance.value, Ch3Regions.chapter_3.value))
+  if world.include_chapter(4): connections.append((CCEntrances.chapter_4_entrance.value, Ch4Regions.chapter_4.value))
   
   if world.can_access_fusion(): connections.append((fusion_access_entrance, fusion_access_region))
   

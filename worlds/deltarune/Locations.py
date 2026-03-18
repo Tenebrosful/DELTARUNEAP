@@ -221,7 +221,7 @@ class LocationIDs(Enum):
     ch4_dark_sanctuary_cuptain_pillar_chest = 202
     ch4_dark_sanctuary_sleeping_mizzle_chest = 203
     ch4_dark_sanctuary_hidden_climbing_chest = 204
-    ch4_dark_sanctuary_sheet_music = 205
+    ch4_dark_sanctuary_sheetmusic = 205
     ch4_dark_sanctuary_hammer_of_justice_defeat_item_1 = 206
     ch4_dark_sanctuary_hammer_of_justice_defeat_item_2 = 207
     ch4_dark_sanctuary_fontain_seal = 208

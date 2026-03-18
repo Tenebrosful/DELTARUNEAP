@@ -40,6 +40,11 @@ def set_rules(world: "DeltaruneWorld"):
   # set_rule(multiworld.get_entrance(Ch2Entrances.cyber_city_entrance,          player), lambda state: state.has(Ch2Items.trash_zone_warp, player))
   # set_rule(multiworld.get_entrance(Ch2Entrances.mansion_entrance,       player), lambda state: state.has(Ch2Items.mansion_warp, player))
   
+  if not world.is_secret_bosses_randomized():
+    multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_1, player).place_locked_item(world.create_item(Ch2Items.puppetscarf))
+    multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_2, player).place_locked_item(world.create_item(Ch2Items.dealmaker))
+    multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_3, player).place_locked_item(world.create_item(CCItems.shadowcrystal))
+  
   # if not world.is_warps_randomized():
   if True:
         multiworld.get_location(Ch2Locations.cyber_field_warp_door, player).place_locked_item(world.create_item(Ch2Items.cyber_field_warp))

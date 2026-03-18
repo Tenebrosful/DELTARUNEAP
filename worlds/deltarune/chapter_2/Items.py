@@ -11,57 +11,57 @@ class Ch2Items(StrEnum):
   chapter_2_unlock = "Chapter 2 Unlock"
   
   # Healing Items
-  cd_bagel = "CD Bagel"
-  kris_tea = "Kris Tea"
-  noelle_tea = "Noelle Tea"
-  ralsei_tea = "Ralsei Tea"
-  susie_tea = "Susie Tea"
-  lightcandy = "LightCandy"
-  butjuice = "ButJuice"
-  spagetticode = "SpagettiCode"
-  revivedust = "ReviveDust"
+  cd_bagel      = "CD Bagel"
+  kris_tea      = "Kris Tea"
+  noelle_tea    = "Noelle Tea"
+  ralsei_tea    = "Ralsei Tea"
+  susie_tea     = "Susie Tea"
+  lightcandy    = "LightCandy"
+  butjuice      = "ButJuice"
+  spagetticode  = "SpagettiCode"
+  revivedust    = "ReviveDust"
   
-  spoison = "S.POISON"
-  tensionbit = "TensionBit"
+  spoison       = "S.POISON"
+  tensionbit    = "TensionBit"
   
   # Armors
-  glowwrist = "GlowWrist"
-  dealmaker =  "DealMaker"
-  mannequin = "Mannequin"
-  royalpin = "RoyalPin"
-  chainmail = "ChainMail"
-  frayedbowtie = "FrayedBowtie"
+  glowwrist     = "GlowWrist"
+  dealmaker     = "DealMaker"
+  mannequin     = "Mannequin"
+  royalpin      = "RoyalPin"
+  chainmail     = "ChainMail"
+  frayedbowtie  = "FrayedBowtie"
   
   # Weapons
-  mechasaber = "MechaSaber"
-  bounceblade = "BounceBlade"
-  autoaxe = "AutoAxe"
-  fiberscarf = "FiberScarf"
-  ragger2 = "Ragger2"
-  puppetscarf = "PuppetScarf"
-  brokenswd = "BrokenSwd"
-  freezering = "FreezeRing"
-  thornring = "ThornRing"
+  mechasaber    = "MechaSaber"
+  bounceblade   = "BounceBlade"
+  autoaxe       = "AutoAxe"
+  fiberscarf    = "FiberScarf"
+  ragger2       = "Ragger2"
+  puppetscarf   = "PuppetScarf"
+  brokenswd     = "BrokenSwd"
+  freezering    = "FreezeRing"
+  thornring     = "ThornRing"
   
-  egg = "CH2 Egg"
-  joe_life_savings = "Joe's Life Savings"
-  city_moss = "City Moss"
-  dogdollar = "DogDollar"
+  egg               = "CH2 Egg"
+  joe_life_savings  = "Joe's Life Savings"
+  city_moss         = "City Moss"
+  dogdollar         = "DogDollar"
   
-  emptydisk = "EmptyDisk"
-  keygen = "Keygen"
+  emptydisk     = "EmptyDisk"
+  keygen        = "Keygen"
   
   # Blockers
-  safety_vest = "Safety Vest"
+  safety_vest         = "Safety Vest"
   mansion_reservation = "Mansion Reservation"
   
   # Macguffins
-  keygen_2_segment = "Keygen 2 Segment"
+  keygen_2_segment    = "Keygen 2 Segment"
   
   # Warps
-  cyber_field_warp = "Cyber Field Warp"
-  trash_zone_warp = "Trash Zone Warp"
-  mansion_warp = "Mansion Warp"
+  cyber_field_warp    = "Cyber Field Warp"
+  trash_zone_warp     = "Trash Zone Warp"
+  mansion_warp        = "Mansion Warp"
   
 chapter2_macguffin_item = Ch2Items.keygen_2_segment.value
 
@@ -92,9 +92,9 @@ chapter2_items = {
   # Noelle royal pin
   Ch2Items.royalpin.value:          ItemData(ItemIDs.royalpin.value,          ItemClassification.useful),
   
-  Ch2Items.tensionbit.value:          ItemData(ItemIDs.tensionbit.value,  ItemClassification.progression | ItemClassification.useful),
-  Ch2Items.glowwrist.value:           ItemData(ItemIDs.glowwrist.value,   ItemClassification.progression | ItemClassification.useful, 2),
-  CCItems.pink_ribbon.value:          ItemData(ItemIDs.pink_ribbon.value, ItemClassification.progression),
+  Ch2Items.tensionbit.value:          ItemData(ItemIDs.tensionbit.value,        ItemClassification.progression | ItemClassification.useful),
+  Ch2Items.glowwrist.value:           ItemData(ItemIDs.glowwrist.value,         ItemClassification.progression | ItemClassification.useful, 2),
+  CCItems.pink_ribbon.value:          ItemData(ItemIDs.pink_ribbon.value,       ItemClassification.progression),
   Ch2Items.safety_vest.value:         ItemData(ItemIDs.safety_vest.value,       ItemClassification.progression),
   Ch2Items.cyber_field_warp.value:    ItemData(ItemIDs.cyber_field_warp.value,  ItemClassification.progression),
   Ch2Items.trash_zone_warp.value:     ItemData(ItemIDs.trash_zone_warp.value,   ItemClassification.progression),
@@ -103,16 +103,16 @@ chapter2_items = {
 }
 
 chapter2_conditional_items = {
-  Ch2Items.butjuice.value:        ConditionalItemData(ItemIDs.butjuice.value,     ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
-  Ch2Items.spagetticode.value:    ConditionalItemData(ItemIDs.spagetticode.value, ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
-  Ch2Items.spoison.value:     ConditionalItemData(ItemIDs.spoison.value,    ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
-  Ch2Items.kris_tea.value:    ConditionalItemData(ItemIDs.kris_tea.value,   ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
-  Ch2Items.noelle_tea.value:  ConditionalItemData(ItemIDs.noelle_tea.value, ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
-  Ch2Items.ralsei_tea.value:  ConditionalItemData(ItemIDs.ralsei_tea.value, ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
-  Ch2Items.susie_tea.value:   ConditionalItemData(ItemIDs.susie_tea.value,  ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
-  Ch2Items.spoison.value:     ConditionalItemData(ItemIDs.spoison.value,    ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
-  Ch2Items.royalpin.value:    ConditionalItemData(ItemIDs.royalpin.value,   ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
-  Ch2Items.frayedbowtie.value:ConditionalItemData(ItemIDs.frayedbowtie.value,ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.butjuice.value:        ConditionalItemData(ItemIDs.butjuice.value,       ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.spagetticode.value:    ConditionalItemData(ItemIDs.spagetticode.value,   ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.spoison.value:         ConditionalItemData(ItemIDs.spoison.value,        ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.kris_tea.value:        ConditionalItemData(ItemIDs.kris_tea.value,       ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.noelle_tea.value:      ConditionalItemData(ItemIDs.noelle_tea.value,     ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.ralsei_tea.value:      ConditionalItemData(ItemIDs.ralsei_tea.value,     ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.susie_tea.value:       ConditionalItemData(ItemIDs.susie_tea.value,      ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.spoison.value:         ConditionalItemData(ItemIDs.spoison.value,        ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.royalpin.value:        ConditionalItemData(ItemIDs.royalpin.value,       ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  Ch2Items.frayedbowtie.value:    ConditionalItemData(ItemIDs.frayedbowtie.value,   ItemClassification.filler, lambda world: not world.is_weird_route() or world.is_all_routes()),
   
   CCItems.glowshard.value:    ConditionalItemData(ItemIDs.glowshard.value,      ItemClassification.useful, lambda world: not world.is_weird_route() or world.is_all_routes()),
   Ch2Items.egg.value:         ConditionalItemData(ItemIDs.chapter_2_egg.value,  ItemClassification.useful, lambda world: (not world.is_weird_route() or world.is_all_routes()) and world.is_hidden_items_randomized()),

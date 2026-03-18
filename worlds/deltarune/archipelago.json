@@ -1,11 +1,9 @@
 {
-    "game": "DELTARUNE test",
-    "world_version": "1.0.5",
+    "game": "DELTARUNE",
+    "world_version": "1.1.0",
     "authors": [
         "Mewlif",
-        "theemeraldsword85"
-    ],
-    "compatible_version": 7,
-    "version": 7,
-    "minimum_ap_version": "0.6.0"
+        "theemeraldsword85",
+        "Tenebrosful"
+    ]
 }

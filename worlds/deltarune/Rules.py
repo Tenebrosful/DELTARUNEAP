@@ -3,8 +3,7 @@ from typing import TYPE_CHECKING
 from .chapter_1.LocationsAndRegions import chapter1_end_region
 from .chapter_2.LocationsAndRegions import chapter2_end_region
 from .chapter_3.LocationsAndRegions import chapter3_end_region
-# from .chapter_3.Locations import chapter3_end_location
-# from .chapter_4.Locations import chapter4_end_location
+from .chapter_4.LocationsAndRegions import chapter4_end_region
 
 if TYPE_CHECKING: from . import DeltaruneWorld
 
@@ -14,7 +13,7 @@ def set_completion_rules(world: "DeltaruneWorld"):
     # Code by my brother; Thanks!
     # chapters to reach for completion condition to be true
     chapter_reach = {
-                    # 4: "CH4: Titan Fight",
+                    4: chapter4_end_region,
                     3: chapter3_end_region,
                     2: chapter2_end_region,
                     1: chapter1_end_region

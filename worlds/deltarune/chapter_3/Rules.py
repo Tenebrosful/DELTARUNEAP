@@ -7,8 +7,7 @@ from .Items import Ch3Items
 from ..cross_chapter.LocationsAndRegions import CCEntrances
 from ..cross_chapter.Items import CCItems
 
-if TYPE_CHECKING:
-    from .. import DeltaruneWorld
+if TYPE_CHECKING: from .. import DeltaruneWorld
 
 def set_rules(world: "DeltaruneWorld"): 
   player = world.player
@@ -38,6 +37,13 @@ def set_rules(world: "DeltaruneWorld"):
   set_rule(multiworld.get_location(Ch3Locations.sword_3_mantle_defeat,   player),   lambda state: can_do_mantle(state, player))
   set_rule(multiworld.get_location(Ch3Locations.s_rank_room_susie_gift,   player),  lambda state: can_do_mantle(state, player))
 
+  # Secret Bosses
+  if not world.is_secret_bosses_randomized():
+    multiworld.get_location(Ch3Locations.sword_3_mantle_defeat, player).place_locked_item(world.create_item(Ch3Items.shadowmantle))
+    multiworld.get_location(Ch3Locations.s_rank_room_susie_gift, player).place_locked_item(world.create_item(Ch3Items.flatsoda))
+    multiworld.get_location(Ch3Locations.cold_place_knight_defeat_item_1, player).place_locked_item(world.create_item(Ch3Items.blackshard))
+    multiworld.get_location(Ch3Locations.cold_place_knight_defeat_item_2, player).place_locked_item(world.create_item(CCItems.shadowcrystal))
+  
   # Hidden items
   if not world.is_hidden_items_randomized():
     multiworld.get_location(Ch3Locations.tv_world_man, player).place_locked_item(world.create_item(Ch3Items.egg))
@@ -45,8 +51,6 @@ def set_rules(world: "DeltaruneWorld"):
     multiworld.get_location(Ch3Locations.s_rank_room_oddcontroller, player).place_locked_item(world.create_item(Ch3Items.odd_controller))
     multiworld.get_location(Ch3Locations.sword_1_ice_key, player).place_locked_item(world.create_item(Ch3Items.ice_key))
     multiworld.get_location(Ch3Locations.sword_2_shelter_key, player).place_locked_item(world.create_item(Ch3Items.shelter_key))
-    multiworld.get_location(Ch3Locations.sword_3_mantle_defeat, player).place_locked_item(world.create_item(Ch3Items.shadowmantle))
-    multiworld.get_location(Ch3Locations.s_rank_room_susie_gift, player).place_locked_item(world.create_item(Ch3Items.flatsoda))
     # Location not available in weird route to avoid potential soft-lock due to Zapper Lost
     if (not world.is_weird_route()):
       multiworld.get_location(Ch3Locations.tv_world_tripticket, player).place_locked_item(world.create_item(Ch3Items.tripticket))

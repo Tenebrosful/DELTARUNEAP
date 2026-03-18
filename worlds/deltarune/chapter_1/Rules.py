@@ -4,6 +4,7 @@ from ..Options import RandomizeChapterOptions, RandomizeSecretBossesOptions
 from .LocationsAndRegions import Ch1Entrances, Ch1Regions, Ch1Locations
 from .Items import Ch1Items
 from ..cross_chapter.LocationsAndRegions import CCEntrances
+from ..cross_chapter.Items import CCItems
 
 if TYPE_CHECKING: from .. import DeltaruneWorld
 
@@ -31,10 +32,10 @@ def set_rules(world: "DeltaruneWorld"):
   set_rule(multiworld.get_entrance(Ch1Entrances.bake_sale_warp_hub,   player), lambda state: state.has(Ch1Items.bake_sale_warp, player))
   set_rule(multiworld.get_entrance(Ch1Entrances.card_castle_warp_hub, player), lambda state: state.has(Ch1Items.card_castle_warp, player))
   if not world.is_warps_randomized():
-        multiworld.get_location(Ch1Locations.field_warp_door, player).place_locked_item(world.create_item(Ch1Items.fields_warp))
-        multiworld.get_location(Ch1Locations.forest_warp_door, player).place_locked_item(world.create_item(Ch1Items.forest_warp))
-        multiworld.get_location(Ch1Locations.bake_sale_warp_door, player).place_locked_item(world.create_item(Ch1Items.bake_sale_warp))
-        multiworld.get_location(Ch1Locations.card_castle_warp_door, player).place_locked_item(world.create_item(Ch1Items.card_castle_warp))
+        multiworld.get_location(Ch1Locations.field_warp_door, player)       .place_locked_item(world.create_item(Ch1Items.fields_warp))
+        multiworld.get_location(Ch1Locations.forest_warp_door, player)      .place_locked_item(world.create_item(Ch1Items.forest_warp))
+        multiworld.get_location(Ch1Locations.bake_sale_warp_door, player)   .place_locked_item(world.create_item(Ch1Items.bake_sale_warp))
+        multiworld.get_location(Ch1Locations.card_castle_warp_door, player) .place_locked_item(world.create_item(Ch1Items.card_castle_warp))
   
   # Mandatory Secret boss option and macguffin
   if world.is_secret_bosses_mandatory():
@@ -64,11 +65,16 @@ def set_rules(world: "DeltaruneWorld"):
   
   set_rule(multiworld.get_location(Ch1Locations.throw_away_manual, player),         lambda state: state.has(Ch1Items.manual, player))
   
+  if not world.is_secret_bosses_randomized():
+    multiworld.get_location(Ch1Locations.card_castle_jevil_1, player).place_locked_item(world.create_item(Ch1Items.jevilstail))
+    multiworld.get_location(Ch1Locations.card_castle_jevil_2, player).place_locked_item(world.create_item(Ch1Items.devilsknife))
+    multiworld.get_location(Ch1Locations.card_castle_jevil_3, player).place_locked_item(world.create_item(CCItems.shadowcrystal))
+  
   # Hidden items
   if not world.is_hidden_items_randomized():
-    multiworld.get_location(Ch1Locations.forest_man, player).place_locked_item(world.create_item(Ch1Items.egg))
-    multiworld.get_location(Ch1Locations.card_castle_moss, player).place_locked_item(world.create_item(Ch1Items.castle_moss))
-    multiworld.get_location(Ch1Locations.seam_seap_talk_about_strange_prisoner, player).place_locked_item(world.create_item(Ch1Items.broken_key_a))
-    multiworld.get_location(Ch1Locations.forest_hidden_chest_near_dancers, player).place_locked_item(world.create_item(Ch1Items.broken_key_b))
-    multiworld.get_location(Ch1Locations.field_chest_before_great_board, player).place_locked_item(world.create_item(Ch1Items.broken_key_c))
-    multiworld.get_location(Ch1Locations.bake_sale_repair_door_key, player).place_locked_item(world.create_item(Ch1Items.door_key))
+    multiworld.get_location(Ch1Locations.forest_man, player)                            .place_locked_item(world.create_item(Ch1Items.egg))
+    multiworld.get_location(Ch1Locations.card_castle_moss, player)                      .place_locked_item(world.create_item(Ch1Items.castle_moss))
+    multiworld.get_location(Ch1Locations.seam_seap_talk_about_strange_prisoner, player) .place_locked_item(world.create_item(Ch1Items.broken_key_a))
+    multiworld.get_location(Ch1Locations.forest_hidden_chest_near_dancers, player)      .place_locked_item(world.create_item(Ch1Items.broken_key_b))
+    multiworld.get_location(Ch1Locations.field_chest_before_great_board, player)        .place_locked_item(world.create_item(Ch1Items.broken_key_c))
+    multiworld.get_location(Ch1Locations.bake_sale_repair_door_key, player)             .place_locked_item(world.create_item(Ch1Items.door_key))

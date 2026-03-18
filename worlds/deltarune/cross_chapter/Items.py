@@ -9,6 +9,7 @@ if TYPE_CHECKING:
 class CCItems(StrEnum):
   
   # Healing Items
+  dark_candy      = "Dark Candy"
   clubsSandwich   = "ClubSandwich"
   dark_burger     = "Dark Burger"
   dd_burger       = "DD-Burger"

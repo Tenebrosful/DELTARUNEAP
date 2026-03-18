@@ -13,6 +13,7 @@ from .cross_chapter import Items as CCItems, LocationsAndRegions as CCLocationsA
 from .chapter_1 import LocationsAndRegions as Ch1LocationAndRegions, Rules as Ch1Rules, Items as Ch1Items
 from .chapter_2 import LocationsAndRegions as Ch2LocationAndRegions, Rules as Ch2Rules, Items as Ch2Items
 from .chapter_3 import LocationsAndRegions as Ch3LocationAndRegions, Rules as Ch3Rules, Items as Ch3Items
+from .chapter_4 import LocationsAndRegions as Ch4LocationAndRegions, Rules as Ch4Rules, Items as Ch4Items
 
 def run_client():
     print('running deltarune client')
@@ -30,7 +31,7 @@ components.append(Component("DELTARUNE Client",
 #I apologize for the name of the icon - Emerald
 icon_paths["deltarune"] = f"ap:{__name__}/icons/gay_deltarune.png"
 
-max_deltarune_chapter = 3
+max_deltarune_chapter = 4
 fusion_access_chapter = [2, 4]
 
 every_items: dict[str, ItemData | ConditionalItemData] = {
@@ -42,6 +43,8 @@ every_items: dict[str, ItemData | ConditionalItemData] = {
     **Ch2Items.chapter2_conditional_items,
     **Ch3Items.chapter3_items,
     **Ch3Items.chapter3_conditional_items,
+    **Ch4Items.chapter4_items,
+    **Ch4Items.chapter4_conditional_items,
 }
 
 every_locations: dict[str, LocationData | ConditionalItemData] = {
@@ -53,6 +56,8 @@ every_locations: dict[str, LocationData | ConditionalItemData] = {
     **Ch2LocationAndRegions.chapter2_conditional_locations,
     **Ch3LocationAndRegions.chapter3_locations,
     **Ch3LocationAndRegions.chapter3_conditional_locations,
+    **Ch4LocationAndRegions.chapter4_locations,
+    **Ch4LocationAndRegions.chapter4_conditional_locations,
 }
 
 def data_path(file_name: str):
@@ -118,200 +123,9 @@ class DeltaruneWorld(World):
         if self.options.include_chapter_1: junk_pool.update(Ch1Items.get_filler_items(self))
         if self.options.include_chapter_2: junk_pool.update(Ch2Items.get_filler_items(self))
         if self.options.include_chapter_3: junk_pool.update(Ch3Items.get_filler_items(self))
-        # if self.options.include_chapter_4: junk_pool.update(Ch4Items.get_filler_items(self))
+        if self.options.include_chapter_4: junk_pool.update(Ch4Items.get_filler_items(self))
         
         return self.random.choices(list(junk_pool.keys()), weights=list(junk_pool.values()))[0]
-
-    # def create_items(self):
-    #     # Generate item pool
-    #     itempool: list[str] = []
-    #     # Add all required progression items
-    #     playable_chapters: list[str] = []
-    #     if self.options.include_chapter_1:
-    #         playable_chapters += ["1"]
-    #         if not (self.options.include_chapter_2 or self.options.include_chapter_3 or self.options.include_chapter_4):
-    #             itempool += ["King-Shaped Key Piece"] * self.options.goal_macguffin_amount
-    #         for name, num in key_items_ch1.items():
-    #             itempool += [name] * num
-    #         for name, num in non_key_items_ch1.items():
-    #             itempool += [name] * num
-    #     if self.options.include_chapter_2:
-    #         playable_chapters += ["2"]
-    #         if not (self.options.include_chapter_3 or self.options.include_chapter_4):
-    #             itempool += ["KeyGen 2 Segment"] * self.options.goal_macguffin_amount
-    #         if self.options.chosen_route.current_key == "weird_route":
-    #             for name, num in key_items_ch2_weird.items():
-    #                itempool += [name] * num
-    #             for name, num in non_key_items_ch2_weird.items():
-    #                itempool += [name] * num
-    #         elif self.options.chosen_route.current_key == "all_recruits":
-    #             for name, num in key_items_ch2.items():
-    #                 itempool += [name] * num
-    #             for name, num in non_key_items_ch2.items():
-    #                 itempool += [name] * num
-    #         else:
-    #             for name, num in key_items_ch2_all.items():
-    #                 itempool += [name] * num
-    #             for name, num in non_key_items_ch2.items():
-    #                 itempool += [name] * num
-    #     if self.options.include_chapter_3:
-    #         playable_chapters += ["3"]
-    #         if not self.options.include_chapter_4:
-    #             itempool += ["Remote Battery"] * self.options.goal_macguffin_amount
-    #         if self.options.chosen_route.current_key == "weird_route":
-    #             for name, num in key_items_ch3_weird.items():
-    #                 itempool += [name] * num
-    #             for name, num in non_key_items_ch3_weird.items():
-    #                 itempool += [name] * num
-    #         else:
-    #             for name, num in key_items_ch3.items():
-    #                 itempool += [name] * num
-    #             for name, num in non_key_items_ch3.items():
-    #                 itempool += [name] * num
-    #     if self.options.include_chapter_4:
-    #         playable_chapters += ["4"]
-    #         # if not self.options.include_chapter_5:
-    #         itempool += ["Combination Lock Digit"] * self.options.goal_macguffin_amount
-    #         for name, num in key_items_ch4.items():
-    #             itempool += [name] * num
-    #         for name, num in non_key_items_ch4.items():
-    #             itempool += [name] * num
-    #     if playable_chapters == []:
-    #         self.multiworld.push_precollected(self.create_item("WHAT INTERESTING BEHAVIOR."))
-    #     else:
-    #         if not self.options.include_hidden_items:
-    #             itempool = [item for item in itempool if item not in hidden_items]
-    #             if self.options.include_chapter_1:
-    #                 self.multiworld.get_location("CH1: Forest - Man", self.player).place_locked_item(self.create_item("CH1 Egg"))
-    #                 self.multiworld.get_location("CH1: Card Castle - Moss", self.player).place_locked_item(self.create_item("Castle Moss"))
-    #                 self.multiworld.get_location("CH1: Seam's Seap - Talk About Strange Prisoner", self.player).place_locked_item(self.create_item("Broken Key A"))
-    #                 self.multiworld.get_location("CH1: Field - Chest Before Great Board", self.player).place_locked_item(self.create_item("Broken Key B"))
-    #                 self.multiworld.get_location("CH1: Forest - Hidden Chest Near Dancers", self.player).place_locked_item(self.create_item("Broken Key C"))
-    #                 self.multiworld.get_location("CH1: Bake Sale - Repair Door Key", self.player).place_locked_item(self.create_item("Door Key"))
-    #             if self.options.include_chapter_2 and not self.options.chosen_route.current_key == "weird_route":
-    #                 self.multiworld.get_location("CH2: Cyber City - Man", self.player).place_locked_item(self.create_item("CH2 Egg"))
-    #                 self.multiworld.get_location("CH2: Cyber City - Annoying Dog...?", self.player).place_locked_item(self.create_item("DogDollar"))
-    #                 self.multiworld.get_location("CH2: Spamton's Shop 1", self.player).place_locked_item(self.create_item("KeyGen"))
-    #                 self.multiworld.get_location("CH2: Mansion - Basement Mechanism", self.player).place_locked_item(self.create_item("EmptyDisk"))
-    #                 self.multiworld.get_location("CH2: Cyber City - Moss", self.player).place_locked_item(self.create_item("City Moss"))
-    #             if self.options.include_chapter_3:
-    #                 self.multiworld.get_location("CH3: MANTLE - Out of Bounds Chest", self.player).place_locked_item(self.create_item("ICE KEY"))
-    #                 self.multiworld.get_location("CH3: MANTLE - Northern Light Item", self.player).place_locked_item(self.create_item("SHELTER KEY"))
-    #                 if not self.options.chosen_route.current_key == "weird_route":
-    #                     self.multiworld.get_location("CH3: TV World - TripTicket", self.player).place_locked_item(self.create_item("TripTicket"))
-    #                     self.multiworld.get_location("CH3: TV World - Man", self.player).place_locked_item(self.create_item("CH3 Egg"))
-    #                 self.multiworld.get_location("CH3: Board 2 Moss", self.player).place_locked_item(self.create_item("Board Moss"))
-    #                 self.multiworld.get_location("CH3: S-Rank Room - Person Behind Curtain", self.player).place_locked_item(self.create_item("Saber10"))
-    #                 self.multiworld.get_location("CH3: B-Rank Room - Golden Prize 1", self.player).place_locked_item(self.create_item("TennaTie"))
-    #                 self.multiworld.get_location("CH3: B-Rank Room - Golden Prize 2", self.player).place_locked_item(self.create_item("TensionMax"))
-    #                 self.multiworld.get_location("CH3: B-Rank Room - Golden Prize 3", self.player).place_locked_item(self.create_item("Blue Ribbon"))
-    #                 self.multiworld.get_location("CH3: B-Rank Room - Golden Prize 4", self.player).place_locked_item(self.create_item("ReviveMint"))
-    #                 self.multiworld.get_location("CH3: B-Rank Room - Golden Prize 5", self.player).place_locked_item(self.create_item("ExecBuffet"))
-    #             if self.options.include_chapter_4:
-    #                 self.multiworld.get_location("CH4: Second Sanctuary - Moss", self.player).place_locked_item(self.create_item("Sacred Moss"))
-    #                 self.multiworld.get_location("CH4: Second Sanctuary - Man", self.player).place_locked_item(self.create_item("CH4 Egg"))
-    #                 self.multiworld.get_location("CH4: Dark Sanctuary - Annoying Dog...?", self.player).place_locked_item(self.create_item("DogDollar"))
-    #         if not self.options.randomize_warp_doors:
-    #             itempool = [item for item in itempool if item not in warp_doors]
-    #             if self.options.include_chapter_1:
-    #                 self.multiworld.get_location("CH1: Bake Sale - Warp Door", self.player).place_locked_item(self.create_item("Bake Sale Warp"))
-    #                 self.multiworld.get_location("CH1: Card Castle - Warp Door", self.player).place_locked_item(self.create_item("Castle Warp"))
-    #             # if self.options.include_chapter_2: (Currently Chapter 2 locations aren't randomized)
-    #                 # self.multiworld.get_location("CH2: Cyber Field Warp Door", self.player).place_locked_item(self.create_item("Cyber Field Warp"))
-    #                 # self.multiworld.get_location("CH2: Trash Zone Warp Door", self.player).place_locked_item(self.create_item("Trash Zone Warp"))
-    #                 # self.multiworld.get_location("CH2: Mansion Warp Door", self.player).place_locked_item(self.create_item("Mansion Warp"))
-    #         if self.options.randomize_secret_bosses.current_key == "false":
-    #             itempool = [item for item in itempool if item not in secret_boss_rewards]
-    #             if self.options.include_chapter_1:
-    #                 self.multiworld.get_location("CH1: Card Castle - Jevil Defeat Item #1", self.player).place_locked_item(self.create_item("JevilsTail"))
-    #                 self.multiworld.get_location("CH1: Card Castle - Jevil Defeat Item #2", self.player).place_locked_item(self.create_item("ShadowCrystal"))
-    #                 self.multiworld.get_location("CH1: Card Castle - Jevil Defeat Item #3", self.player).place_locked_item(self.create_item("DevilsKnife"))
-    #             if self.options.include_chapter_2:
-    #                 self.multiworld.get_location("CH2: Mansion - Spamton NEO Defeat Item #1", self.player).place_locked_item(self.create_item("PuppetScarf"))
-    #                 self.multiworld.get_location("CH2: Mansion - Spamton NEO Defeat Item #2", self.player).place_locked_item(self.create_item("ShadowCrystal"))
-    #                 self.multiworld.get_location("CH2: Mansion - Spamton NEO Defeat Item #3", self.player).place_locked_item(self.create_item("DealMaker"))
-    #             if self.options.include_chapter_3:
-    #                 self.multiworld.get_location("CH3: MANTLE - Defeat", self.player).place_locked_item(self.create_item("ShadowMantle"))
-    #                 self.multiworld.get_location("CH3: Cold Place - Knight Defeat Item #1", self.player).place_locked_item(self.create_item("ShadowCrystal"))
-    #                 self.multiworld.get_location("CH3: Cold Place - Knight Defeat Item #2", self.player).place_locked_item(self.create_item("BlackShard"))
-    #                 self.multiworld.get_location("CH3: S-Rank Room - Susie's Gift", self.player).place_locked_item(self.create_item("FlatSoda"))
-    #             if self.options.include_chapter_4:
-    #                 self.multiworld.get_location("CH4: Dark Sanctuary - Hammer of Justice Defeat Item #1", self.player).place_locked_item(self.create_item("ShadowCrystal"))
-    #                 self.multiworld.get_location("CH4: Dark Sanctuary - Hammer of Justice Defeat Item #2", self.player).place_locked_item(self.create_item("JusticeAxe"))
-    #         if self.options.randomize_chapters.current_key == "in_order":
-    #             beginningrange = 0
-    #             for index in range(1, 5):
-    #                 if getattr(self.options, f"include_chapter_{index}").value == 1:            
-    #                     beginningrange = index
-    #                     break
-    #             starting_chapter = beginningrange
-    #             starting_key = "Chapter " + str(starting_chapter) + " Unlock"
-    #             itempool.remove(starting_key)
-    #             self.multiworld.push_precollected(self.create_item(starting_key))
-    #             itempool = [item for item in itempool if item not in chapters]
-    #             nextchapter = 0
-    #             if self.options.include_chapter_1:
-    #                 for index in range(2, 5):
-    #                     if getattr(self.options, f"include_chapter_{index}").value == 1:            
-    #                         nextchapter = index
-    #                         break
-    #                 if nextchapter == 0:
-    #                     nextchapter = 2
-    #                 self.multiworld.get_location("CH1: Card Kingdom - Fountain Sealed", self.player).place_locked_item(self.create_item(f"Chapter {nextchapter} Unlock"))
-    #             if self.options.include_chapter_2:
-    #                 for index in range(3, 5):
-    #                     if getattr(self.options, f"include_chapter_{index}").value == 1:            
-    #                         nextchapter = index
-    #                         break
-    #                 if nextchapter == 0:
-    #                     nextchapter = 3
-    #                 self.multiworld.get_location("CH2: Cyber World - Fountain Sealed", self.player).place_locked_item(self.create_item(f"Chapter {nextchapter} Unlock"))
-    #             if self.options.include_chapter_3:
-    #                 for index in range(4, 5):
-    #                     if getattr(self.options, f"include_chapter_{index}").value == 1:            
-    #                         nextchapter = index
-    #                         break
-    #                 if nextchapter == 0:
-    #                     nextchapter = 4
-    #                 self.multiworld.get_location("CH3: TV World - Fountain Sealed", self.player).place_locked_item(self.create_item(f"Chapter {nextchapter} Unlock"))
-    #             if self.options.include_chapter_4:
-    #                 self.multiworld.get_location("CH4: Third Sanctuary - Fountain Sealed", self.player).place_locked_item(self.create_item("This is where I would put my Chapter 5 Unlock... IF I HAD ONE!"))
-    #         if self.options.include_chapter_2.value == 1 and self.options.include_chapter_1.value == 0:
-    #             itempool.remove("Spikeband")
-    #         if self.options.randomize_chapters.current_key == "randomized":
-    #             starting_chapter = self.random.choice(playable_chapters)
-    #             starting_key = "Chapter " + str(starting_chapter) + " Unlock"
-    #             itempool.remove(starting_key)
-    #             self.multiworld.push_precollected(self.create_item(starting_key))
-    #         if self.options.randomize_chapters.current_key == "all_unlocked":
-    #             if self.options.include_chapter_1:
-    #                 itempool.remove("Chapter 1 Unlock")
-    #             if self.options.include_chapter_2:
-    #                 itempool.remove("Chapter 2 Unlock")
-    #             if self.options.include_chapter_3:
-    #                 itempool.remove("Chapter 3 Unlock")
-    #             if self.options.include_chapter_4:
-    #                 itempool.remove("Chapter 4 Unlock")
-        
-    #     # Choose locations to automatically exclude based on settings
-    #     exclusion_pool = set()
-    #     exclusion_pool.update(exclusion_table[self.options.chosen_route.current_key])
-    #     if not self.options.include_t_rank:
-    #         exclusion_pool.update(exclusion_table["t_rank"])
-    #     exclusion_rules(self.multiworld, self.player, exclusion_pool)
-
-    #     # Convert itempool into real items
-    #     itempool_converted = [item for item in map(lambda name: self.create_item(name), itempool)]
-    #     # Remove random junk items if the item pool overflows
-    #     if len(itempool_converted) > len(self.multiworld.get_unfilled_locations(self.player)):
-    #         print(len(itempool_converted) - len(self.multiworld.get_unfilled_locations(self.player)))
-    #     while len(itempool_converted) > len(self.multiworld.get_unfilled_locations(self.player)):
-    #         itempool_converted.remove(self.random.choice([item for item in itempool_converted if item.classification == ItemClassification.filler]))
-    #     # Fill remaining items with randomly generated junk
-    #     while len(itempool_converted) < len(self.multiworld.get_unfilled_locations(self.player)):
-    #         itempool_converted.append(self.create_filler())
-
-    #     self.multiworld.itempool += itempool_converted
 
     def fill_slot_data(self):
         return self._get_deltarune_data()
@@ -353,7 +167,7 @@ class DeltaruneWorld(World):
     def can_access_fusion(self) -> bool:
         return self.has_at_least_one_chapter_included(fusion_access_chapter)
     
-    def count_chapter_included(self, chapters=list(range(1,max_deltarune_chapter + 1))):
+    def count_chapter_included(self, chapters=list(range(1, max_deltarune_chapter + 1))):
         count = 0
         for chapterToCheck in chapters:
             if getattr(self.options, f"include_chapter_{chapterToCheck}").value == 1: count += 1
@@ -411,7 +225,9 @@ class DeltaruneWorld(World):
         if self.include_chapter(3):
             Ch3LocationAndRegions.create_regions(self)
             every_connections += Ch3LocationAndRegions.chapter3_mandatory_connections
-        # if self.include_chapter(4): Ch4LocationAndRegions.create_regions(self)
+        if self.include_chapter(4):
+            Ch4LocationAndRegions.create_regions(self)
+            every_connections += Ch4LocationAndRegions.chapter4_mandatory_connections
         # if self.include_chapter(5): Ch5LocationAndRegions.create_regions(self)
         # if self.include_chapter(6): Ch6LocationAndRegions.create_regions(self)
         # if self.include_chapter(7): Ch7LocationAndRegions.create_regions(self)
@@ -425,7 +241,7 @@ class DeltaruneWorld(World):
         if self.include_chapter(1): item_pool += Ch1Items.create_items(self)
         if self.include_chapter(2): item_pool += Ch2Items.create_items(self)
         if self.include_chapter(3): item_pool += Ch3Items.create_items(self)
-        # if self.include_chapter(4): Ch4Items.create_items(self)
+        if self.include_chapter(4): item_pool += Ch4Items.create_items(self)
         # if self.include_chapter(5): Ch5Items.create_items(self)
         # if self.include_chapter(6): Ch6Items.create_items(self)
         # if self.include_chapter(7): Ch7Items.create_items(self)
@@ -442,6 +258,7 @@ class DeltaruneWorld(World):
         if self.is_final_chapter(1): return Ch1Items.chapter1_macguffin_item
         if self.is_final_chapter(2): return Ch2Items.chapter2_macguffin_item
         if self.is_final_chapter(3): return Ch3Items.chapter3_macguffin_item
+        if self.is_final_chapter(4): return Ch4Items.chapter4_macguffin_item
     
     def handle_macguffins_items(self, item_pool: list):
         item_to_add = self.get_macguffins_item()
@@ -483,7 +300,7 @@ class DeltaruneWorld(World):
         if self.include_chapter(1): Ch1Rules.set_rules(self)
         if self.include_chapter(2): Ch2Rules.set_rules(self)
         if self.include_chapter(3): Ch3Rules.set_rules(self)
-        # if self.include_chapter(4): Ch4Rules.set_rules(self)
+        if self.include_chapter(4): Ch4Rules.set_rules(self)
         # if self.include_chapter(5): Ch5Rules.set_rules(self)
         # if self.include_chapter(6): Ch6Rules.set_rules(self)
         # if self.include_chapter(7): Ch7Rules.set_rules(self)
