@@ -2,7 +2,7 @@ from BaseClasses import MultiWorld, Region, Entrance
 from typing import TYPE_CHECKING
 from .Locations import LocationData, ConditionalLocationData, DeltaruneLocation
 
-if TYPE_CHECKING:
+if TYPE_CHECKING: from . import DeltaruneWorld
 
 fusion_access_region = "Fusion access"
 fusion_access_entrance = "Fusion access Entrance"
@@ -32,5 +32,4 @@ def generic_create_regions(world: "DeltaruneWorld", regions: list, locations: di
         locations_in_region.update([location for location in conditional_locations.items()
                                 if location[1].region == region_name and location[1].should_be_included(world)])
         
-        world.multiworld.regions += [DeltaruneRegion(world, region_name, exits, locations_in_region)]
         world.multiworld.regions += [DeltaruneRegion(world, region_name, exits, locations_in_region)]
