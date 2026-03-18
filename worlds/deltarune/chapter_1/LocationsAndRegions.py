@@ -52,6 +52,11 @@ class Ch1Locations(StrEnum):
   card_castle_jevil_2       = "CH1: Card Castle - Jevil Defeat Item 2"
   card_castle_jevil_3       = "CH1: Card Castle - Jevil Defeat Item 3"
   
+  rouxls_shop_1             = "CH1: Rouxls' Shop 1"
+  rouxls_shop_2             = "CH1: Rouxls' Shop 2"
+  rouxls_shop_3             = "CH1: Rouxls' Shop 3"
+  rouxls_shop_4             = "CH1: Rouxls' Shop 4"
+  
   fountain_sealed = "CH1: Card Kingdom - Fountain Sealed"
   
 class Ch1Regions(StrEnum):  
@@ -131,6 +136,11 @@ chapter1_locations = {
   Ch1Locations.card_castle_jevil_2.value:                   LocationData(LocationIDs.ch1_card_castle_jevil_2.value,                    Ch1Regions.card_castle.value),
   Ch1Locations.card_castle_jevil_3.value:                   LocationData(LocationIDs.ch1_card_castle_jevil_3.value,                    Ch1Regions.card_castle.value),
   
+  Ch1Locations.rouxls_shop_1.value:                         LocationData(LocationIDs.ch1_rouxls_shop_1.value,                          Ch1Regions.card_castle.value),
+  Ch1Locations.rouxls_shop_2.value:                         LocationData(LocationIDs.ch1_rouxls_shop_2.value,                          Ch1Regions.card_castle.value),
+  Ch1Locations.rouxls_shop_3.value:                         LocationData(LocationIDs.ch1_rouxls_shop_3.value,                          Ch1Regions.card_castle.value),
+  Ch1Locations.rouxls_shop_4.value:                         LocationData(LocationIDs.ch1_rouxls_shop_4.value,                          Ch1Regions.card_castle.value),
+
   Ch1Locations.fountain_sealed.value:                       LocationData(LocationIDs.ch1_fountain_sealed.value,                        Ch1Regions.light_world.value),
 }
 
