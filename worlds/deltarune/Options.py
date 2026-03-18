@@ -1,6 +1,6 @@
 from Options import Choice, Toggle, Range, PerGameCommonOptions, NamedRange
 from dataclasses import dataclass
-
+from enum import StrEnum
 
 class Notice(Choice):
     """
@@ -31,6 +31,11 @@ class ChosenRoute(Choice):
     option_all_routes = 2
     default = 0
 
+class ChosenRouteOptions(StrEnum):
+    all_recruits = "all_recruits"
+    weird_route = "weird_route"
+    all_routes = "all_routes"
+
 class RandomizeChapters(Choice):
     """
     HOW WILL YOU PROGRESS
@@ -50,6 +55,11 @@ class RandomizeChapters(Choice):
     option_randomized = 1
     option_all_unlocked = 2
     default = 0
+
+class RandomizeChapterOptions(StrEnum):
+    in_order = "in_order"
+    randomized = "randomized"
+    all_unlocked = "all_unlocked"
 
 class RandomizeSecretBosses(Choice):
     """
@@ -71,7 +81,11 @@ class RandomizeSecretBosses(Choice):
     option_mandatory = 2
     default = 0
 
-
+class RandomizeSecretBossesOptions(StrEnum):
+    false = "false"
+    true = "true"
+    mandatory = "mandatory"
+    
 class IncludeTRank(Toggle):
     """
     GETTING THE HIGHEST RANK
