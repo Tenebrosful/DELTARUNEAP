@@ -43,7 +43,6 @@ class TestBase(unittest.TestCase):
         gen_steps = ("generate_early", "create_regions", "create_items", "set_rules", "connect_entrances")
 
         for game_name, world_type in AutoWorldRegister.world_types.items():
-            if not game_name == "DELTARUNE": continue
             with self.subTest("Game", game_name=game_name):
                 multiworld = setup_solo_multiworld(world_type, ())
 
