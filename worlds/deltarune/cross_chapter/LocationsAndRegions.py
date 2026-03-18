@@ -39,7 +39,7 @@ cross_chapter_conditional_locations: dict = {
   # Require IronShackle that is exclusive to chapter 1 and Glow Wrist to chapter 2 (shop) and chapter 4 (starting armor like chapter 3 but chapter 3 can't fuse)
   CCLocations.castle_town_spike_band_fusion.value:    ConditionalLocationData(LocationIDs.ch2_castle_town_spike_band_fusion.value,  fusion_access_region, lambda world: world.can_access_fusion() and world.include_chapter(1) and world.has_at_least_one_chapter_included([2, 4])),
   # Require B.ShotBowtie that is exclusive to chapter 2 and can't be obtained on weird route
-  CCLocations.castle_town_tensionbow_fusion.value:    ConditionalLocationData(LocationIDs.cc_castle_town_tension_bow_fusion.value,  fusion_access_region, lambda world: world.can_access_fusion() and world.include_chapter(2) and not world.is_weird_route()),
+  CCLocations.castle_town_tensionbow_fusion.value:    ConditionalLocationData(LocationIDs.cc_castle_town_tension_bow_fusion.value,  fusion_access_region, lambda world: world.can_access_fusion() and world.include_chapter(2) and (not world.is_weird_route() or world.is_all_routes())),
 }
 
 def get_cross_chapter_regions(world: "DeltaruneWorld"):
