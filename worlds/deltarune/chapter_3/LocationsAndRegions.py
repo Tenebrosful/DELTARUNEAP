@@ -95,7 +95,7 @@ class Ch3Locations(StrEnum):
   tv_world_entrance_warp_door = "CH3: TV World - Entrance Warp Door"
   tv_world_goulden_sam_warp_door = "CH3: TV World - Goulden Sam Warp Door"
   
-  fountain_sealed = "CH3: TV World - Fontain Sealed"
+  fountain_sealed = "CH3: TV World - Fountain Sealed"
   
 class Ch3Regions(StrEnum):
   chapter_3 = "Chapter 3"
