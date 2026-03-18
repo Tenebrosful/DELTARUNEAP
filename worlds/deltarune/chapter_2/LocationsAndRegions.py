@@ -123,6 +123,7 @@ chapter2_locations = {
   Ch2Locations.castle_town_jigsaw_joe_challenge.value:      LocationData(LocationIDs.ch2_castle_town_jigsaw_joe_challenge.value,      Ch2Regions.castle_town.value),
   Ch2Locations.castle_town_graze_challenge_1.value:         LocationData(LocationIDs.ch2_castle_town_graze_challenge_1.value,         Ch2Regions.castle_town.value),
   Ch2Locations.castle_town_clover_rematch_challenge.value:  LocationData(LocationIDs.ch2_castle_town_clover_rematch_challenge.value,  Ch2Regions.castle_town.value),
+  Ch2Locations.castle_town_top_chef_gift.value:             LocationData(LocationIDs.ch2_castle_town_top_chef_gift.value,             Ch2Regions.castle_town.value),
   
   Ch2Locations.cyber_field_first_chest.value:               LocationData(LocationIDs.ch2_cyber_field_first_chest.value,               Ch2Regions.cyber_field.value),
   Ch2Locations.cyber_field_nubert_chest.value:              LocationData(LocationIDs.ch2_cyber_field_nubert_chest.value,              Ch2Regions.cyber_field.value),
