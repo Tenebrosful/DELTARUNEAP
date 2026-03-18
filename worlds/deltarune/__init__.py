@@ -165,7 +165,8 @@ class DeltaruneWorld(World):
     
     # Check if you have at least one chapter that give you access to fusions
     def can_access_fusion(self) -> bool:
-        return self.has_at_least_one_chapter_included(fusion_access_chapter)
+        result = self.has_at_least_one_chapter_included(fusion_access_chapter)
+        return result
     
     def count_chapter_included(self, chapters=list(range(1, max_deltarune_chapter + 1))):
         count = 0
@@ -183,7 +184,7 @@ class DeltaruneWorld(World):
     def get_first_chapter(self) -> int:
         for chapterToCheck in range (1, max_deltarune_chapter + 1, 1):
             if self.include_chapter(chapterToCheck): return chapterToCheck
-            return -1
+        return -1
     
     def get_playable_chapters(self) -> list[int]:
         playable_chapters = []
@@ -194,13 +195,13 @@ class DeltaruneWorld(World):
     def is_final_chapter(self, chapter: int) -> bool:
         for chapterToCheck in range(max_deltarune_chapter, 0, -1):
             if chapterToCheck == chapter: return True
-            if getattr(self.options, f"include_chapter_{chapter}"): return False
+            if getattr(self.options, f"include_chapter_{chapterToCheck}"): return False
             
     def get_previous_in_order_chapter(self, chapter:int):
         if chapter <= 1: return -1
         
         for chapterToCheck in range(chapter - 1, 0, -1):
-            if getattr(self.options, f"include_chapter_{chapter}"): return chapterToCheck
+            if getattr(self.options, f"include_chapter_{chapterToCheck}"): return chapterToCheck
         
         return -1
     
@@ -208,7 +209,7 @@ class DeltaruneWorld(World):
         if chapter > max_deltarune_chapter: return -1
         
         for chapterToCheck in range(chapter + 1, max_deltarune_chapter + 1, 1):
-            if getattr(self.options, f"include_chapter_{chapter}"): return chapterToCheck
+            if getattr(self.options, f"include_chapter_{chapterToCheck}"): return chapterToCheck
         
         return -1
         

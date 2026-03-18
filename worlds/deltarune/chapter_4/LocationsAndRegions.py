@@ -152,7 +152,7 @@ chapter4_conditional_locations = {
 }
 
 chapter4_regions = [
-  (Ch4Regions.chapter_4.value,                   [Ch4Entrances.castle_town_entrance.value]),
+  (Ch4Regions.chapter_4.value,                  [Ch4Entrances.castle_town_entrance.value, fusion_access_entrance]),
   (Ch4Regions.castle_town.value,                [Ch4Entrances.dark_sanctuary_entrance.value]),
   (Ch4Regions.dark_sanctuary.value,             [Ch4Entrances.dark_sanctuary_claimbclaws_entrance.value]),
   (Ch4Regions.dark_sanctuary_claimbclaws.value, [Ch4Entrances.second_sanctuary_entrance.value]),
