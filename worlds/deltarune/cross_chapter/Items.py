@@ -7,6 +7,8 @@ if TYPE_CHECKING:
     from .. import DeltaruneWorld
     
 class CCItems(StrEnum):
+  # Gaster
+  what_interresting_behavior = "WHAT INTERESTING BEHAVIOR."
   
   # Healing Items
   dark_candy      = "Dark Candy"
@@ -43,6 +45,7 @@ class CCItems(StrEnum):
   shadowcrystal = "ShadowCrystal"
 
 cross_chapter_items = {
+  CCItems.what_interresting_behavior.value: ItemData(ItemIDs.what_interesting_behavior.value, ItemClassification.progression | ItemClassification.useful, 0)
 }
 
 cross_chapter_conditional_items = {  

@@ -235,6 +235,10 @@ class DeltaruneWorld(World):
         link_deltarune_areas(self.multiworld, self.player, every_connections)
         
     def create_items(self):
+        if self.get_playable_chapters() == []:
+            self.multiworld.push_precollected(self.create_item(CCItems.CCItems.what_interresting_behavior))
+            return
+        
         item_pool: list[str] = []
         
         item_pool += CCItems.create_items(self)
