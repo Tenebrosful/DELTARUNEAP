@@ -187,7 +187,7 @@ class LocationIDs(Enum):
     ch3_recruit_pippins = 168
     ch3_tv_world_tripticket = 169
     ch3_tv_world_man = 170
-    ch3_sword_3_mantle_defeat = 171
+    ch3_mantle_defeat = 171
     ch3_cold_place_knight_defeat_item_1 = 172
     ch3_cold_place_knight_defeat_item_2 = 173
     ch3_couch_cliffs_warp_door = 174
@@ -198,8 +198,8 @@ class LocationIDs(Enum):
     ch3_board_1_extra_key = 179
     ch3_board_2_extra_photo = 180
     ch3_board_2_moss = 181
-    ch3_sword_1_ice_key = 182
-    ch3_sword_2_shelter_key = 183
+    ch3_mantle_out_of_bounds_chest = 182
+    ch3_mantle_northern_light_item = 183
     ch3_s_rank_room_susie_gift = 184
     ch1_fountain_sealed = 185
     ch2_fountain_sealed = 186

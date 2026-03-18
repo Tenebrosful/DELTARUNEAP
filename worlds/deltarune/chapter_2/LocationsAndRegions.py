@@ -19,7 +19,7 @@ class Ch2Locations(StrEnum):
   cyber_field_nubert_chest = "CH2: Cyber Field - Nubert's Chest"
   cyber_field_tasque_maze_checkmark = "CH2: Cyber Field - Tasque Maze Checkmark"
   cyber_field_teacup_ride_checkmark = "CH2: Cyber Field - Teacup Ride Checkmark"
-  cyber_field_giasfelfebrehber = "CH2: Giasfelfebrehber Checkmark"
+  cyber_field_giasfelfebrehber = "CH2: Cyber Field - Giasfelfebrehber Checkmark"
   cyber_field_chest_near_music_shop = "CH2: Cyber Field - Chest Near Music Shop"
   cyber_field_virovirokun_puzzle_chest = "CH2: Cyber Field - Virovirokun Puzzle Chest"
   cyber_field_teacup_puzzle_chest = "CH2: Cyber Field - Teacup Puzzle Chest"

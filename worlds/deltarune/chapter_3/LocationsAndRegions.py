@@ -82,9 +82,9 @@ class Ch3Locations(StrEnum):
   lost_pippins = "CH3: Lost Pippins"
   lost_water_cooler = "CH3: Lost Water Cooler"
   
-  sword_1_ice_key = "CH3: SWORD 1 - ICE KEY"
-  sword_2_shelter_key = "CH3: SWORD 2 - SHELTER KEY"
-  sword_3_mantle_defeat = "CH3: MANTLE - Defeat"
+  mantle_out_of_bounds_chest = "CH3: MANTLE - Out of Bounds Chest"
+  mantle_northern_light_item = "CH3: MANTLE - Northern Light Item"
+  mantle_defeat = "CH3: MANTLE - Defeat"
   
   cold_place_knight_defeat_item_1 = "CH3: Cold Place - Knight Defeat Item 1"
   cold_place_knight_defeat_item_2 = "CH3: Cold Place - Knight Defeat Item 2"
@@ -174,9 +174,9 @@ chapter3_locations = {
   Ch3Locations.tv_world_man.value:                        LocationData(LocationIDs.ch3_tv_world_man.value,                        Ch3Regions.goulden_sam),
   
   # SWORD
-  Ch3Locations.sword_1_ice_key.value:       LocationData(LocationIDs.ch3_sword_1_ice_key.value,       Ch3Regions.board_1),
-  Ch3Locations.sword_2_shelter_key.value:   LocationData(LocationIDs.ch3_sword_2_shelter_key.value,   Ch3Regions.board_2),
-  Ch3Locations.sword_3_mantle_defeat.value: LocationData(LocationIDs.ch3_sword_3_mantle_defeat.value, Ch3Regions.goulden_sam),
+  Ch3Locations.mantle_out_of_bounds_chest.value:       LocationData(LocationIDs.ch3_mantle_out_of_bounds_chest.value,       Ch3Regions.board_1),
+  Ch3Locations.mantle_northern_light_item.value:   LocationData(LocationIDs.ch3_mantle_northern_light_item.value,   Ch3Regions.board_2),
+  Ch3Locations.mantle_defeat.value: LocationData(LocationIDs.ch3_mantle_defeat.value, Ch3Regions.goulden_sam),
   Ch3Locations.s_rank_room_susie_gift.value:LocationData(LocationIDs.ch3_s_rank_room_susie_gift.value,Ch3Regions.goulden_sam),
   
   Ch3Locations.cold_place_knight_defeat_item_1.value:   LocationData(LocationIDs.ch3_cold_place_knight_defeat_item_1.value,   Ch3Regions.cold_place),
