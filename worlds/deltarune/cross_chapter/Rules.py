@@ -1,5 +1,10 @@
+from worlds.generic.Rules import set_rule
+
 from typing import TYPE_CHECKING
 
+from .Items import CCItems
+from .LocationsAndRegions import CCLocations
+from ..chapter_1.LocationsAndRegions import Ch1Locations
 from ..chapter_1.Items import Ch1Items
 from ..chapter_1.LocationsAndRegions import Ch1Locations
 from ..chapter_2.Items import Ch2Items
@@ -25,7 +30,29 @@ def set_rules(world: "DeltaruneWorld"):
             print(get_location(world, current_chapter))
             print(world.create_item(get_unlock_item(world, next_chapter)))
             get_location(world, current_chapter).place_locked_item(world.create_item(get_unlock_item(world, next_chapter)))
+            
+    # Fusions
+    if world.can_access_fusion():
+        
+        # TwinRibbon
+        if world.has_at_least_one_chapter_included([2, 3]) and world.has_at_least_one_chapter_included([1, 2, 3]):
+            if world.include_chapter(2): # Chapter 2 have white ribbon has starting gear so don't require to acquire it
+                set_rule(multiworld.get_location(CCLocations.castle_town_twin_ribbon_fusion, player), lambda state: state.has(CCItems.pink_ribbon, player))
+            else:
+                set_rule(multiworld.get_location(CCLocations.castle_town_twin_ribbon_fusion, player), lambda state: state.has(CCItems.pink_ribbon, player) and state.has(CCItems.white_ribbon, player))
 
+        # SpikeBand
+        if world.include_chapter(1):
+            if world.include_chapter(4): # Chapter 4 have GlowWist have starter item so don't require it
+                set_rule(multiworld.get_location(CCLocations.castle_town_spike_band_fusion, player), lambda state: state.has(Ch1Items.ironshackle, player))
+            elif world.include_chapter(2): # Chapter 2 have to gain GlowWist so require it to acquire it 
+                set_rule(multiworld.get_location(CCLocations.castle_town_spike_band_fusion, player), lambda state: state.has(Ch1Items.ironshackle, player) and state.has(Ch2Items.glowwrist, player))
+
+        #TensionBow
+        if world.include_chapter(2) and (not world.is_weird_route() or world.is_all_routes()):
+            set_rule(multiworld.get_location(CCLocations.castle_town_twin_ribbon_fusion, player), lambda state: state.has(Ch2Items.bshotbowtie, player) and state.has(Ch2Items.tensionbit, player))
+    
+    
 def get_location(world: "DeltaruneWorld", chapter: int):
     if chapter == 1: return world.multiworld.get_location(Ch1Locations.fountain_sealed, world.player)
     if chapter == 2: return world.multiworld.get_location(Ch2Locations.fountain_sealed, world.player)

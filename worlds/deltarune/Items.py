@@ -116,6 +116,7 @@ class ItemIDs(Enum):
     twin_ribbon = 20009
     glowwrist = 20010
     chainmail = 20011
+    bshotbowtie = 20012
     spikeband = 20013
     tensionbow = 20015
     mannequin = 20016

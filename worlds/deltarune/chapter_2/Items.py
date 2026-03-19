@@ -31,6 +31,7 @@ class Ch2Items(StrEnum):
   royalpin      = "RoyalPin"
   chainmail     = "ChainMail"
   frayedbowtie  = "FrayedBowtie"
+  bshotbowtie   = "B.ShotBowtie"
   
   # Weapons
   mechasaber    = "MechaSaber"
@@ -119,6 +120,8 @@ chapter2_conditional_items = {
   Ch2Items.brokenswd.value:   ConditionalItemData(ItemIDs.brokenswd.value,      ItemClassification.useful, lambda world: not world.is_weird_route() or world.is_all_routes()),
   
   Ch2Items.mansion_reservation.value: ConditionalItemData(ItemIDs.mansion_reservation.value,  ItemClassification.progression, lambda world: not world.is_weird_route() or world.is_all_routes()),
+  
+  Ch2Items.bshotbowtie.value:         ConditionalItemData(ItemIDs.bshotbowtie.value,          ItemClassification.progression | ItemClassification.useful, lambda world: not world.is_weird_route() or world.is_all_routes()),
   
   # Weird route
   Ch2Items.freezering.value:  ConditionalItemData(ItemIDs.freezering.value,     ItemClassification.useful, lambda world: world.is_weird_route()),
