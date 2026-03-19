@@ -9,7 +9,7 @@ if TYPE_CHECKING: from .. import DeltaruneWorld
 class Ch4Items(StrEnum):
   chapter_4_unlock = "Chapter 4 Unlock"
   
-  egg = "Chapter 4 Egg"
+  egg = "CH4 Egg"
   holy_moss = "Holy Moss"
   
   tensiongem = "TensionGem"
