@@ -50,11 +50,13 @@ def set_rules(world: "DeltaruneWorld"):
   
   # Hidden items
   if not world.is_hidden_items_randomized():
-    multiworld.get_location(Ch2Locations.cyber_city_man, player).place_locked_item(world.create_item(Ch2Items.egg))
-    multiworld.get_location(Ch2Locations.cyber_city_moss, player).place_locked_item(world.create_item(Ch2Items.city_moss))
-    multiworld.get_location(Ch2Locations.spamton_shop_1, player).place_locked_item(world.create_item(Ch2Items.keygen))
-    multiworld.get_location(Ch2Locations.mansion_basement_mechanism, player).place_locked_item(world.create_item(Ch2Items.emptydisk))
-    multiworld.get_location(Ch2Locations.cyber_city_annoying_dog, player).place_locked_item(world.create_item(CCItems.dogdollard))
+    if (not world.is_weird_route() or world.is_all_routes()):
+      multiworld.get_location(Ch2Locations.spamton_shop_1, player).place_locked_item(world.create_item(Ch2Items.keygen))
+      multiworld.get_location(Ch2Locations.mansion_basement_mechanism, player).place_locked_item(world.create_item(Ch2Items.emptydisk))
+      multiworld.get_location(Ch2Locations.cyber_city_man, player).place_locked_item(world.create_item(Ch2Items.egg))
+      multiworld.get_location(Ch2Locations.cyber_city_moss, player).place_locked_item(world.create_item(Ch2Items.city_moss))
+      multiworld.get_location(Ch2Locations.cyber_city_annoying_dog, player).place_locked_item(world.create_item(CCItems.dogdollard))
+      
   
 def set_weird_route_rules(world: "DeltaruneWorld"):
   player = world.player
@@ -108,15 +110,15 @@ def set_all_routes_rules(world: "DeltaruneWorld"):
   
   if world.is_final_chapter(2):
     set_rule(multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_1, player), lambda state: state.has(Ch2Items.keygen_2_segment, player, world.options.goal_macguffin_amount.value) 
-                                                                                                        and (state.has(Ch2Items.thornring)
+                                                                                                        and (state.has(Ch2Items.thornring, player)
                                                                                                               or (state.has(Ch2Items.emptydisk, player) and state.has(Ch2Items.keygen, player))
                                                                                                             ))
     set_rule(multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_2, player), lambda state: state.has(Ch2Items.keygen_2_segment, player, world.options.goal_macguffin_amount.value) 
-                                                                                                        and (state.has(Ch2Items.thornring)
+                                                                                                        and (state.has(Ch2Items.thornring, player)
                                                                                                               or (state.has(Ch2Items.emptydisk, player) and state.has(Ch2Items.keygen, player))
                                                                                                             ))
     set_rule(multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_3, player), lambda state: lambda state: state.has(Ch2Items.keygen_2_segment, player, world.options.goal_macguffin_amount.value) 
-                                                                                                        and (state.has(Ch2Items.thornring)
+                                                                                                        and (state.has(Ch2Items.thornring, player)
                                                                                                               or (state.has(Ch2Items.emptydisk, player) and state.has(Ch2Items.keygen, player))
                                                                                                             ))
   else:
