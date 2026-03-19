@@ -84,7 +84,7 @@ chapter1_items = {
   Ch1Items.brokencake.value:     ItemData(ItemIDs.brokencake.value,    ItemClassification.progression),
   Ch1Items.top_cake.value:       ItemData(ItemIDs.top_cake.value,      ItemClassification.progression),
   CCItems.glowshard.value:       ItemData(ItemIDs.glowshard.value,     ItemClassification.progression),
-  Ch1Items.ironshackle.value:    ItemData(ItemIDs.ironshackle.value,   ItemClassification.progression),
+  Ch1Items.ironshackle.value:    ItemData(ItemIDs.ironshackle.value,   ItemClassification.progression | ItemClassification.useful),
     
   CCItems.white_ribbon.value: ItemData(ItemIDs.white_ribbon.value, ItemClassification.progression),
 }
