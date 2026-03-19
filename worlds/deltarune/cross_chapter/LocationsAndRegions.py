@@ -67,7 +67,7 @@ def get_cross_chapter_mandatory_connection(world: "DeltaruneWorld"):
   if world.include_chapter(3): connections.append((CCEntrances.chapter_3_entrance.value, Ch3Regions.chapter_3.value))
   if world.include_chapter(4): connections.append((CCEntrances.chapter_4_entrance.value, Ch4Regions.chapter_4.value))
   
-  if world.can_access_fusion(): connections.append((fusion_access_entrance, fusion_access_region))
+  # if world.can_access_fusion(): connections.append((fusion_access_entrance, fusion_access_region))
   
   return connections
 

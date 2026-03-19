@@ -13,9 +13,6 @@ def set_rules(world: "DeltaruneWorld"):
   player = world.player
   multiworld = world.multiworld
   
-  print(f"Current route : {world.options.chosen_route} ({world.is_weird_route()}|{world.is_all_recruits()}|{world.is_all_routes()})")
-  print(f"In order ? {world.is_chapters_in_order()}")
-  
   # Chapter unlock
   if not world.is_all_chapters_unlocked():
     set_rule(multiworld.get_entrance(CCEntrances.chapter_2_entrance,  player), lambda state: state.has(Ch2Items.chapter_2_unlock, player))

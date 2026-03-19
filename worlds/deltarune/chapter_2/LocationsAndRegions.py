@@ -1,7 +1,7 @@
 from BaseClasses import Location
 from enum import StrEnum
 from ..Locations import LocationIDs, LocationData, ConditionalLocationData
-from ..Regions import generic_create_regions, fusion_access_entrance
+from ..Regions import generic_create_regions, fusion_access_region
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING: from .. import DeltaruneWorld
@@ -112,6 +112,7 @@ class Ch2Regions(StrEnum):
   
 class Ch2Entrances(StrEnum):
   castle_town_entrance = "CH2: Castle Town Entrance"
+  fusion_access_entrance = "CH2: Fusion access Entrance"
   cyber_field_entrance = "CH2: Cyber Field Entrance"
   cyber_city_entrance = "CH2: Cyber City Entrance"
   mansion_entrance = "CH2: Mansion Entrance"
@@ -216,7 +217,7 @@ chapter2_conditional_locations = {
 }
 
 chapter2_regions = [
-  (Ch2Regions.chapter_2.value, [Ch2Entrances.castle_town_entrance.value, fusion_access_entrance]),
+  (Ch2Regions.chapter_2.value, [Ch2Entrances.castle_town_entrance.value, Ch2Entrances.fusion_access_entrance]),
   (Ch2Regions.castle_town.value, [Ch2Entrances.cyber_field_entrance.value]),
   (Ch2Regions.cyber_field.value, [Ch2Entrances.cyber_city_entrance.value]),
   (Ch2Regions.cyber_city.value, [Ch2Entrances.mansion_entrance.value]),
@@ -226,6 +227,7 @@ chapter2_regions = [
 
 chapter2_mandatory_connections = [
   (Ch2Entrances.castle_town_entrance.value, Ch2Regions.castle_town.value),
+  (Ch2Entrances.fusion_access_entrance, fusion_access_region),
   (Ch2Entrances.cyber_field_entrance.value, Ch2Regions.cyber_field.value),
   (Ch2Entrances.cyber_city_entrance.value, Ch2Regions.cyber_city.value),
   (Ch2Entrances.mansion_entrance.value, Ch2Regions.mansion.value),

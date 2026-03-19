@@ -1,7 +1,7 @@
 from BaseClasses import Location
 from enum import StrEnum
 from ..Locations import LocationIDs, LocationData, ConditionalLocationData
-from ..Regions import generic_create_regions, fusion_access_entrance
+from ..Regions import generic_create_regions, fusion_access_region
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING: from .. import DeltaruneWorld
@@ -78,6 +78,7 @@ class Ch4Regions(StrEnum):
 
 class Ch4Entrances(StrEnum):
   castle_town_entrance                = "CH4: Castle Town Entrance"
+  fusion_access_entrance              = "CH4: Fusion access Entrance"
   dark_sanctuary_entrance             = "CH4: Dark Sanctuary Entrance"
   dark_sanctuary_claimbclaws_entrance = "CH4: Dark Sanctuary (ClaimbClaws Required) Entrance"
   second_sanctuary_entrance           = "CH4: Second Sanctuary Entrance"
@@ -152,7 +153,7 @@ chapter4_conditional_locations = {
 }
 
 chapter4_regions = [
-  (Ch4Regions.chapter_4.value,                  [Ch4Entrances.castle_town_entrance.value, fusion_access_entrance]),
+  (Ch4Regions.chapter_4.value,                  [Ch4Entrances.castle_town_entrance.value, Ch4Entrances.fusion_access_entrance]),
   (Ch4Regions.castle_town.value,                [Ch4Entrances.dark_sanctuary_entrance.value]),
   (Ch4Regions.dark_sanctuary.value,             [Ch4Entrances.dark_sanctuary_claimbclaws_entrance.value]),
   (Ch4Regions.dark_sanctuary_claimbclaws.value, [Ch4Entrances.second_sanctuary_entrance.value]),
@@ -164,6 +165,7 @@ chapter4_regions = [
 
 chapter4_mandatory_connections = [
   (Ch4Entrances.castle_town_entrance.value,                 Ch4Regions.castle_town.value),
+  (Ch4Entrances.fusion_access_entrance.value,               fusion_access_region),
   (Ch4Entrances.dark_sanctuary_entrance.value,              Ch4Regions.dark_sanctuary.value),
   (Ch4Entrances.dark_sanctuary_claimbclaws_entrance.value,  Ch4Regions.dark_sanctuary_claimbclaws.value),
   (Ch4Entrances.second_sanctuary_entrance.value,            Ch4Regions.second_sanctuary.value),
