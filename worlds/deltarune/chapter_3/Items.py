@@ -109,7 +109,7 @@ chapter3_conditional_items = {
     
     Ch3Items.chapter_3_unlock.value:  ConditionalItemData(ItemIDs.chapter_3_unlock.value, ItemClassification.progression, lambda world: world.is_chapters_randomized()),
     # Amount is handle in __init__.py handle_macguffins_items()
-    Ch3Items.remote_battery.value:    ConditionalItemData(ItemIDs.chapter_3_unlock.value, ItemClassification.progression, lambda world: world.is_final_chapter(3), 0),
+    Ch3Items.remote_battery.value:    ConditionalItemData(ItemIDs.remote_battery.value, ItemClassification.progression, lambda world: world.is_final_chapter(3), 0),
     
     Ch3Items.odd_controller.value:  ConditionalItemData(ItemIDs.oddcontroller.value,   ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),
     Ch3Items.ice_key.value:         ConditionalItemData(ItemIDs.ice_key.value,         ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),
