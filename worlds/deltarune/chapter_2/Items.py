@@ -132,10 +132,10 @@ chapter2_conditional_items = {
   Ch2Items.keygen_2_segment.value: ConditionalItemData(ItemIDs.key_gen_2_segment.value, ItemClassification.progression, lambda world: world.is_final_chapter(2), 0),
   
   # Secret Boss
-  Ch2Items.emptydisk.value:   ConditionalItemData(ItemIDs.emptydisk.value,  ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),
-  Ch2Items.keygen.value:      ConditionalItemData(ItemIDs.keygen.value,     ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),
+  Ch2Items.emptydisk.value:   ConditionalItemData(ItemIDs.emptydisk.value,  ItemClassification.progression, lambda world: (not world.is_weird_route() or world.is_all_routes()) and world.is_hidden_items_randomized()),
+  Ch2Items.keygen.value:      ConditionalItemData(ItemIDs.keygen.value,     ItemClassification.progression, lambda world: (not world.is_weird_route() or world.is_all_routes()) and world.is_hidden_items_randomized()),
+  Ch2Items.dealmaker.value:   ConditionalItemData(ItemIDs.dealmaker.value,  ItemClassification.useful,      lambda world: (not world.is_weird_route() or world.is_all_routes()) and world.is_hidden_items_randomized()),
   Ch2Items.puppetscarf.value: ConditionalItemData(ItemIDs.puppetscarf.value,ItemClassification.useful,      lambda world: world.is_hidden_items_randomized()),
-  Ch2Items.dealmaker.value:   ConditionalItemData(ItemIDs.dealmaker.value,  ItemClassification.useful,      lambda world: world.is_hidden_items_randomized()),
   CCItems.shadowcrystal.value:ConditionalItemData(ItemIDs.shadowcrystal.value,ItemClassification.useful,    lambda world: world.is_hidden_items_randomized()),
   
   # Warps

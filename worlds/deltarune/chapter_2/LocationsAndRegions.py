@@ -152,7 +152,6 @@ chapter2_locations = {
   Ch2Locations.cyber_city_trash_can_5.value:                LocationData(LocationIDs.ch2_cyber_city_trash_can_5.value,                Ch2Regions.cyber_city.value),
   
   Ch2Locations.mansion_spamton_neo_defeat_item_1.value:     LocationData(LocationIDs.ch2_mansion_spamton_neo_defeat_item_1.value,     Ch2Regions.mansion.value),
-  Ch2Locations.mansion_spamton_neo_defeat_item_2.value:     LocationData(LocationIDs.ch2_mansion_spamton_neo_defeat_item_2.value,     Ch2Regions.mansion.value),
   Ch2Locations.mansion_spamton_neo_defeat_item_3.value:     LocationData(LocationIDs.ch2_mansion_spamton_neo_defeat_item_3.value,     Ch2Regions.mansion.value),
   
   Ch2Locations.fountain_sealed.value:                       LocationData(LocationIDs.ch2_fountain_sealed.value,                       Ch2Regions.post_chapter_castle_town),
@@ -199,6 +198,8 @@ chapter2_conditional_locations = {
   Ch2Locations.recruit_werewerewire.value:                      ConditionalLocationData(LocationIDs.ch2_recruit_werewerewire.value,                       Ch2Regions.mansion.value, lambda world: world.is_all_recruits()),
   Ch2Locations.castle_town_tasque_manager_says_challenge.value: ConditionalLocationData(LocationIDs.ch2_castle_town_tasque_manager_says_challenge.value,  Ch2Regions.mansion.value, lambda world: world.is_all_recruits()),
   Ch2Locations.castle_town_ch2_all_stars_challenge.value:       ConditionalLocationData(LocationIDs.ch2_castle_town_all_stars_challenge.value,            Ch2Regions.mansion.value, lambda world: world.is_all_recruits()),
+  
+  Ch2Locations.mansion_spamton_neo_defeat_item_2.value:     ConditionalLocationData(LocationIDs.ch2_mansion_spamton_neo_defeat_item_2.value,     Ch2Regions.mansion.value, lambda world: (not world.is_weird_route() or world.is_all_routes())),
   
   # Weird Route
   Ch2Locations.lost_werewire.value:                   ConditionalLocationData(LocationIDs.ch2_lost_werewire.value,                  Ch2Regions.cyber_field.value, lambda world: world.is_weird_route()),
