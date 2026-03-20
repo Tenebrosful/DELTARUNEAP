@@ -70,7 +70,8 @@ chapter2_items = {
   Ch2Items.cd_bagel.value:        ItemData(ItemIDs.cd_bagel.value,          ItemClassification.filler),
   Ch2Items.glowwrist.value:       ItemData(ItemIDs.glowwrist.value,         ItemClassification.filler),
   CCItems.dark_dollars_100.value: ItemData(ItemIDs.dark_dollars_100.value,  ItemClassification.filler),
-  
+  CCItems.tensiongem.value:       ItemData(ItemIDs.tensiongem.value,        ItemClassification.useful),
+
   CCItems.dark_dollar_1.value:    ItemData(ItemIDs.dark_dollar_1.value,     ItemClassification.useful),
   CCItems.dark_dollars_20.value:  ItemData(ItemIDs.dark_dollars_20.value,   ItemClassification.useful, 2),
   CCItems.dark_dollars_80.value:  ItemData(ItemIDs.dark_dollars_80.value,   ItemClassification.useful),

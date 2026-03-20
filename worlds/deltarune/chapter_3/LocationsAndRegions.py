@@ -49,7 +49,7 @@ class Ch3Locations(StrEnum):
   board_2_extra_photo = "CH3: Board 2 - Extra Photo"
   board_2_moss = "CH3: Board 2 - Moss"
   
-  tv_world_chest_near_shadowmen = "CH3: TV World - Chest near shadowmen"
+  tv_world_chest_near_shadowmen = "CH3: TV World - Chest Near Shadowmen"
   tv_world_board_puzzle_1_chest = "CH3: TV World - Board Puzzle 1 Chest"
   tv_world_trash_can_1 = "CH3: TV World - Trash Can 1"
   tv_world_trash_can_2 = "CH3: TV World - Trash Can 2"
@@ -58,7 +58,7 @@ class Ch3Locations(StrEnum):
   tv_world_trash_can_5 = "CH3: TV World - Trash Can 5"
   tv_world_water_cooler_chest = "CH3: TV World - Water Cooler Chest"
   tv_world_board_puzzle_2_chest = "CH3: TV World - Board Puzzle 2 Chest"
-  tw_world_serious_trashy_chest = "CH3: TV World - Serious Trashy Chest"
+  tv_world_serious_trashy_chest = "CH3: TV World - Serious Trashy Chest"
   tv_world_bonus_zone_chest_1 = "CH3: TV World - Bonus Zone Chest 1"
   tv_world_bonus_zone_chest_2 = "CH3: TV World - Bonus Zone Chest 2"
   tv_world_bonus_zone_chest_3 = "CH3: TV World - Bonus Zone Chest 3"
@@ -86,8 +86,8 @@ class Ch3Locations(StrEnum):
   mantle_northern_light_item = "CH3: MANTLE - Northern Light Item"
   mantle_defeat = "CH3: MANTLE - Defeat"
   
-  cold_place_knight_defeat_item_1 = "CH3: Cold Place - Knight Defeat Item 1"
-  cold_place_knight_defeat_item_2 = "CH3: Cold Place - Knight Defeat Item 2"
+  cold_place_knight_defeat_item_1 = "CH3: Cold Place - Knight Defeat Item #1"
+  cold_place_knight_defeat_item_2 = "CH3: Cold Place - Knight Defeat Item #2"
   
   # Warps
   couch_cliffs_warp_door = "CH3: Couch Cliffs - Warp Door"
@@ -166,17 +166,16 @@ chapter3_locations = {
   Ch3Locations.tv_world_trash_can_4.value:          LocationData(LocationIDs.ch3_tv_world_trash_can_4.value,          Ch3Regions.goulden_sam),
   Ch3Locations.tv_world_trash_can_5.value:          LocationData(LocationIDs.ch3_tv_world_trash_can_5.value,          Ch3Regions.goulden_sam),
   Ch3Locations.tv_world_board_puzzle_2_chest.value: LocationData(LocationIDs.ch3_tv_world_board_puzzle_2_chest.value, Ch3Regions.goulden_sam),
-  Ch3Locations.tw_world_serious_trashy_chest.value: LocationData(LocationIDs.ch3_tv_world_serious_trashy_chest.value, Ch3Regions.goulden_sam),
+  Ch3Locations.tv_world_serious_trashy_chest.value: LocationData(LocationIDs.ch3_tv_world_serious_trashy_chest.value, Ch3Regions.goulden_sam),
   Ch3Locations.tv_world_bonus_zone_chest_1.value:   LocationData(LocationIDs.ch3_tv_world_bonus_zone_chest_1.value,   Ch3Regions.goulden_sam),
   Ch3Locations.tv_world_bonus_zone_chest_2.value:   LocationData(LocationIDs.ch3_tv_world_bonus_zone_chest_2.value,   Ch3Regions.goulden_sam),
   Ch3Locations.tv_world_bonus_zone_chest_3.value:   LocationData(LocationIDs.ch3_tv_world_bonus_zone_chest_3.value,   Ch3Regions.goulden_sam),
   Ch3Locations.tv_world_chest_outside_green_room.value:   LocationData(LocationIDs.ch3_tv_world_chest_outside_green_room.value,   Ch3Regions.goulden_sam),
-  
+  Ch3Locations.tv_world_water_cooler_chest.value: LocationData(LocationIDs.ch3_water_cooler_chest.value,   Ch3Regions.goulden_sam),
+
   # SWORD
   Ch3Locations.mantle_out_of_bounds_chest.value:       LocationData(LocationIDs.ch3_mantle_out_of_bounds_chest.value,       Ch3Regions.board_1),
   Ch3Locations.mantle_northern_light_item.value:   LocationData(LocationIDs.ch3_mantle_northern_light_item.value,   Ch3Regions.board_2),
-  Ch3Locations.mantle_defeat.value: LocationData(LocationIDs.ch3_mantle_defeat.value, Ch3Regions.goulden_sam),
-  Ch3Locations.s_rank_room_susie_gift.value:LocationData(LocationIDs.ch3_s_rank_room_susie_gift.value,Ch3Regions.goulden_sam),
   
   Ch3Locations.cold_place_knight_defeat_item_1.value:   LocationData(LocationIDs.ch3_cold_place_knight_defeat_item_1.value,   Ch3Regions.cold_place),
   Ch3Locations.cold_place_knight_defeat_item_2.value:   LocationData(LocationIDs.ch3_cold_place_knight_defeat_item_2.value,   Ch3Regions.cold_place),
@@ -191,9 +190,12 @@ chapter3_locations = {
 
 chapter3_conditional_locations = {
   # Prevent potential unreachable softlock
-  Ch3Locations.tv_world_man.value:        ConditionalLocationData(LocationIDs.ch3_tv_world_man.value,            Ch3Regions.goulden_sam, lambda world: not world.is_weird_route() or world.is_all_routes()),
-  Ch3Locations.tv_world_tripticket.value: ConditionalLocationData(LocationIDs.ch3_tv_world_tripticket.value,     Ch3Regions.goulden_sam, lambda world: not world.is_weird_route() or world.is_all_routes()),
-  
+  Ch3Locations.tv_world_man.value:        ConditionalLocationData(LocationIDs.ch3_tv_world_man.value,            Ch3Regions.goulden_sam, lambda world: (not world.is_weird_route()) or world.is_all_routes()),
+  Ch3Locations.tv_world_tripticket.value: ConditionalLocationData(LocationIDs.ch3_tv_world_tripticket.value,     Ch3Regions.goulden_sam, lambda world: (not world.is_weird_route()) or world.is_all_routes()),
+
+  Ch3Locations.mantle_defeat.value: ConditionalLocationData(LocationIDs.ch3_mantle_defeat.value,            Ch3Regions.goulden_sam, lambda world: not world.is_mantleless()),
+  Ch3Locations.s_rank_room_susie_gift.value:ConditionalLocationData(LocationIDs.ch3_s_rank_room_susie_gift.value,            Ch3Regions.goulden_sam, lambda world: not world.is_mantleless()),
+
   # T-Rank
   Ch3Locations.board_1_t_rank.value: ConditionalLocationData(LocationIDs.ch3_board_1_t_rank.value, Ch3Regions.board_1, lambda world: world.options.include_t_rank == 1),
   Ch3Locations.board_2_t_rank.value: ConditionalLocationData(LocationIDs.ch3_board_2_t_rank.value, Ch3Regions.board_2, lambda world: world.options.include_t_rank == 1),

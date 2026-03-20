@@ -9,15 +9,15 @@ if TYPE_CHECKING: from .. import DeltaruneWorld
 class Ch3Items(StrEnum):
     chapter_3_unlock = "Chapter 3 Unlock"
   
-    point_1 = "1 Point"
-    points_2 = "2 Points"
-    points_10 = "10 Points"
-    points_50 = "50 Points"
-    points_120 = "120 Points"
-    points_300 = "300 Points"
-    points_500 = "500 Points"
+    point_1 = "1 POINT"
+    points_2 = "2 POINTs"
+    points_10 = "10 POINTs"
+    points_50 = "50 POINTs"
+    points_120 = "120 POINTs"
+    points_300 = "300 POINTs"
+    points_500 = "500 POINTs"
     
-    board_moss = "Board moss"
+    board_moss = "Board Moss"
     egg = "CH3 Egg"
     smile = "SMILE"
     
@@ -99,22 +99,23 @@ chapter3_conditional_items = {
     CCItems.revivemint.value:       ConditionalItemData(ItemIDs.revivemint.value,    ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
     CCItems.dogdollard.value:       ConditionalItemData(ItemIDs.dogdollar.value,    ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
     
-    Ch3Items.shadowmantle.value:    ConditionalItemData(ItemIDs.shadowmantle.value, ItemClassification.useful, lambda world: world.is_secret_bosses_randomized()),
-    Ch3Items.flatsoda.value:        ConditionalItemData(ItemIDs.flatsoda.value,     ItemClassification.useful, lambda world: world.is_secret_bosses_randomized()),
+    Ch3Items.shadowmantle.value:    ConditionalItemData(ItemIDs.shadowmantle.value, ItemClassification.useful, lambda world: world.is_shadow_mantle_included() and world.is_mantle_randomized()),
+
+    Ch3Items.flatsoda.value:        ConditionalItemData(ItemIDs.flatsoda.value,     ItemClassification.useful, lambda world: world.is_mantle_randomized()),
     Ch3Items.blackshard.value:      ConditionalItemData(ItemIDs.blackshard.value,   ItemClassification.useful, lambda world: world.is_secret_bosses_randomized()),
     CCItems.shadowcrystal.value:    ConditionalItemData(ItemIDs.shadowcrystal.value,ItemClassification.useful, lambda world: world.is_secret_bosses_randomized()),
     
-    Ch3Items.egg.value:             ConditionalItemData(ItemIDs.chapter_3_egg.value,   ItemClassification.useful, lambda world: world.is_hidden_items_randomized() and (not world.is_weird_route() or world.is_all_routes())),
+    Ch3Items.egg.value:             ConditionalItemData(ItemIDs.chapter_3_egg.value,   ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
     Ch3Items.board_moss.value:      ConditionalItemData(ItemIDs.board_moss.value,      ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
     
-    Ch3Items.chapter_3_unlock.value:  ConditionalItemData(ItemIDs.chapter_3_unlock.value, ItemClassification.progression, lambda world: world.is_chapters_randomized()),
+    Ch3Items.chapter_3_unlock.value:  ConditionalItemData(ItemIDs.chapter_3_unlock.value, ItemClassification.progression, lambda world: world.is_chapters_randomized() and ((not world.is_weird_route()) or world.is_all_routes())),
     # Amount is handle in __init__.py handle_macguffins_items()
     Ch3Items.remote_battery.value:    ConditionalItemData(ItemIDs.remote_battery.value, ItemClassification.progression, lambda world: world.is_final_chapter(3), 0),
     
     Ch3Items.odd_controller.value:  ConditionalItemData(ItemIDs.oddcontroller.value,   ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),
     Ch3Items.ice_key.value:         ConditionalItemData(ItemIDs.ice_key.value,         ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),
     Ch3Items.shelter_key.value:     ConditionalItemData(ItemIDs.shelter_key.value,     ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),
-    Ch3Items.tripticket.value:      ConditionalItemData(ItemIDs.tripticket.value,      ItemClassification.progression, lambda world: world.is_hidden_items_randomized() and (not world.is_weird_route() or world.is_all_routes())),
+    Ch3Items.tripticket.value:      ConditionalItemData(ItemIDs.tripticket.value,      ItemClassification.progression, lambda world: world.is_hidden_items_randomized() and ((not world.is_weird_route()) or world.is_all_routes())),
 }
 
 def create_items(world: "DeltaruneWorld") -> list[DeltaruneItem]:

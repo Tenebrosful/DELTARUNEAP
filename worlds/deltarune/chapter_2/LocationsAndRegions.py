@@ -68,7 +68,7 @@ class Ch2Locations(StrEnum):
   spamton_shop_3 = "CH2: Spamton's Shop 3"
   spamton_shop_4 = "CH2: Spamton's Shop 4"
   
-  fountain_sealed = "CH2: Mansion - Fontain Sealed"
+  fountain_sealed = "CH2: Cyber World - Fountain Sealed"
   
   # Warps
   cyber_field_warp_door = "CH2: Cyber Field - Warp Door"
@@ -97,7 +97,7 @@ class Ch2Locations(StrEnum):
   lost_poppup = "CH2: Lost Poppup"
   lost_ambyulance = "CH2: Lost Ambyu-lance"
   lost_maus = "CH2: Lost Maus"
-  lost_swatchlings = "CH2: Lost Swatchlings"
+  lost_swatchlings = "CH2: Lost Swatchling"
   lost_tasque_manager = "CH2: Lost Tasque Manager"
   lost_mauswheel = "CH2: Lost Mauswheel"
   lost_werewerewire = "CH2: Lost Werewerewire"
@@ -152,7 +152,7 @@ chapter2_locations = {
   Ch2Locations.cyber_city_trash_can_5.value:                LocationData(LocationIDs.ch2_cyber_city_trash_can_5.value,                Ch2Regions.cyber_city.value),
   
   Ch2Locations.mansion_spamton_neo_defeat_item_1.value:     LocationData(LocationIDs.ch2_mansion_spamton_neo_defeat_item_1.value,     Ch2Regions.mansion.value),
-  Ch2Locations.mansion_spamton_neo_defeat_item_3.value:     LocationData(LocationIDs.ch2_mansion_spamton_neo_defeat_item_3.value,     Ch2Regions.mansion.value),
+  Ch2Locations.mansion_spamton_neo_defeat_item_2.value:     LocationData(LocationIDs.ch2_mansion_spamton_neo_defeat_item_2.value,     Ch2Regions.mansion.value),
   
   Ch2Locations.fountain_sealed.value:                       LocationData(LocationIDs.ch2_fountain_sealed.value,                       Ch2Regions.post_chapter_castle_town),
   
@@ -199,7 +199,7 @@ chapter2_conditional_locations = {
   Ch2Locations.castle_town_tasque_manager_says_challenge.value: ConditionalLocationData(LocationIDs.ch2_castle_town_tasque_manager_says_challenge.value,  Ch2Regions.mansion.value, lambda world: world.is_all_recruits()),
   Ch2Locations.castle_town_ch2_all_stars_challenge.value:       ConditionalLocationData(LocationIDs.ch2_castle_town_all_stars_challenge.value,            Ch2Regions.mansion.value, lambda world: world.is_all_recruits()),
   
-  Ch2Locations.mansion_spamton_neo_defeat_item_2.value:     ConditionalLocationData(LocationIDs.ch2_mansion_spamton_neo_defeat_item_2.value,     Ch2Regions.mansion.value, lambda world: (not world.is_weird_route() or world.is_all_routes())),
+  Ch2Locations.mansion_spamton_neo_defeat_item_3.value:     ConditionalLocationData(LocationIDs.ch2_mansion_spamton_neo_defeat_item_3.value,     Ch2Regions.mansion.value, lambda world: (not world.is_weird_route() or world.is_all_routes())),
   
   # Weird Route
   Ch2Locations.lost_werewire.value:                   ConditionalLocationData(LocationIDs.ch2_lost_werewire.value,                  Ch2Regions.cyber_field.value, lambda world: world.is_weird_route()),

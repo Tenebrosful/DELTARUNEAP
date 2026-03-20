@@ -39,9 +39,9 @@ def set_rules(world: "DeltaruneWorld"):
   
   if not world.is_secret_bosses_randomized():
     multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_1, player).place_locked_item(world.create_item(Ch2Items.puppetscarf))
-    multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_3, player).place_locked_item(world.create_item(CCItems.shadowcrystal))
+    multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_2, player).place_locked_item(world.create_item(CCItems.shadowcrystal))
     if (not world.is_weird_route() or world.is_all_routes()):
-      multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_2, player).place_locked_item(world.create_item(Ch2Items.dealmaker))
+      multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_3, player).place_locked_item(world.create_item(Ch2Items.dealmaker))
   
   # if not world.is_warps_randomized():
   if True:
@@ -72,13 +72,13 @@ def set_weird_route_rules(world: "DeltaruneWorld"):
     set_rule(multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_1, player), lambda state: 
                                                                                         state.has(Ch2Items.keygen_2_segment, player, world.options.goal_macguffin_amount.value)
                                                                                     and state.has(Ch2Items.thornring, player))
-    set_rule(multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_3, player), lambda state: 
+    set_rule(multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_2, player), lambda state: 
                                                                                         state.has(Ch2Items.keygen_2_segment, player, world.options.goal_macguffin_amount.value)
                                                                                     and state.has(Ch2Items.thornring, player))
   else:
     set_rule(multiworld.get_entrance(Ch2Entrances.post_chapter_castle_town_entrance, player), lambda state: state.has(Ch2Items.thornring, player))
     set_rule(multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_1, player), lambda state: state.has(Ch2Items.thornring, player))
-    set_rule(multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_3, player), lambda state: state.has(Ch2Items.thornring, player))
+    set_rule(multiworld.get_location(Ch2Locations.mansion_spamton_neo_defeat_item_2, player), lambda state: state.has(Ch2Items.thornring, player))
       
 def set_all_recruits_rules(world: "DeltaruneWorld"):
   player = world.player

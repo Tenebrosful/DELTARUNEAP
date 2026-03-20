@@ -74,7 +74,8 @@ class RandomizeSecretBosses(Choice):
     DEFEATING THESE CHALLENGES
     WILL BE REQUIRED TO PROGRESS.
 
-    (The ShadowMantle and FlatSoda are included as some of these items.)"""
+    (If you don't choose "Mantleless" for the next option,
+    The Shadow Mantle will also be included as a secret boss.)"""
     display_name = "Randomize Secret Bosses"
     option_false = 0
     option_true = 1
@@ -85,7 +86,76 @@ class RandomizeSecretBossesOptions(StrEnum):
     false = "false"
     true = "true"
     mandatory = "mandatory"
+
+class RandomizeMANTLE(Choice):
+    """
+    CHECKS RECIEVED
+    IN THE ORIGINAL GAME
+    OF THE THIRD CHAPTER
+    WILL BE RANDOMIZED.
+
     
+    SHOULD THE OPTION
+    BE SET TO "MANTLELESS",
+
+    CHECK LOCATIONS SPECIFICALLY
+    LOCKED BEHIND DEFEATING THE MANTLE
+    WILL BE REMOVED,
+
+    BUT THE ITEMS WILL REMAIN
+    AVAILABLE ELSEWHERE.
+
+    (The randomized items are the SHELTER KEY, ICE KEY, ShadowMantle and FlatSoda.)
+    (Of course, this only applies if you play Chapter 3.)"""
+    display_name = "Randomize MANTLE"
+    option_false = 0
+    option_true = 1
+    option_mantleless = 2
+    default = 0
+
+class RandomizeMANTLEOptions(StrEnum):
+    false = "false"
+    true = "true"
+    mantleless = "mantleless"
+
+class IncludeShadowMantle(Toggle):
+    """
+    THE SHADOW MANTLE WILL BE
+    IN THE ITEM POOL
+    OF THE THIRD CHAPTER.
+
+    SHOULD THE OPTION
+    BE SET TO "FALSE",
+
+    THE SHADOW MANTLE WILL NOT
+    BE IN LOGIC FOR THE DUEL
+    WITH THE KNIGHT.
+
+    (Of course, this only applies if you play Chapter 3.)"""
+    display_name = "Include Shadow Mantle"
+    default = 0
+
+class IncludeTraps(Choice):
+    """
+    SOME CHECKS RECIEVED
+    WILL ACTUALLY BE TRAPS.
+    
+
+    SHOULD THE OPTION
+    BE SET TO "ALL TRAPS",
+
+    THE JUNK POOL WILL
+    BE ENTIRELY REPLACED
+    BY TRAPS.
+
+    (The randomized items are the SHELTER KEY, ICE KEY, ShadowMantle and FlatSoda.)
+    (Of course, this only applies if you play Chapter 3.)"""
+    display_name = "Include Traps"
+    option_false = 0
+    option_true = 1
+    option_all_traps = 2
+    default = 0
+
 class IncludeTRank(Toggle):
     """
     GETTING THE HIGHEST RANK
@@ -225,9 +295,9 @@ class ProgressionBalancing(NamedRange):
 
 class Accessibility(Choice):
     """
-    SETS THE RULES FOR
-    THE ABILITY TO REACH
-    ALL ITEMS.
+    SETS THE RULES 
+    FOR THE ABILITY 
+    TO REACH ALL ITEMS.
 
     **Full:** GUARANTEES THAT ALL ITEMS CAN BE OBTAINED.
 
@@ -245,18 +315,21 @@ class Accessibility(Choice):
 
 @dataclass
 class DeltaruneOptions(PerGameCommonOptions):
+    progression_balancing:                            ProgressionBalancing
+    accessibility:                                    Accessibility
     include_chapter_1:                                IncludeChapter1
     include_chapter_2:                                IncludeChapter2
     include_chapter_3:                                IncludeChapter3
     include_chapter_4:                                IncludeChapter4
     randomize_chapters:                               RandomizeChapters
-    item_balancing:                                   ItemBalancing
     chosen_route:                                     ChosenRoute
+    item_balancing:                                   ItemBalancing
     goal_macguffin_amount:                            GoalMacGuffinAmount
     randomize_warp_doors:                             RandomizeWarpDoors
+    randomize_secret_bosses:                          RandomizeSecretBosses
+    randomize_mantle:                                 RandomizeMANTLE
+    include_shadow_mantle:                            IncludeShadowMantle
     include_t_rank:                                   IncludeTRank
     include_hidden_items:                             IncludeHiddenItems
-    randomize_secret_bosses:                          RandomizeSecretBosses
     death_link:                                       DeathLink
-    accessibility:                                    Accessibility
-    progression_balancing:                            ProgressionBalancing
+#    include_traps:                                    IncludeTraps
