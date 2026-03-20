@@ -2,7 +2,7 @@
 
 ### Required Software
 
-- DELTARUNE from the [Steam page](https://store.steampowered.com/app/1671210/)
+- DELTARUNE (Version 1.04) from the [Steam page](https://store.steampowered.com/app/1671210/)
 - Archipelago from the [Archipelago Releases Page](https://github.com/ArchipelagoMW/Archipelago/releases)
 
 ### PLEASE READ!
