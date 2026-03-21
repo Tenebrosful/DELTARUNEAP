@@ -20,17 +20,6 @@ def set_rules(world: "DeltaruneWorld"):
     player = world.player
     multiworld = world.multiworld
   
-    if world.is_chapters_in_order():
-        playable_chapters = world.get_playable_chapters()
-        
-        for current_chapter in playable_chapters:
-            next_chapter = world.get_next_in_order_chapter(current_chapter)
-            if next_chapter == -1: break
-            
-            print(get_location(world, current_chapter))
-            print(world.create_item(get_unlock_item(world, next_chapter)))
-            get_location(world, current_chapter).place_locked_item(world.create_item(get_unlock_item(world, next_chapter)))
-            
     # Fusions
     if world.can_access_fusion():
         
@@ -64,3 +53,16 @@ def get_unlock_item(world: "DeltaruneWorld", chapter: int):
     if chapter == 2: return Ch2Items.chapter_2_unlock
     if chapter == 3: return Ch3Items.chapter_3_unlock
     if chapter == 4: return Ch4Items.chapter_4_unlock
+
+def handle_locked_items(world: "DeltaruneWorld"): 
+  player = world.player
+  multiworld = world.multiworld
+  
+  if world.is_chapters_in_order():
+    playable_chapters = world.get_playable_chapters()
+    
+    for current_chapter in playable_chapters:
+        next_chapter = world.get_next_in_order_chapter(current_chapter)
+        if next_chapter == -1: break
+        
+        get_location(world, current_chapter).place_locked_item(world.create_item(get_unlock_item(world, next_chapter)))

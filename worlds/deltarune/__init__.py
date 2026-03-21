@@ -243,10 +243,19 @@ class DeltaruneWorld(World):
         item_pool: list[str] = []
         
         item_pool += CCItems.create_items(self)
-        if self.include_chapter(1): item_pool += Ch1Items.create_items(self)
-        if self.include_chapter(2): item_pool += Ch2Items.create_items(self)
-        if self.include_chapter(3): item_pool += Ch3Items.create_items(self)
-        if self.include_chapter(4): item_pool += Ch4Items.create_items(self)
+        CCRules.handle_locked_items(self)
+        if self.include_chapter(1):
+            item_pool += Ch1Items.create_items(self)
+            Ch1Rules.handle_locked_items(self)
+        if self.include_chapter(2):
+            item_pool += Ch2Items.create_items(self)
+            Ch2Rules.handle_locked_items(self)
+        if self.include_chapter(3):
+            item_pool += Ch3Items.create_items(self)
+            Ch3Rules.handle_locked_items(self)
+        if self.include_chapter(4):
+            item_pool += Ch4Items.create_items(self)
+            Ch4Rules.handle_locked_items(self)
         # if self.include_chapter(5): Ch5Items.create_items(self)
         # if self.include_chapter(6): Ch6Items.create_items(self)
         # if self.include_chapter(7): Ch7Items.create_items(self)

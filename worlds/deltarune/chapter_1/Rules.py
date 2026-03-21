@@ -31,11 +31,6 @@ def set_rules(world: "DeltaruneWorld"):
   set_rule(multiworld.get_entrance(Ch1Entrances.forest_warp_hub,      player), lambda state: state.has(Ch1Items.forest_warp, player))
   set_rule(multiworld.get_entrance(Ch1Entrances.bake_sale_warp_hub,   player), lambda state: state.has(Ch1Items.bake_sale_warp, player))
   set_rule(multiworld.get_entrance(Ch1Entrances.card_castle_warp_hub, player), lambda state: state.has(Ch1Items.card_castle_warp, player))
-  if not world.is_warps_randomized():
-        multiworld.get_location(Ch1Locations.field_warp_door, player)       .place_locked_item(world.create_item(Ch1Items.fields_warp))
-        multiworld.get_location(Ch1Locations.forest_warp_door, player)      .place_locked_item(world.create_item(Ch1Items.forest_warp))
-        multiworld.get_location(Ch1Locations.bake_sale_warp_door, player)   .place_locked_item(world.create_item(Ch1Items.bake_sale_warp))
-        multiworld.get_location(Ch1Locations.card_castle_warp_door, player) .place_locked_item(world.create_item(Ch1Items.card_castle_warp))
   
   # Mandatory Secret boss option and macguffin
   if world.is_secret_bosses_mandatory():
@@ -64,12 +59,22 @@ def set_rules(world: "DeltaruneWorld"):
   set_rule(multiworld.get_location(Ch1Locations.field_return_top_cake, player),     lambda state: state.has(Ch1Items.top_cake, player))
   
   set_rule(multiworld.get_location(Ch1Locations.throw_away_manual, player),         lambda state: state.has(Ch1Items.manual, player))
+    
+def handle_locked_items(world: "DeltaruneWorld"): 
+  player = world.player
+  multiworld = world.multiworld
   
+  if not world.is_warps_randomized():
+    multiworld.get_location(Ch1Locations.field_warp_door, player)       .place_locked_item(world.create_item(Ch1Items.fields_warp))
+    multiworld.get_location(Ch1Locations.forest_warp_door, player)      .place_locked_item(world.create_item(Ch1Items.forest_warp))
+    multiworld.get_location(Ch1Locations.bake_sale_warp_door, player)   .place_locked_item(world.create_item(Ch1Items.bake_sale_warp))
+    multiworld.get_location(Ch1Locations.card_castle_warp_door, player) .place_locked_item(world.create_item(Ch1Items.card_castle_warp))
+        
   if not world.is_secret_bosses_randomized():
     multiworld.get_location(Ch1Locations.card_castle_jevil_1, player).place_locked_item(world.create_item(Ch1Items.jevilstail))
     multiworld.get_location(Ch1Locations.card_castle_jevil_2, player).place_locked_item(world.create_item(Ch1Items.devilsknife))
     multiworld.get_location(Ch1Locations.card_castle_jevil_3, player).place_locked_item(world.create_item(CCItems.shadowcrystal))
-  
+    
   # Hidden items
   if not world.is_hidden_items_randomized():
     multiworld.get_location(Ch1Locations.forest_man, player)                            .place_locked_item(world.create_item(Ch1Items.egg))
