@@ -119,6 +119,7 @@ class DeltaruneContext(CommonContext):
     goal_macguffin_amount = 1
     chosen_route = 0
     mandatoryboss = 0
+    mandatorymantle = 0
     save_game_folder = os.path.expandvars(r"%localappdata%/DELTARUNEAP")
 
     def __init__(self, server_address, password):
@@ -250,6 +251,16 @@ async def process_deltarune_cmd(ctx: DeltaruneContext, cmd: str, args: dict):
         ctx.mandatoryboss = args["slot_data"]["randomize_secret_bosses"]
         if ctx.mandatoryboss == "mandatory":
             filename = f"super.flag"
+            with open(os.path.join(ctx.save_game_folder, filename), "w") as f:
+                f.close()
+            ctx.mandatorymantle = args["slot_data"]["randomize_mantle"]
+            if ctx.mandatorymantle != "mantleless":
+                filename = f"mantle.flag"
+                with open(os.path.join(ctx.save_game_folder, filename), "w") as f:
+                    f.close()
+        ctx.mandatorymantle = args["slot_data"]["randomize_mantle"]
+        if ctx.mandatorymantle == "mantleless":
+            filename = f"nomantle.flag"
             with open(os.path.join(ctx.save_game_folder, filename), "w") as f:
                 f.close()
         ctx.ranchapters = args["slot_data"]["randomize_chapters"]
@@ -411,7 +422,6 @@ async def game_watcher(ctx: DeltaruneContext):
         sending = []
         sendinghint = []
         victory = False
-        found_routes = 0
         skipped = 0
         for root, dirs, files in os.walk(path):
             for file in files:

@@ -10,9 +10,7 @@ class Ch4Items(StrEnum):
   chapter_4_unlock = "Chapter 4 Unlock"
   
   egg = "CH4 Egg"
-  holy_moss = "Holy Moss"
-  
-  tensiongem = "TensionGem"
+  holy_moss = "Sacred Moss"
   
   # Healing
   rhapsotea = "Rhapsotea"
@@ -43,7 +41,7 @@ chapter4_items = {
   # Darker candy
   CCItems.dark_candy.value:  ItemData(ItemIDs.dark_candy.value, ItemClassification.filler),
   
-  Ch4Items.tensiongem.value:    ItemData(ItemIDs.tensiongem.value,    ItemClassification.useful),
+  CCItems.tensiongem.value:     ItemData(ItemIDs.tensiongem.value,    ItemClassification.useful),
   Ch4Items.mysticband.value:    ItemData(ItemIDs.mysticband.value,    ItemClassification.useful),
   Ch4Items.powerband.value:     ItemData(ItemIDs.powerband.value,     ItemClassification.useful),
   Ch4Items.princessrbn.value:   ItemData(ItemIDs.princessrbn.value,   ItemClassification.useful),

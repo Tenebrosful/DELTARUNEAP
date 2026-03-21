@@ -17,8 +17,9 @@ class CCItems(StrEnum):
   dd_burger       = "DD-Burger"
   lancer_cookie   = "Lancer Cookie"
   spincake        = "Spincake"
-  revivemint     = "Revive Mint"
+  revivemint      = "Revive Mint"
   execbuffet      = "ExecBuffet"
+  tensiongem      = "TensionGem"
   
   # Currency
   glowshard         = "Glowshard"

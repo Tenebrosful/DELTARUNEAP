@@ -224,7 +224,7 @@ class LocationIDs(Enum):
     ch4_dark_sanctuary_sheetmusic = 205
     ch4_dark_sanctuary_hammer_of_justice_defeat_item_1 = 206
     ch4_dark_sanctuary_hammer_of_justice_defeat_item_2 = 207
-    ch4_dark_sanctuary_fontain_seal = 208
+    ch4_dark_sanctuary_fountain_seal = 208
     ch4_second_sanctuary_wall_climbing_chest = 209
     ch4_second_sanctuary_waterfall_chest = 210
     ch4_second_sanctuary_man = 211
@@ -241,7 +241,7 @@ class LocationIDs(Enum):
     ch4_recruit_wicabel = 222
     ch4_recruit_winglade = 223
     ch4_recruit_organikk = 224
-    ch4_third_sanctuary_fontain_seal = 225
+    ch4_third_sanctuary_fountain_seal = 225
     ch4_second_sanctuary_moss = 226
     ch4_third_sanctuary_titan_defeat = 227
     ch4_second_sanctuary_destroyed_piano_block_chest = 228

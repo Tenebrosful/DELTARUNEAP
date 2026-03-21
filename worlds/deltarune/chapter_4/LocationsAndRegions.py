@@ -23,9 +23,9 @@ class Ch4Locations(StrEnum):
   dark_sanctuary_sleeping_mizzle_chest              = "CH4: Dark Sanctuary - Sleeping Mizzle Chest"
   dark_sanctuary_hidden_climbing_chest              = "CH4: Dark Sanctuary - Hidden Climbing Chest"
   dark_sanctuary_sheetmusic                         = "CH4: Dark Sanctuary - SheetMusic"
-  dark_sanctuary_hammer_of_justice_defeat_item_1    = "CH4: Dark Sanctuary - Hammer of Justice Defeat Item 1"
-  dark_sanctuary_hammer_of_justice_defeat_item_2    = "CH4: Dark Sanctuary - Hammer of Justice Defeat Item 2"
-  dark_sanctuary_fountain_sealed                    = "CH4: Dark Sanctuary - Fontain Sealed"
+  dark_sanctuary_hammer_of_justice_defeat_item_1    = "CH4: Dark Sanctuary - Hammer of Justice Defeat Item #1"
+  dark_sanctuary_hammer_of_justice_defeat_item_2    = "CH4: Dark Sanctuary - Hammer of Justice Defeat Item #2"
+  dark_sanctuary_fountain_sealed                    = "CH4: Dark Sanctuary - Fountain Sealed"
   dark_sanctuary_annoying_dog                       = "CH4: Dark Sanctuary - Annoying Dog...?"
   
   second_sanctuary_wall_climbing_chest              = "CH4: Second Sanctuary - Wall Climbing Chest"
@@ -114,18 +114,20 @@ chapter4_locations = {
   Ch4Locations.dark_sanctuary_hammer_of_justice_defeat_item_1.value:  LocationData(LocationIDs.ch4_dark_sanctuary_hammer_of_justice_defeat_item_1.value,  Ch4Regions.dark_sanctuary_claimbclaws),
   Ch4Locations.dark_sanctuary_hammer_of_justice_defeat_item_2.value:  LocationData(LocationIDs.ch4_dark_sanctuary_hammer_of_justice_defeat_item_2.value,  Ch4Regions.dark_sanctuary_claimbclaws),
   
-  Ch4Locations.dark_sanctuary_fountain_sealed.value:                  LocationData(LocationIDs.ch4_dark_sanctuary_fontain_seal.value,                     Ch4Regions.second_sanctuary),
+  Ch4Locations.dark_sanctuary_fountain_sealed.value:                  LocationData(LocationIDs.ch4_dark_sanctuary_fountain_seal.value,                     Ch4Regions.second_sanctuary),
   Ch4Locations.second_sanctuary_waterfall_chest.value:                LocationData(LocationIDs.ch4_second_sanctuary_waterfall_chest.value,                Ch4Regions.second_sanctuary),
   Ch4Locations.second_sanctuary_man.value:                            LocationData(LocationIDs.ch4_second_sanctuary_man.value,                            Ch4Regions.second_sanctuary),
   Ch4Locations.second_sanctuary_moss.value:                           LocationData(LocationIDs.ch4_second_sanctuary_moss.value,                           Ch4Regions.second_sanctuary),
   Ch4Locations.second_sanctuary_gallery_prophecy_chest.value:         LocationData(LocationIDs.ch4_second_sanctuary_gallery_prohecy_chest.value,          Ch4Regions.second_sanctuary),
   Ch4Locations.second_sanctuary_fountain_sealed.value:                LocationData(LocationIDs.ch4_second_sanctuary_fountain_seal.value,                  Ch4Regions.second_sanctuary),
-  
+  Ch4Locations.second_sanctuary_destroyed_piano_block_chest.value:    LocationData(LocationIDs.ch4_second_sanctuary_destroyed_piano_block_chest.value,    Ch4Regions.second_sanctuary),
+
   Ch4Locations.dark_sanctuary_annoying_dog.value:                     LocationData(LocationIDs.ch4_dark_sanctuary_annoying_dog.value,                     Ch4Regions.third_sanctuary),
   Ch4Locations.third_sanctuary_speed_climbing_chest.value:            LocationData(LocationIDs.ch4_third_sanctuary_speed_climbing_chest.value,            Ch4Regions.third_sanctuary),
   Ch4Locations.third_sanctuary_dark_area_chest.value:                 LocationData(LocationIDs.ch4_third_sanctuary_dark_area_chest.value,                 Ch4Regions.third_sanctuary),
-  Ch4Locations.third_sanctuary_titan_defeat.value:                    LocationData(LocationIDs.ch4_third_sanctuary_titan_defeat.value,                    Ch4Regions.third_sanctuary),
-  Ch4Locations.third_sanctuary_fountain_sealed.value:                 LocationData(LocationIDs.ch4_third_sanctuary_fontain_seal.value,                    Ch4Regions.third_sanctuary),
+
+  Ch4Locations.third_sanctuary_titan_defeat.value:                    LocationData(LocationIDs.ch4_third_sanctuary_titan_defeat.value,                    Ch4Regions.titan_fight),
+  Ch4Locations.third_sanctuary_fountain_sealed.value:                 LocationData(LocationIDs.ch4_third_sanctuary_fountain_seal.value,                    Ch4Regions.titan_fight),
   
   Ch4Locations.second_sanctuary_man.value: LocationData(LocationIDs.ch4_second_sanctuary_man.value, Ch4Regions.second_sanctuary),
 }

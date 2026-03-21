@@ -4,7 +4,7 @@ from .Items import DeltaruneItem, ItemData, ConditionalItemData
 from .Rules import set_completion_rules
 from .Locations import LocationData, ConditionalLocationData
 from BaseClasses import ItemClassification, Tutorial
-from .Options import DeltaruneOptions, RandomizeChapterOptions, ChosenRouteOptions, RandomizeSecretBossesOptions
+from .Options import DeltaruneOptions, RandomizeChapterOptions, ChosenRouteOptions, RandomizeSecretBossesOptions, RandomizeMANTLEOptions
 from worlds.AutoWorld import World, WebWorld
 from worlds.LauncherComponents import components, Component, Type, icon_paths
 from multiprocessing import Process
@@ -110,6 +110,8 @@ class DeltaruneWorld(World):
             "include_hidden_items": bool(self.options.include_hidden_items.value),
             "death_link": bool(self.options.death_link.value),
             "item_balancing": bool(self.options.item_balancing.value),
+            "include_shadow_mantle": bool(self.options.include_shadow_mantle.value),
+            "randomize_mantle": bool(self.options.randomize_mantle.current_key),
         }
         
     def create_item(self, name: str) -> DeltaruneItem:
@@ -160,6 +162,15 @@ class DeltaruneWorld(World):
     def is_secret_bosses_mandatory(self):
         return self.options.randomize_secret_bosses == RandomizeSecretBossesOptions.mandatory
     
+    def is_mantle_randomized(self):
+        return self.options.randomize_mantle == RandomizeMANTLEOptions.true
+
+    def is_mantleless(self):
+        return self.options.randomize_mantle == RandomizeMANTLEOptions.mantleless
+
+    def is_shadow_mantle_included(self):
+        return self.options.include_shadow_mantle.value == 1
+
     def is_hidden_items_randomized(self):
         return self.options.include_hidden_items.value == 1
     
