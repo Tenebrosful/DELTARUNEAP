@@ -26,10 +26,8 @@ class Ch3Items(StrEnum):
     tvdinner = "TVDinner"
     deluxedinner = "DeluxeDinner"
     flatsoda = "FlatSoda"
-    
     tensionmax = "TensionMax"
         
-    
     # Weapons
     saber10 = "Saber10"
     toxicaxe = "ToxicAxe"
@@ -99,22 +97,22 @@ chapter3_conditional_items = {
     CCItems.revivemint.value:       ConditionalItemData(ItemIDs.revivemint.value,    ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
     CCItems.dogdollard.value:       ConditionalItemData(ItemIDs.dogdollar.value,    ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
     
-    Ch3Items.shadowmantle.value:    ConditionalItemData(ItemIDs.shadowmantle.value, ItemClassification.useful, lambda world: world.is_shadow_mantle_included() and world.is_mantle_randomized()),
+    Ch3Items.shadowmantle.value:    ConditionalItemData(ItemIDs.shadowmantle.value, ItemClassification.progression, lambda world: world.is_shadow_mantle_included() and (world.is_mantle_randomized() or world.is_mantleless())),
 
-    Ch3Items.flatsoda.value:        ConditionalItemData(ItemIDs.flatsoda.value,     ItemClassification.useful, lambda world: world.is_mantle_randomized()),
+    Ch3Items.flatsoda.value:        ConditionalItemData(ItemIDs.flatsoda.value,     ItemClassification.useful, lambda world: world.is_mantle_randomized() or world.is_mantleless()),
     Ch3Items.blackshard.value:      ConditionalItemData(ItemIDs.blackshard.value,   ItemClassification.useful, lambda world: world.is_secret_bosses_randomized()),
     CCItems.shadowcrystal.value:    ConditionalItemData(ItemIDs.shadowcrystal.value,ItemClassification.useful, lambda world: world.is_secret_bosses_randomized()),
     
     Ch3Items.egg.value:             ConditionalItemData(ItemIDs.chapter_3_egg.value,   ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
-    Ch3Items.board_moss.value:      ConditionalItemData(ItemIDs.board_moss.value,      ItemClassification.useful, lambda world: world.is_hidden_items_randomized()),
+    Ch3Items.board_moss.value:      ConditionalItemData(ItemIDs.board_moss.value,      ItemClassification.useful, lambda world: world.is_hidden_items_randomized() and ((not world.is_weird_route()) or world.is_all_routes())),
     
-    Ch3Items.chapter_3_unlock.value:  ConditionalItemData(ItemIDs.chapter_3_unlock.value, ItemClassification.progression, lambda world: world.is_chapters_randomized() and ((not world.is_weird_route()) or world.is_all_routes())),
+    Ch3Items.chapter_3_unlock.value:  ConditionalItemData(ItemIDs.chapter_3_unlock.value, ItemClassification.progression, lambda world: world.is_chapters_randomized()),
     # Amount is handle in __init__.py handle_macguffins_items()
     Ch3Items.remote_battery.value:    ConditionalItemData(ItemIDs.remote_battery.value, ItemClassification.progression, lambda world: world.is_final_chapter(3), 0),
     
-    Ch3Items.odd_controller.value:  ConditionalItemData(ItemIDs.oddcontroller.value,   ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),
-    Ch3Items.ice_key.value:         ConditionalItemData(ItemIDs.ice_key.value,         ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),
-    Ch3Items.shelter_key.value:     ConditionalItemData(ItemIDs.shelter_key.value,     ItemClassification.progression, lambda world: world.is_hidden_items_randomized()),
+    Ch3Items.odd_controller.value:  ConditionalItemData(ItemIDs.oddcontroller.value,   ItemClassification.progression, lambda world: world.is_mantle_randomized() or world.is_mantleless()),
+    Ch3Items.ice_key.value:         ConditionalItemData(ItemIDs.ice_key.value,         ItemClassification.progression, lambda world: world.is_mantle_randomized() or world.is_mantleless()),
+    Ch3Items.shelter_key.value:     ConditionalItemData(ItemIDs.shelter_key.value,     ItemClassification.progression, lambda world: world.is_mantle_randomized() or world.is_mantleless()),
     Ch3Items.tripticket.value:      ConditionalItemData(ItemIDs.tripticket.value,      ItemClassification.progression, lambda world: world.is_hidden_items_randomized() and ((not world.is_weird_route()) or world.is_all_routes())),
 }
 

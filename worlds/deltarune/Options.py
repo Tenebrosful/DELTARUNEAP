@@ -75,7 +75,7 @@ class RandomizeSecretBosses(Choice):
     WILL BE REQUIRED TO PROGRESS.
 
     (If you don't choose "Mantleless" for the next option,
-    The Shadow Mantle will also be included as a secret boss.)"""
+    The Shadow Mantle will also be included as a mandatory boss.)"""
     display_name = "Randomize Secret Bosses"
     option_false = 0
     option_true = 1
@@ -97,16 +97,19 @@ class RandomizeMANTLE(Choice):
     
     SHOULD THE OPTION
     BE SET TO "MANTLELESS",
-
+    
+    THE CHECKS OF THE ORIGINAL GAME
+    WILL STILL BE RANDOMIZED,
+    
+    HOWEVER 
+    
     CHECK LOCATIONS SPECIFICALLY
     LOCKED BEHIND DEFEATING THE MANTLE
-    WILL BE REMOVED,
+    WILL BE REMOVED.
 
-    BUT THE ITEMS WILL REMAIN
-    AVAILABLE ELSEWHERE.
-
-    (The randomized items are the SHELTER KEY, ICE KEY, ShadowMantle and FlatSoda.)
-    (Of course, this only applies if you play Chapter 3.)"""
+    (So basically, if you choose "Mantleless", the game's still randomized, you just won't have to fight the Mantle.)
+    (You can still get the items normally locked behind the boss fight from other checks, though.)
+    (And of course, this only applies if you play Chapter 3.)"""
     display_name = "Randomize MANTLE"
     option_false = 0
     option_true = 1
@@ -146,10 +149,7 @@ class IncludeTraps(Choice):
 
     THE JUNK POOL WILL
     BE ENTIRELY REPLACED
-    BY TRAPS.
-
-    (The randomized items are the SHELTER KEY, ICE KEY, ShadowMantle and FlatSoda.)
-    (Of course, this only applies if you play Chapter 3.)"""
+    BY TRAPS."""
     display_name = "Include Traps"
     option_false = 0
     option_true = 1
