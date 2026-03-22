@@ -1,5 +1,5 @@
 from enum import StrEnum
-from ..Items import ItemData, ConditionalItemData, ItemIDs, generic_create_items, generic_get_filler_items
+from ..Items import ItemData, ConditionalItemData, ItemIDs, generic_create_items, generic_get_filler_items, ItemGroups
 from typing import TYPE_CHECKING
 from BaseClasses import ItemClassification
 
@@ -46,19 +46,19 @@ class CCItems(StrEnum):
   shadowcrystal = "ShadowCrystal"
 
 cross_chapter_items = {
-  CCItems.what_interresting_behavior.value: ItemData(ItemIDs.what_interesting_behavior.value, ItemClassification.progression | ItemClassification.useful, 0)
+  CCItems.what_interresting_behavior.value: ItemData(ItemIDs.what_interesting_behavior.value, ItemClassification.progression | ItemClassification.useful, [], 0)
 }
 
 cross_chapter_conditional_items = {  
   # Fusions
-  CCItems.dd_burger.value:    ConditionalItemData(ItemIDs.dd_burger.value,    ItemClassification.filler,    lambda world: world.can_access_fusion()),
-  CCItems.silver_card.value:  ConditionalItemData(ItemIDs.silver_card.value,  ItemClassification.filler,    lambda world: world.can_access_fusion()),
+  CCItems.dd_burger.value:    ConditionalItemData(ItemIDs.dd_burger.value,    ItemClassification.filler,    lambda world: world.can_access_fusion(), [ItemGroups.healing_item]),
+  CCItems.silver_card.value:  ConditionalItemData(ItemIDs.silver_card.value,  ItemClassification.filler,    lambda world: world.can_access_fusion(), [ItemGroups.armors]),
   # Require Pink Ribbon that can be found in chapter 2 and 3 and White Ribbon that can be found in chapter 1 and 3 and starting armor for chapter 2
-  CCItems.twin_ribbon.value:  ConditionalItemData(ItemIDs.twin_ribbon.value,  ItemClassification.useful,    lambda world: world.can_access_fusion() and world.has_at_least_one_chapter_included([2, 3]) and world.has_at_least_one_chapter_included([1, 2, 3])),
+  CCItems.twin_ribbon.value:  ConditionalItemData(ItemIDs.twin_ribbon.value,  ItemClassification.useful,    lambda world: world.can_access_fusion() and world.has_at_least_one_chapter_included([2, 3]) and world.has_at_least_one_chapter_included([1, 2, 3]), [ItemGroups.armors]),
   # Require IronShackle that is exclusive to chapter 1 and Glow Wrist to chapter 2 (shop) and chapter 4 (starting armor like chapter 3 but chapter 3 can't fuse)
-  CCItems.spikeband.value:    ConditionalItemData(ItemIDs.spikeband.value,    ItemClassification.useful,    lambda world: world.can_access_fusion() and world.include_chapter(1) and world.has_at_least_one_chapter_included([2, 4])),
+  CCItems.spikeband.value:    ConditionalItemData(ItemIDs.spikeband.value,    ItemClassification.useful,    lambda world: world.can_access_fusion() and world.include_chapter(1) and world.has_at_least_one_chapter_included([2, 4]), [ItemGroups.armors]),
   # Require B.ShotBowtie that is exclusive to chapter 2 and can't be obtained on weird route
-  CCItems.tensionbow.value:   ConditionalItemData(ItemIDs.tensionbow.value,   ItemClassification.useful,    lambda world: world.can_access_fusion() and world.include_chapter(2) and not world.is_weird_route()),
+  CCItems.tensionbow.value:   ConditionalItemData(ItemIDs.tensionbow.value,   ItemClassification.useful,    lambda world: world.can_access_fusion() and world.include_chapter(2) and not world.is_weird_route(), [ItemGroups.tension_items, ItemGroups.armors]),
 }
 
 def create_items(world: "DeltaruneWorld"):

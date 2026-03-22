@@ -1,6 +1,6 @@
 from BaseClasses import Location
 from enum import StrEnum
-from ..Locations import LocationIDs, LocationData, ConditionalLocationData
+from ..Locations import LocationIDs, LocationData, ConditionalLocationData, LocationGroups
 from ..Regions import generic_create_regions, fusion_access_region
 from typing import TYPE_CHECKING
 
@@ -89,69 +89,69 @@ class Ch4Entrances(StrEnum):
 chapter4_end_region = Ch4Regions.light_world.value
 
 chapter4_locations = {
-  Ch4Locations.castle_town_lanino_elnina_challenge.value: LocationData(LocationIDs.ch4_castle_town_lanino_elnina_challenge.value, Ch4Regions.castle_town),
-  Ch4Locations.castle_town_top_chef_gift.value:           LocationData(LocationIDs.ch4_castle_town_top_chef_gift.value,           Ch4Regions.castle_town),
-  # Ch4Locations.castle_town_mike.value:                    LocationData(LocationIDs.ch4_castle_town_mike.value,                    Ch4Regions.castle_town),
+  Ch4Locations.castle_town_lanino_elnina_challenge.value: LocationData(LocationIDs.ch4_castle_town_lanino_elnina_challenge.value, Ch4Regions.castle_town, LocationGroups.chapter4.value),
+  Ch4Locations.castle_town_top_chef_gift.value:           LocationData(LocationIDs.ch4_castle_town_top_chef_gift.value,           Ch4Regions.castle_town, LocationGroups.chapter4.value),
+  # Ch4Locations.castle_town_mike.value:                    LocationData(LocationIDs.ch4_castle_town_mike.value,                    Ch4Regions.castle_town, LocationGroups.chapter4.value),
   
-  Ch4Locations.dark_sanctuary_jockington_prophecy_chest.value:  LocationData(LocationIDs.ch4_dark_sanctuary_jockington_prophecy_chest.value,  Ch4Regions.dark_sanctuary),
-  Ch4Locations.dark_sanctuary_chest_in_first_dark_area.value:   LocationData(LocationIDs.ch4_dark_sanctuary_chest_in_first_dark_area.value,   Ch4Regions.dark_sanctuary),
-  Ch4Locations.dark_sanctuary_library_chest_1.value:            LocationData(LocationIDs.ch4_dark_sanctuary_library_chest_1.value,            Ch4Regions.dark_sanctuary),
-  Ch4Locations.dark_sanctuary_worship_room_chest.value:         LocationData(LocationIDs.ch4_dark_sanctuary_worship_room_chest.value,         Ch4Regions.dark_sanctuary),
-  Ch4Locations.dark_sanctuary_lantern_puzzle_chest.value:       LocationData(LocationIDs.ch4_dark_sanctuary_lantern_puzzle_chest.value,       Ch4Regions.dark_sanctuary),
-  Ch4Locations.dark_sanctuary_library_chest_2.value:            LocationData(LocationIDs.ch4_dark_sanctuary_library_chest_2.value,            Ch4Regions.dark_sanctuary),
+  Ch4Locations.dark_sanctuary_jockington_prophecy_chest.value:  LocationData(LocationIDs.ch4_dark_sanctuary_jockington_prophecy_chest.value,  Ch4Regions.dark_sanctuary, LocationGroups.chapter4.value),
+  Ch4Locations.dark_sanctuary_chest_in_first_dark_area.value:   LocationData(LocationIDs.ch4_dark_sanctuary_chest_in_first_dark_area.value,   Ch4Regions.dark_sanctuary, LocationGroups.chapter4.value),
+  Ch4Locations.dark_sanctuary_library_chest_1.value:            LocationData(LocationIDs.ch4_dark_sanctuary_library_chest_1.value,            Ch4Regions.dark_sanctuary, LocationGroups.chapter4.value),
+  Ch4Locations.dark_sanctuary_worship_room_chest.value:         LocationData(LocationIDs.ch4_dark_sanctuary_worship_room_chest.value,         Ch4Regions.dark_sanctuary, LocationGroups.chapter4.value),
+  Ch4Locations.dark_sanctuary_lantern_puzzle_chest.value:       LocationData(LocationIDs.ch4_dark_sanctuary_lantern_puzzle_chest.value,       Ch4Regions.dark_sanctuary, LocationGroups.chapter4.value),
+  Ch4Locations.dark_sanctuary_library_chest_2.value:            LocationData(LocationIDs.ch4_dark_sanctuary_library_chest_2.value,            Ch4Regions.dark_sanctuary, LocationGroups.chapter4.value),
   
-  Ch4Locations.old_man_shop_1.value:                            LocationData(LocationIDs.ch4_old_man_shop_1.value,                            Ch4Regions.dark_sanctuary),
-  Ch4Locations.old_man_shop_2.value:                            LocationData(LocationIDs.ch4_old_man_shop_2.value,                            Ch4Regions.dark_sanctuary),
-  Ch4Locations.old_man_shop_3.value:                            LocationData(LocationIDs.ch4_old_man_shop_3.value,                            Ch4Regions.dark_sanctuary),
-  Ch4Locations.old_man_shop_4.value:                            LocationData(LocationIDs.ch4_old_man_shop_4.value,                            Ch4Regions.dark_sanctuary),
+  Ch4Locations.old_man_shop_1.value:                            LocationData(LocationIDs.ch4_old_man_shop_1.value,                            Ch4Regions.dark_sanctuary, LocationGroups.chapter4.value),
+  Ch4Locations.old_man_shop_2.value:                            LocationData(LocationIDs.ch4_old_man_shop_2.value,                            Ch4Regions.dark_sanctuary, LocationGroups.chapter4.value),
+  Ch4Locations.old_man_shop_3.value:                            LocationData(LocationIDs.ch4_old_man_shop_3.value,                            Ch4Regions.dark_sanctuary, LocationGroups.chapter4.value),
+  Ch4Locations.old_man_shop_4.value:                            LocationData(LocationIDs.ch4_old_man_shop_4.value,                            Ch4Regions.dark_sanctuary, LocationGroups.chapter4.value),
   
-  Ch4Locations.dark_sanctuary_jackenstein_gift.value:           LocationData(LocationIDs.ch4_dark_sanctuary_jackenstein_gift.value,           Ch4Regions.dark_sanctuary_claimbclaws),
-  Ch4Locations.dark_sanctuary_climbing_tutorial_chest.value:    LocationData(LocationIDs.ch4_dark_santuary_climbing_tutorial_chest.value,     Ch4Regions.dark_sanctuary_claimbclaws),
-  Ch4Locations.dark_sanctuary_cuptain_pillar_chest.value:       LocationData(LocationIDs.ch4_dark_sanctuary_cuptain_pillar_chest.value,       Ch4Regions.dark_sanctuary_claimbclaws),
-  Ch4Locations.dark_sanctuary_sleeping_mizzle_chest.value:      LocationData(LocationIDs.ch4_dark_sanctuary_sleeping_mizzle_chest.value,      Ch4Regions.dark_sanctuary_claimbclaws),
-  Ch4Locations.dark_sanctuary_hidden_climbing_chest.value:      LocationData(LocationIDs.ch4_dark_sanctuary_hidden_climbing_chest.value,      Ch4Regions.dark_sanctuary_claimbclaws),
-  Ch4Locations.dark_sanctuary_sheetmusic.value:                 LocationData(LocationIDs.ch4_dark_sanctuary_sheetmusic.value,                 Ch4Regions.dark_sanctuary_claimbclaws),
-  Ch4Locations.dark_sanctuary_hammer_of_justice_defeat_item_1.value:  LocationData(LocationIDs.ch4_dark_sanctuary_hammer_of_justice_defeat_item_1.value,  Ch4Regions.dark_sanctuary_claimbclaws),
-  Ch4Locations.dark_sanctuary_hammer_of_justice_defeat_item_2.value:  LocationData(LocationIDs.ch4_dark_sanctuary_hammer_of_justice_defeat_item_2.value,  Ch4Regions.dark_sanctuary_claimbclaws),
+  Ch4Locations.dark_sanctuary_jackenstein_gift.value:           LocationData(LocationIDs.ch4_dark_sanctuary_jackenstein_gift.value,           Ch4Regions.dark_sanctuary_claimbclaws, LocationGroups.chapter4.value),
+  Ch4Locations.dark_sanctuary_climbing_tutorial_chest.value:    LocationData(LocationIDs.ch4_dark_santuary_climbing_tutorial_chest.value,     Ch4Regions.dark_sanctuary_claimbclaws, LocationGroups.chapter4.value),
+  Ch4Locations.dark_sanctuary_cuptain_pillar_chest.value:       LocationData(LocationIDs.ch4_dark_sanctuary_cuptain_pillar_chest.value,       Ch4Regions.dark_sanctuary_claimbclaws, LocationGroups.chapter4.value),
+  Ch4Locations.dark_sanctuary_sleeping_mizzle_chest.value:      LocationData(LocationIDs.ch4_dark_sanctuary_sleeping_mizzle_chest.value,      Ch4Regions.dark_sanctuary_claimbclaws, LocationGroups.chapter4.value),
+  Ch4Locations.dark_sanctuary_hidden_climbing_chest.value:      LocationData(LocationIDs.ch4_dark_sanctuary_hidden_climbing_chest.value,      Ch4Regions.dark_sanctuary_claimbclaws, LocationGroups.chapter4.value),
+  Ch4Locations.dark_sanctuary_sheetmusic.value:                 LocationData(LocationIDs.ch4_dark_sanctuary_sheetmusic.value,                 Ch4Regions.dark_sanctuary_claimbclaws, LocationGroups.chapter4.value),
+  Ch4Locations.dark_sanctuary_hammer_of_justice_defeat_item_1.value:  LocationData(LocationIDs.ch4_dark_sanctuary_hammer_of_justice_defeat_item_1.value,  Ch4Regions.dark_sanctuary_claimbclaws, LocationGroups.chapter4.value),
+  Ch4Locations.dark_sanctuary_hammer_of_justice_defeat_item_2.value:  LocationData(LocationIDs.ch4_dark_sanctuary_hammer_of_justice_defeat_item_2.value,  Ch4Regions.dark_sanctuary_claimbclaws, LocationGroups.chapter4.value),
   
-  Ch4Locations.dark_sanctuary_fountain_sealed.value:                  LocationData(LocationIDs.ch4_dark_sanctuary_fountain_seal.value,                     Ch4Regions.second_sanctuary),
-  Ch4Locations.second_sanctuary_waterfall_chest.value:                LocationData(LocationIDs.ch4_second_sanctuary_waterfall_chest.value,                Ch4Regions.second_sanctuary),
-  Ch4Locations.second_sanctuary_man.value:                            LocationData(LocationIDs.ch4_second_sanctuary_man.value,                            Ch4Regions.second_sanctuary),
-  Ch4Locations.second_sanctuary_moss.value:                           LocationData(LocationIDs.ch4_second_sanctuary_moss.value,                           Ch4Regions.second_sanctuary),
-  Ch4Locations.second_sanctuary_gallery_prophecy_chest.value:         LocationData(LocationIDs.ch4_second_sanctuary_gallery_prohecy_chest.value,          Ch4Regions.second_sanctuary),
-  Ch4Locations.second_sanctuary_fountain_sealed.value:                LocationData(LocationIDs.ch4_second_sanctuary_fountain_seal.value,                  Ch4Regions.second_sanctuary),
-  Ch4Locations.second_sanctuary_destroyed_piano_block_chest.value:    LocationData(LocationIDs.ch4_second_sanctuary_destroyed_piano_block_chest.value,    Ch4Regions.second_sanctuary),
+  Ch4Locations.dark_sanctuary_fountain_sealed.value:                  LocationData(LocationIDs.ch4_dark_sanctuary_fountain_seal.value,                     Ch4Regions.second_sanctuary, LocationGroups.chapter4.value),
+  Ch4Locations.second_sanctuary_waterfall_chest.value:                LocationData(LocationIDs.ch4_second_sanctuary_waterfall_chest.value,                Ch4Regions.second_sanctuary, LocationGroups.chapter4.value),
+  Ch4Locations.second_sanctuary_man.value:                            LocationData(LocationIDs.ch4_second_sanctuary_man.value,                            Ch4Regions.second_sanctuary, LocationGroups.chapter4.value),
+  Ch4Locations.second_sanctuary_moss.value:                           LocationData(LocationIDs.ch4_second_sanctuary_moss.value,                           Ch4Regions.second_sanctuary, LocationGroups.chapter4.value),
+  Ch4Locations.second_sanctuary_gallery_prophecy_chest.value:         LocationData(LocationIDs.ch4_second_sanctuary_gallery_prohecy_chest.value,          Ch4Regions.second_sanctuary, LocationGroups.chapter4.value),
+  Ch4Locations.second_sanctuary_fountain_sealed.value:                LocationData(LocationIDs.ch4_second_sanctuary_fountain_seal.value,                  Ch4Regions.second_sanctuary, LocationGroups.chapter4.value),
+  Ch4Locations.second_sanctuary_destroyed_piano_block_chest.value:    LocationData(LocationIDs.ch4_second_sanctuary_destroyed_piano_block_chest.value,    Ch4Regions.second_sanctuary, LocationGroups.chapter4.value),
 
-  Ch4Locations.dark_sanctuary_annoying_dog.value:                     LocationData(LocationIDs.ch4_dark_sanctuary_annoying_dog.value,                     Ch4Regions.third_sanctuary),
-  Ch4Locations.third_sanctuary_speed_climbing_chest.value:            LocationData(LocationIDs.ch4_third_sanctuary_speed_climbing_chest.value,            Ch4Regions.third_sanctuary),
-  Ch4Locations.third_sanctuary_dark_area_chest.value:                 LocationData(LocationIDs.ch4_third_sanctuary_dark_area_chest.value,                 Ch4Regions.third_sanctuary),
+  Ch4Locations.dark_sanctuary_annoying_dog.value:                     LocationData(LocationIDs.ch4_dark_sanctuary_annoying_dog.value,                     Ch4Regions.third_sanctuary, LocationGroups.chapter4.value),
+  Ch4Locations.third_sanctuary_speed_climbing_chest.value:            LocationData(LocationIDs.ch4_third_sanctuary_speed_climbing_chest.value,            Ch4Regions.third_sanctuary, LocationGroups.chapter4.value),
+  Ch4Locations.third_sanctuary_dark_area_chest.value:                 LocationData(LocationIDs.ch4_third_sanctuary_dark_area_chest.value,                 Ch4Regions.third_sanctuary, LocationGroups.chapter4.value),
 
-  Ch4Locations.third_sanctuary_titan_defeat.value:                    LocationData(LocationIDs.ch4_third_sanctuary_titan_defeat.value,                    Ch4Regions.titan_fight),
-  Ch4Locations.third_sanctuary_fountain_sealed.value:                 LocationData(LocationIDs.ch4_third_sanctuary_fountain_seal.value,                    Ch4Regions.titan_fight),
+  Ch4Locations.third_sanctuary_titan_defeat.value:                    LocationData(LocationIDs.ch4_third_sanctuary_titan_defeat.value,                    Ch4Regions.titan_fight, LocationGroups.chapter4.value),
+  Ch4Locations.third_sanctuary_fountain_sealed.value:                 LocationData(LocationIDs.ch4_third_sanctuary_fountain_seal.value,                    Ch4Regions.titan_fight, LocationGroups.chapter4.value),
   
-  Ch4Locations.second_sanctuary_man.value: LocationData(LocationIDs.ch4_second_sanctuary_man.value, Ch4Regions.second_sanctuary),
+  Ch4Locations.second_sanctuary_man.value: LocationData(LocationIDs.ch4_second_sanctuary_man.value, Ch4Regions.second_sanctuary, LocationGroups.chapter4.value),
 }
 
 chapter4_conditional_locations = {
   # Recruits
-  Ch4Locations.recruit_guei.value:         ConditionalLocationData(LocationIDs.ch4_recruit_guei.value,        Ch4Regions.dark_sanctuary,              lambda world: world.is_all_recruits()),
-  Ch4Locations.recruit_balthizard.value:   ConditionalLocationData(LocationIDs.ch4_recruit_balthizard.value,  Ch4Regions.dark_sanctuary,              lambda world: world.is_all_recruits()),
-  Ch4Locations.recruit_bibliox.value:      ConditionalLocationData(LocationIDs.ch4_recruit_bibliox.value,     Ch4Regions.dark_sanctuary,              lambda world: world.is_all_recruits()),
-  Ch4Locations.recruit_mizzle.value:       ConditionalLocationData(LocationIDs.ch4_recruit_mizzle.value,      Ch4Regions.dark_sanctuary,              lambda world: world.is_all_recruits()),
-  Ch4Locations.recruit_miss_mizzle.value:  ConditionalLocationData(LocationIDs.ch4_recruit_miss_mizzle.value, Ch4Regions.dark_sanctuary_claimbclaws,  lambda world: world.is_all_recruits()),
-  Ch4Locations.recruit_wicabel.value:      ConditionalLocationData(LocationIDs.ch4_recruit_wicabel.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_all_recruits()),
-  Ch4Locations.recruit_wingblade.value:    ConditionalLocationData(LocationIDs.ch4_recruit_winglade.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_all_recruits()),
-  Ch4Locations.recruit_organikk.value:     ConditionalLocationData(LocationIDs.ch4_recruit_organikk.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_all_recruits()),
+  Ch4Locations.recruit_guei.value:         ConditionalLocationData(LocationIDs.ch4_recruit_guei.value,        Ch4Regions.dark_sanctuary,              lambda world: world.is_all_recruits(), LocationGroups.chapter4.value),
+  Ch4Locations.recruit_balthizard.value:   ConditionalLocationData(LocationIDs.ch4_recruit_balthizard.value,  Ch4Regions.dark_sanctuary,              lambda world: world.is_all_recruits(), LocationGroups.chapter4.value),
+  Ch4Locations.recruit_bibliox.value:      ConditionalLocationData(LocationIDs.ch4_recruit_bibliox.value,     Ch4Regions.dark_sanctuary,              lambda world: world.is_all_recruits(), LocationGroups.chapter4.value),
+  Ch4Locations.recruit_mizzle.value:       ConditionalLocationData(LocationIDs.ch4_recruit_mizzle.value,      Ch4Regions.dark_sanctuary,              lambda world: world.is_all_recruits(), LocationGroups.chapter4.value),
+  Ch4Locations.recruit_miss_mizzle.value:  ConditionalLocationData(LocationIDs.ch4_recruit_miss_mizzle.value, Ch4Regions.dark_sanctuary_claimbclaws,  lambda world: world.is_all_recruits(), LocationGroups.chapter4.value),
+  Ch4Locations.recruit_wicabel.value:      ConditionalLocationData(LocationIDs.ch4_recruit_wicabel.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_all_recruits(), LocationGroups.chapter4.value),
+  Ch4Locations.recruit_wingblade.value:    ConditionalLocationData(LocationIDs.ch4_recruit_winglade.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_all_recruits(), LocationGroups.chapter4.value),
+  Ch4Locations.recruit_organikk.value:     ConditionalLocationData(LocationIDs.ch4_recruit_organikk.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_all_recruits(), LocationGroups.chapter4.value),
   
   # Losts
-  Ch4Locations.lost_guei.value:         ConditionalLocationData(LocationIDs.ch4_lost_guei.value,        Ch4Regions.dark_sanctuary,              lambda world: world.is_weird_route()),
-  Ch4Locations.lost_balthizard.value:   ConditionalLocationData(LocationIDs.ch4_lost_balthizard.value,  Ch4Regions.dark_sanctuary,              lambda world: world.is_weird_route()),
-  Ch4Locations.lost_bibliox.value:      ConditionalLocationData(LocationIDs.ch4_lost_bibliox.value,     Ch4Regions.dark_sanctuary,              lambda world: world.is_weird_route()),
-  Ch4Locations.lost_mizzle.value:       ConditionalLocationData(LocationIDs.ch4_lost_mizzle.value,      Ch4Regions.dark_sanctuary,              lambda world: world.is_weird_route()),
-  Ch4Locations.lost_miss_mizzle.value:  ConditionalLocationData(LocationIDs.ch4_lost_miss_mizzle.value, Ch4Regions.dark_sanctuary_claimbclaws,  lambda world: world.is_weird_route()),
-  Ch4Locations.lost_wicabel.value:      ConditionalLocationData(LocationIDs.ch4_lost_wicabel.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_weird_route()),
-  Ch4Locations.lost_wingblade.value:    ConditionalLocationData(LocationIDs.ch4_lost_winglade.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_weird_route()),
-  Ch4Locations.lost_organikk.value:     ConditionalLocationData(LocationIDs.ch4_lost_organikk.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_weird_route()),
+  Ch4Locations.lost_guei.value:         ConditionalLocationData(LocationIDs.ch4_lost_guei.value,        Ch4Regions.dark_sanctuary,              lambda world: world.is_weird_route(), LocationGroups.chapter4.value),
+  Ch4Locations.lost_balthizard.value:   ConditionalLocationData(LocationIDs.ch4_lost_balthizard.value,  Ch4Regions.dark_sanctuary,              lambda world: world.is_weird_route(), LocationGroups.chapter4.value),
+  Ch4Locations.lost_bibliox.value:      ConditionalLocationData(LocationIDs.ch4_lost_bibliox.value,     Ch4Regions.dark_sanctuary,              lambda world: world.is_weird_route(), LocationGroups.chapter4.value),
+  Ch4Locations.lost_mizzle.value:       ConditionalLocationData(LocationIDs.ch4_lost_mizzle.value,      Ch4Regions.dark_sanctuary,              lambda world: world.is_weird_route(), LocationGroups.chapter4.value),
+  Ch4Locations.lost_miss_mizzle.value:  ConditionalLocationData(LocationIDs.ch4_lost_miss_mizzle.value, Ch4Regions.dark_sanctuary_claimbclaws,  lambda world: world.is_weird_route(), LocationGroups.chapter4.value),
+  Ch4Locations.lost_wicabel.value:      ConditionalLocationData(LocationIDs.ch4_lost_wicabel.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_weird_route(), LocationGroups.chapter4.value),
+  Ch4Locations.lost_wingblade.value:    ConditionalLocationData(LocationIDs.ch4_lost_winglade.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_weird_route(), LocationGroups.chapter4.value),
+  Ch4Locations.lost_organikk.value:     ConditionalLocationData(LocationIDs.ch4_lost_organikk.value,        Ch4Regions.second_sanctuary,            lambda world: world.is_weird_route(), LocationGroups.chapter4.value),
 }
 
 chapter4_regions = [

@@ -1,8 +1,8 @@
 from worlds.deltarune.Regions import link_deltarune_areas
 
-from .Items import DeltaruneItem, ItemData, ConditionalItemData
+from .Items import DeltaruneItem, ItemData, ConditionalItemData, get_item_groups
 from .Rules import set_completion_rules
-from .Locations import LocationData, ConditionalLocationData
+from .Locations import LocationData, ConditionalLocationData, get_location_groups
 from BaseClasses import ItemClassification, Tutorial
 from .Options import DeltaruneOptions, RandomizeChapterOptions, ChosenRouteOptions, RandomizeSecretBossesOptions, RandomizeMANTLEOptions
 from worlds.AutoWorld import World, WebWorld
@@ -87,7 +87,9 @@ class DeltaruneWorld(World):
     web = DeltaruneWeb()
 
     item_name_to_id = {name: data.code for name, data in every_items.items()}
+    item_name_groups = get_item_groups(every_items.items())
     location_name_to_id = {name: data.id for name, data in every_locations.items()}
+    location_name_groups = get_location_groups(every_locations.items())
 
     def _get_deltarune_data(self):
         return {

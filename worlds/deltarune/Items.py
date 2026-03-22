@@ -1,22 +1,40 @@
 from BaseClasses import Item, ItemClassification
-from enum import Enum
+from enum import Enum, StrEnum
 from typing import TYPE_CHECKING, NamedTuple, Optional, Callable
 
 if TYPE_CHECKING: from . import DeltaruneWorld
 
+class ItemGroups(StrEnum):
+    healing_item = "Healing Items"
+    fusion_ingredient = "Fusion Ingredients"
+    armors = "Armors"
+    weapons = "Weapons"
+    eggs = "Eggs"
+    warps = "Warps"
+    currencies = "Currencies"
+    region_blockers = "Story Blockers"
+    moss = "Moss"
+    jevil_keys = "Jevil Keys"
+    spamton_access = "Spamton Access"
+    tension_items = "Tension Items"
+    mantle_items = "Mantle Items"
+
 class ItemData(NamedTuple):
     code: Optional[int]
-    classification: any
+    classification: ItemClassification
+    groups: Optional[list[ItemGroups]] = []
     amount: Optional[int] = 1
 
 class ConditionalItemData(NamedTuple):
     code: Optional[int]
-    classification: any
+    classification: ItemClassification
     should_be_included: Callable[["DeltaruneWorld"], bool]
+    groups: Optional[list[ItemGroups]] = []
     amount: Optional[int] = 1
 
 class DeltaruneItem(Item):
     game: str = "Deltarune"
+
 
 class ItemIDs(Enum):
     dark_candy = 1
@@ -225,3 +243,12 @@ def generic_get_filler_items(world: "DeltaruneWorld", items: dict[str, ItemData]
     
     # return map(lambda item_name: {item_name: weigth}, filler_items)
     return {item_name: weigth for item_name in filler_items}
+
+def get_item_groups(items: dict[str, ItemData | ConditionalItemData]):
+    groups: dict[str : set[str]] = {}
+    
+    for (item_name, item_data) in items:
+        for group_name in item_data.groups:
+            groups.setdefault(group_name.value, set()).add(item_name)
+    
+    return groups

@@ -1,6 +1,6 @@
 from enum import StrEnum
 from typing import TYPE_CHECKING
-from ..Locations import ConditionalLocationData, LocationIDs
+from ..Locations import ConditionalLocationData, LocationIDs, LocationGroups
 from ..Regions import generic_create_regions, fusion_access_region, fusion_access_entrance
 from ..chapter_1.LocationsAndRegions import Ch1Regions
 from ..chapter_2.LocationsAndRegions import Ch2Regions
@@ -32,14 +32,14 @@ cross_chapter_locations: dict = {
 }
 
 cross_chapter_conditional_locations: dict = {
-  CCLocations.castle_town_ddburger_fusion.value:      ConditionalLocationData(LocationIDs.cc_castle_town_dd_burger_fusion.value,    fusion_access_region, lambda world: world.can_access_fusion()),
-  CCLocations.castle_town_silver_card_fusion.value:   ConditionalLocationData(LocationIDs.cc_castle_town_silver_card_fusion.value,  fusion_access_region, lambda world: world.can_access_fusion()),
+  CCLocations.castle_town_ddburger_fusion.value:      ConditionalLocationData(LocationIDs.cc_castle_town_dd_burger_fusion.value,    fusion_access_region, lambda world: world.can_access_fusion(), LocationGroups.castle_town.value),
+  CCLocations.castle_town_silver_card_fusion.value:   ConditionalLocationData(LocationIDs.cc_castle_town_silver_card_fusion.value,  fusion_access_region, lambda world: world.can_access_fusion(), LocationGroups.castle_town.value),
   # Require Pink Ribbon that can be found in chapter 2 and 3 and White Ribbon that can be found in chapter 1 and 3 and starting armor for chapter 2
-  CCLocations.castle_town_twin_ribbon_fusion.value:   ConditionalLocationData(LocationIDs.cc_castle_town_twin_ribbon_fusion.value,  fusion_access_region, lambda world: world.can_access_fusion() and world.has_at_least_one_chapter_included([2, 3]) and world.has_at_least_one_chapter_included([1, 2, 3])),
+  CCLocations.castle_town_twin_ribbon_fusion.value:   ConditionalLocationData(LocationIDs.cc_castle_town_twin_ribbon_fusion.value,  fusion_access_region, lambda world: world.can_access_fusion() and world.has_at_least_one_chapter_included([2, 3]) and world.has_at_least_one_chapter_included([1, 2, 3]), LocationGroups.castle_town.value),
   # Require IronShackle that is exclusive to chapter 1 and Glow Wrist to chapter 2 (shop) and chapter 4 (starting armor like chapter 3 but chapter 3 can't fuse)
-  CCLocations.castle_town_spike_band_fusion.value:    ConditionalLocationData(LocationIDs.ch2_castle_town_spike_band_fusion.value,  fusion_access_region, lambda world: world.can_access_fusion() and world.include_chapter(1) and world.has_at_least_one_chapter_included([2, 4])),
+  CCLocations.castle_town_spike_band_fusion.value:    ConditionalLocationData(LocationIDs.ch2_castle_town_spike_band_fusion.value,  fusion_access_region, lambda world: world.can_access_fusion() and world.include_chapter(1) and world.has_at_least_one_chapter_included([2, 4]), LocationGroups.castle_town.value),
   # Require B.ShotBowtie that is exclusive to chapter 2 and can't be obtained on weird route
-  CCLocations.castle_town_tensionbow_fusion.value:    ConditionalLocationData(LocationIDs.cc_castle_town_tension_bow_fusion.value,  fusion_access_region, lambda world: world.can_access_fusion() and world.include_chapter(2) and (not world.is_weird_route() or world.is_all_routes())),
+  CCLocations.castle_town_tensionbow_fusion.value:    ConditionalLocationData(LocationIDs.cc_castle_town_tension_bow_fusion.value,  fusion_access_region, lambda world: world.can_access_fusion() and world.include_chapter(2) and (not world.is_weird_route() or world.is_all_routes()), LocationGroups.castle_town.value),
 }
 
 def get_cross_chapter_regions(world: "DeltaruneWorld"):

@@ -1,5 +1,5 @@
 from enum import StrEnum
-from ..Locations import LocationIDs, LocationData
+from ..Locations import LocationIDs, LocationData, LocationGroups
 from ..Regions import generic_create_regions
 from typing import TYPE_CHECKING
 
@@ -90,58 +90,58 @@ class Ch1Entrances(StrEnum):
   card_castle_warp_hub    = "CH1: Card Castle Warp Hub"
   
 chapter1_locations = {
-  Ch1Locations.unknown_hidden_item.value:                   LocationData(LocationIDs.ch1_unknown_hidden_item.value,                    Ch1Regions.castle_town.value),
+  Ch1Locations.unknown_hidden_item.value:                   LocationData(LocationIDs.ch1_unknown_hidden_item.value,                    Ch1Regions.castle_town.value, LocationGroups.chapter1.value),
   
-  Ch1Locations.castle_town_manual.value:                    LocationData(LocationIDs.ch1_castle_town_manual.value,                     Ch1Regions.castle_town.value),
-  Ch1Locations.throw_away_manual.value:                     LocationData(LocationIDs.ch1_throw_away_manual.value,                      Ch1Regions.castle_town.value),
+  Ch1Locations.castle_town_manual.value:                    LocationData(LocationIDs.ch1_castle_town_manual.value,                     Ch1Regions.castle_town.value, LocationGroups.chapter1.value),
+  Ch1Locations.throw_away_manual.value:                     LocationData(LocationIDs.ch1_throw_away_manual.value,                      Ch1Regions.castle_town.value, LocationGroups.chapter1.value),
   
-  Ch1Locations.field_dark_candy_tree_1.value:               LocationData(LocationIDs.ch1_field_dark_candy_tree_1.value,                Ch1Regions.fields.value),
-  Ch1Locations.field_dark_candy_tree_2.value:               LocationData(LocationIDs.ch1_field_dark_candy_tree_2.value,                Ch1Regions.fields.value),
-  Ch1Locations.field_dark_candy_tree_3.value:               LocationData(LocationIDs.ch1_field_dark_candy_tree_3.value,                Ch1Regions.fields.value),
-  Ch1Locations.field_dark_candy_tree_4.value:               LocationData(LocationIDs.ch1_field_dark_candy_tree_4.value,                Ch1Regions.fields.value),
-  Ch1Locations.field_brokencake.value:                      LocationData(LocationIDs.ch1_field_brokencake.value,                       Ch1Regions.fields.value),
-  Ch1Locations.field_return_top_cake.value:                 LocationData(LocationIDs.ch1_field_return_top_cake.value,                  Ch1Regions.fields.value),
-  Ch1Locations.field_maze_of_death_chest.value:             LocationData(LocationIDs.ch1_field_maze_of_death_chest.value,              Ch1Regions.fields.value),
-  Ch1Locations.field_chest_before_great_board.value:        LocationData(LocationIDs.ch1_field_chest_before_great_board.value,         Ch1Regions.fields.value),
-  Ch1Locations.field_warp_door.value:                       LocationData(LocationIDs.ch1_field_warp_door.value,                        Ch1Regions.fields.value),
+  Ch1Locations.field_dark_candy_tree_1.value:               LocationData(LocationIDs.ch1_field_dark_candy_tree_1.value,                Ch1Regions.fields.value, LocationGroups.chapter1.value),
+  Ch1Locations.field_dark_candy_tree_2.value:               LocationData(LocationIDs.ch1_field_dark_candy_tree_2.value,                Ch1Regions.fields.value, LocationGroups.chapter1.value),
+  Ch1Locations.field_dark_candy_tree_3.value:               LocationData(LocationIDs.ch1_field_dark_candy_tree_3.value,                Ch1Regions.fields.value, LocationGroups.chapter1.value),
+  Ch1Locations.field_dark_candy_tree_4.value:               LocationData(LocationIDs.ch1_field_dark_candy_tree_4.value,                Ch1Regions.fields.value, LocationGroups.chapter1.value),
+  Ch1Locations.field_brokencake.value:                      LocationData(LocationIDs.ch1_field_brokencake.value,                       Ch1Regions.fields.value, LocationGroups.chapter1.value),
+  Ch1Locations.field_return_top_cake.value:                 LocationData(LocationIDs.ch1_field_return_top_cake.value,                  Ch1Regions.fields.value, LocationGroups.chapter1.value),
+  Ch1Locations.field_maze_of_death_chest.value:             LocationData(LocationIDs.ch1_field_maze_of_death_chest.value,              Ch1Regions.fields.value, LocationGroups.chapter1.value),
+  Ch1Locations.field_chest_before_great_board.value:        LocationData(LocationIDs.ch1_field_chest_before_great_board.value,         Ch1Regions.fields.value, LocationGroups.chapter1.value),
+  Ch1Locations.field_warp_door.value:                       LocationData(LocationIDs.ch1_field_warp_door.value,                        Ch1Regions.fields.value, LocationGroups.chapter1.value),
   
-  Ch1Locations.seam_seap_talk_about_strange_prisoner.value: LocationData(LocationIDs.ch1_seam_seap_talk_about_strange_prisoner.value,  Ch1Regions.fields.value),
-  Ch1Locations.seam_seap_1.value:                           LocationData(LocationIDs.ch1_seam_seap_1.value,                            Ch1Regions.fields.value),
-  Ch1Locations.seam_seap_2.value:                           LocationData(LocationIDs.ch1_seam_seap_2.value,                            Ch1Regions.fields.value),
-  Ch1Locations.seam_seap_3.value:                           LocationData(LocationIDs.ch1_seam_seap_3.value,                            Ch1Regions.fields.value),
-  Ch1Locations.seam_seap_4.value:                           LocationData(LocationIDs.ch1_seam_seap_4.value,                            Ch1Regions.fields.value),
+  Ch1Locations.seam_seap_talk_about_strange_prisoner.value: LocationData(LocationIDs.ch1_seam_seap_talk_about_strange_prisoner.value,  Ch1Regions.fields.value, LocationGroups.chapter1.value),
+  Ch1Locations.seam_seap_1.value:                           LocationData(LocationIDs.ch1_seam_seap_1.value,                            Ch1Regions.fields.value, LocationGroups.chapter1.value),
+  Ch1Locations.seam_seap_2.value:                           LocationData(LocationIDs.ch1_seam_seap_2.value,                            Ch1Regions.fields.value, LocationGroups.chapter1.value),
+  Ch1Locations.seam_seap_3.value:                           LocationData(LocationIDs.ch1_seam_seap_3.value,                            Ch1Regions.fields.value, LocationGroups.chapter1.value),
+  Ch1Locations.seam_seap_4.value:                           LocationData(LocationIDs.ch1_seam_seap_4.value,                            Ch1Regions.fields.value, LocationGroups.chapter1.value),
   
-  Ch1Locations.forest_warp_door.value:                      LocationData(LocationIDs.ch1_forest_warp_door.value,                       Ch1Regions.forest.value),
-  Ch1Locations.forest_coat_rack_chest.value:                LocationData(LocationIDs.ch1_forest_coat_rack_chest.value,                 Ch1Regions.forest.value),
-  Ch1Locations.forest_letter_block_chest.value:             LocationData(LocationIDs.ch1_forest_letter_block_chest.value,              Ch1Regions.forest.value),
+  Ch1Locations.forest_warp_door.value:                      LocationData(LocationIDs.ch1_forest_warp_door.value,                       Ch1Regions.forest.value, LocationGroups.chapter1.value),
+  Ch1Locations.forest_coat_rack_chest.value:                LocationData(LocationIDs.ch1_forest_coat_rack_chest.value,                 Ch1Regions.forest.value, LocationGroups.chapter1.value),
+  Ch1Locations.forest_letter_block_chest.value:             LocationData(LocationIDs.ch1_forest_letter_block_chest.value,              Ch1Regions.forest.value, LocationGroups.chapter1.value),
   
-  Ch1Locations.bake_sale_warp_door.value:                   LocationData(LocationIDs.ch1_bake_sale_warp_door.value,                    Ch1Regions.bake_sale.value),
-  Ch1Locations.bake_sale_repair_door_key.value:             LocationData(LocationIDs.ch1_bake_repair_door_key.value,                   Ch1Regions.bake_sale.value),
-  Ch1Locations.bake_sale_repair_top_cake.value:             LocationData(LocationIDs.ch1_bake_repair_top_cake.value,                   Ch1Regions.bake_sale.value),
-  Ch1Locations.bake_sale_diamond_stand.value:               LocationData(LocationIDs.ch1_bake_diamond_stand.value,                     Ch1Regions.bake_sale.value),
-  Ch1Locations.bake_sale_heart_stand.value:                 LocationData(LocationIDs.ch1_bake_heart_stand.value,                       Ch1Regions.bake_sale.value),
-  Ch1Locations.bake_sale_spade_stand.value:                 LocationData(LocationIDs.ch1_bake_spade_stand.value,                       Ch1Regions.bake_sale.value),
-  Ch1Locations.forest_scissor_dancers_chest.value:          LocationData(LocationIDs.ch1_forest_scissor_dancers_chest.value,           Ch1Regions.bake_sale.value),
-  Ch1Locations.forest_hidden_chest_near_dancers.value:      LocationData(LocationIDs.ch1_forest_hidden_chest_near_dancers.value,       Ch1Regions.bake_sale.value),
-  Ch1Locations.forest_chest_near_worm.value:                LocationData(LocationIDs.ch1_forest_chest_near_worm.value,                 Ch1Regions.bake_sale.value),
-  Ch1Locations.forest_man.value:                            LocationData(LocationIDs.ch1_forest_man.value,                             Ch1Regions.bake_sale.value),
+  Ch1Locations.bake_sale_warp_door.value:                   LocationData(LocationIDs.ch1_bake_sale_warp_door.value,                    Ch1Regions.bake_sale.value, LocationGroups.chapter1.value),
+  Ch1Locations.bake_sale_repair_door_key.value:             LocationData(LocationIDs.ch1_bake_repair_door_key.value,                   Ch1Regions.bake_sale.value, LocationGroups.chapter1.value),
+  Ch1Locations.bake_sale_repair_top_cake.value:             LocationData(LocationIDs.ch1_bake_repair_top_cake.value,                   Ch1Regions.bake_sale.value, LocationGroups.chapter1.value),
+  Ch1Locations.bake_sale_diamond_stand.value:               LocationData(LocationIDs.ch1_bake_diamond_stand.value,                     Ch1Regions.bake_sale.value, LocationGroups.chapter1.value),
+  Ch1Locations.bake_sale_heart_stand.value:                 LocationData(LocationIDs.ch1_bake_heart_stand.value,                       Ch1Regions.bake_sale.value, LocationGroups.chapter1.value),
+  Ch1Locations.bake_sale_spade_stand.value:                 LocationData(LocationIDs.ch1_bake_spade_stand.value,                       Ch1Regions.bake_sale.value, LocationGroups.chapter1.value),
+  Ch1Locations.forest_scissor_dancers_chest.value:          LocationData(LocationIDs.ch1_forest_scissor_dancers_chest.value,           Ch1Regions.bake_sale.value, LocationGroups.chapter1.value),
+  Ch1Locations.forest_hidden_chest_near_dancers.value:      LocationData(LocationIDs.ch1_forest_hidden_chest_near_dancers.value,       Ch1Regions.bake_sale.value, LocationGroups.chapter1.value),
+  Ch1Locations.forest_chest_near_worm.value:                LocationData(LocationIDs.ch1_forest_chest_near_worm.value,                 Ch1Regions.bake_sale.value, LocationGroups.chapter1.value),
+  Ch1Locations.forest_man.value:                            LocationData(LocationIDs.ch1_forest_man.value,                             Ch1Regions.bake_sale.value, LocationGroups.chapter1.value),
   
-  Ch1Locations.card_castle_warp_door.value:                 LocationData(LocationIDs.ch1_card_castle_warp_door.value,                  Ch1Regions.card_castle.value),
-  Ch1Locations.card_castle_ironshackle.value:               LocationData(LocationIDs.ch1_card_castle_ironshackle.value,                Ch1Regions.card_castle.value),
-  Ch1Locations.card_castle_moss.value:                      LocationData(LocationIDs.ch1_card_castle_moss.value,                       Ch1Regions.card_castle.value),
-  Ch1Locations.card_castle_rudinn_gift.value:               LocationData(LocationIDs.ch1_card_castle_rudinn_gift.value,                Ch1Regions.card_castle.value),
-  Ch1Locations.card_castle_2f_chest.value:                  LocationData(LocationIDs.ch1_card_castle_2f_chest.value,                   Ch1Regions.card_castle.value),
-  Ch1Locations.card_castle_4f_chest.value:                  LocationData(LocationIDs.ch1_card_castle_4f_chest.value,                   Ch1Regions.card_castle.value),
-  Ch1Locations.card_castle_jevil_1.value:                   LocationData(LocationIDs.ch1_card_castle_jevil_1.value,                    Ch1Regions.card_castle.value),
-  Ch1Locations.card_castle_jevil_2.value:                   LocationData(LocationIDs.ch1_card_castle_jevil_2.value,                    Ch1Regions.card_castle.value),
-  Ch1Locations.card_castle_jevil_3.value:                   LocationData(LocationIDs.ch1_card_castle_jevil_3.value,                    Ch1Regions.card_castle.value),
+  Ch1Locations.card_castle_warp_door.value:                 LocationData(LocationIDs.ch1_card_castle_warp_door.value,                  Ch1Regions.card_castle.value, LocationGroups.chapter1.value),
+  Ch1Locations.card_castle_ironshackle.value:               LocationData(LocationIDs.ch1_card_castle_ironshackle.value,                Ch1Regions.card_castle.value, LocationGroups.chapter1.value),
+  Ch1Locations.card_castle_moss.value:                      LocationData(LocationIDs.ch1_card_castle_moss.value,                       Ch1Regions.card_castle.value, LocationGroups.chapter1.value),
+  Ch1Locations.card_castle_rudinn_gift.value:               LocationData(LocationIDs.ch1_card_castle_rudinn_gift.value,                Ch1Regions.card_castle.value, LocationGroups.chapter1.value),
+  Ch1Locations.card_castle_2f_chest.value:                  LocationData(LocationIDs.ch1_card_castle_2f_chest.value,                   Ch1Regions.card_castle.value, LocationGroups.chapter1.value),
+  Ch1Locations.card_castle_4f_chest.value:                  LocationData(LocationIDs.ch1_card_castle_4f_chest.value,                   Ch1Regions.card_castle.value, LocationGroups.chapter1.value),
+  Ch1Locations.card_castle_jevil_1.value:                   LocationData(LocationIDs.ch1_card_castle_jevil_1.value,                    Ch1Regions.card_castle.value, LocationGroups.chapter1.value),
+  Ch1Locations.card_castle_jevil_2.value:                   LocationData(LocationIDs.ch1_card_castle_jevil_2.value,                    Ch1Regions.card_castle.value, LocationGroups.chapter1.value),
+  Ch1Locations.card_castle_jevil_3.value:                   LocationData(LocationIDs.ch1_card_castle_jevil_3.value,                    Ch1Regions.card_castle.value, LocationGroups.chapter1.value),
   
-  Ch1Locations.rouxls_shop_1.value:                         LocationData(LocationIDs.ch1_rouxls_shop_1.value,                          Ch1Regions.card_castle.value),
-  Ch1Locations.rouxls_shop_2.value:                         LocationData(LocationIDs.ch1_rouxls_shop_2.value,                          Ch1Regions.card_castle.value),
-  Ch1Locations.rouxls_shop_3.value:                         LocationData(LocationIDs.ch1_rouxls_shop_3.value,                          Ch1Regions.card_castle.value),
-  Ch1Locations.rouxls_shop_4.value:                         LocationData(LocationIDs.ch1_rouxls_shop_4.value,                          Ch1Regions.card_castle.value),
+  Ch1Locations.rouxls_shop_1.value:                         LocationData(LocationIDs.ch1_rouxls_shop_1.value,                          Ch1Regions.card_castle.value, LocationGroups.chapter1.value),
+  Ch1Locations.rouxls_shop_2.value:                         LocationData(LocationIDs.ch1_rouxls_shop_2.value,                          Ch1Regions.card_castle.value, LocationGroups.chapter1.value),
+  Ch1Locations.rouxls_shop_3.value:                         LocationData(LocationIDs.ch1_rouxls_shop_3.value,                          Ch1Regions.card_castle.value, LocationGroups.chapter1.value),
+  Ch1Locations.rouxls_shop_4.value:                         LocationData(LocationIDs.ch1_rouxls_shop_4.value,                          Ch1Regions.card_castle.value, LocationGroups.chapter1.value),
 
-  Ch1Locations.fountain_sealed.value:                       LocationData(LocationIDs.ch1_fountain_sealed.value,                        Ch1Regions.light_world.value),
+  Ch1Locations.fountain_sealed.value:                       LocationData(LocationIDs.ch1_fountain_sealed.value,                        Ch1Regions.light_world.value, LocationGroups.chapter1.value),
 }
 
 chapter1_conditional_locations: dict = {
