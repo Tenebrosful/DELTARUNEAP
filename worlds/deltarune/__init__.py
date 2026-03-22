@@ -113,7 +113,7 @@ class DeltaruneWorld(World):
             "death_link": bool(self.options.death_link.value),
             "item_balancing": bool(self.options.item_balancing.value),
             "include_shadow_mantle": bool(self.options.include_shadow_mantle.value),
-            "randomize_mantle": bool(self.options.randomize_mantle.current_key),
+            "randomize_mantle": self.options.randomize_mantle.current_key,
         }
         
     def create_item(self, name: str) -> DeltaruneItem:
