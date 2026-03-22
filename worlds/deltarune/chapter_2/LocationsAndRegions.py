@@ -158,7 +158,7 @@ chapter2_locations = {
   
   Ch2Locations.cyber_field_warp_door.value:                 LocationData(LocationIDs.ch2_cyber_field_warp_door.value,                 Ch2Regions.cyber_field.value, LocationGroups.chapter2.value),
   Ch2Locations.trash_zone_warp_door.value:                  LocationData(LocationIDs.ch2_trash_zone_warp_door.value,                  Ch2Regions.cyber_city.value, LocationGroups.chapter2.value),
-  Ch2Locations.mansion_warp_door.value:                     LocationData(LocationIDs.ch2_mansion_warp_door.value,                     Ch2Regions.mansion.value, LocationGroups.chapter2.value),
+  Ch2Locations.mansion_warp_door.value:                     LocationData(LocationIDs.ch2_mansion_warp_door.value,                     Ch2Regions.cyber_city.value, LocationGroups.chapter2.value),
 }
 
 chapter2_conditional_locations = {
@@ -187,14 +187,14 @@ chapter2_conditional_locations = {
   Ch2Locations.recruit_swatchling.value:              ConditionalLocationData(LocationIDs.ch2_recruit_swatchling.value,             Ch2Regions.mansion.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
   Ch2Locations.recruit_tasque_manager.value:          ConditionalLocationData(LocationIDs.ch2_recruit_tasque_manager.value,         Ch2Regions.mansion.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
   Ch2Locations.recruit_mauswheel.value:               ConditionalLocationData(LocationIDs.ch2_recruit_mauswheel.value,              Ch2Regions.mansion.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
-  Ch2Locations.swatch_cafe_1.value:                   ConditionalLocationData(LocationIDs.ch2_swatchs_cafe_1.value,                 Ch2Regions.mansion.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
-  Ch2Locations.swatch_cafe_2.value:                   ConditionalLocationData(LocationIDs.ch2_swatchs_cafe_2.value,                 Ch2Regions.mansion.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
-  Ch2Locations.swatch_cafe_3.value:                   ConditionalLocationData(LocationIDs.ch2_swatchs_cafe_3.value,                 Ch2Regions.mansion.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
-  Ch2Locations.swatch_cafe_4.value:                   ConditionalLocationData(LocationIDs.ch2_swatchs_cafe_4.value,                 Ch2Regions.mansion.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
-  Ch2Locations.spamton_shop_1.value:                  ConditionalLocationData(LocationIDs.ch2_spamtons_shop_1.value,                Ch2Regions.mansion.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
-  Ch2Locations.spamton_shop_2.value:                  ConditionalLocationData(LocationIDs.ch2_spamtons_shop_2.value,                Ch2Regions.mansion.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
-  Ch2Locations.spamton_shop_3.value:                  ConditionalLocationData(LocationIDs.ch2_spamtons_shop_3.value,                Ch2Regions.mansion.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
-  Ch2Locations.spamton_shop_3.value:                  ConditionalLocationData(LocationIDs.ch2_spamtons_shop_4.value,                Ch2Regions.mansion.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
+  Ch2Locations.swatch_cafe_1.value:                   ConditionalLocationData(LocationIDs.ch2_swatchs_cafe_1.value,                 Ch2Regions.cyber_city.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
+  Ch2Locations.swatch_cafe_2.value:                   ConditionalLocationData(LocationIDs.ch2_swatchs_cafe_2.value,                 Ch2Regions.cyber_city.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
+  Ch2Locations.swatch_cafe_3.value:                   ConditionalLocationData(LocationIDs.ch2_swatchs_cafe_3.value,                 Ch2Regions.cyber_city.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
+  Ch2Locations.swatch_cafe_4.value:                   ConditionalLocationData(LocationIDs.ch2_swatchs_cafe_4.value,                 Ch2Regions.cyber_city.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
+  Ch2Locations.spamton_shop_1.value:                  ConditionalLocationData(LocationIDs.ch2_spamtons_shop_1.value,                Ch2Regions.cyber_city.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
+  Ch2Locations.spamton_shop_2.value:                  ConditionalLocationData(LocationIDs.ch2_spamtons_shop_2.value,                Ch2Regions.cyber_city.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
+  Ch2Locations.spamton_shop_3.value:                  ConditionalLocationData(LocationIDs.ch2_spamtons_shop_3.value,                Ch2Regions.cyber_city.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
+  Ch2Locations.spamton_shop_4.value:                  ConditionalLocationData(LocationIDs.ch2_spamtons_shop_4.value,                Ch2Regions.cyber_city.value,     lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
   Ch2Locations.recruit_werewerewire.value:                      ConditionalLocationData(LocationIDs.ch2_recruit_werewerewire.value,                       Ch2Regions.mansion.value, lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
   Ch2Locations.castle_town_tasque_manager_says_challenge.value: ConditionalLocationData(LocationIDs.ch2_castle_town_tasque_manager_says_challenge.value,  Ch2Regions.mansion.value, lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
   Ch2Locations.castle_town_ch2_all_stars_challenge.value:       ConditionalLocationData(LocationIDs.ch2_castle_town_all_stars_challenge.value,            Ch2Regions.mansion.value, lambda world: world.is_all_recruits(), LocationGroups.chapter2.value),
