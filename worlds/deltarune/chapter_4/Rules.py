@@ -24,6 +24,10 @@ def set_rules(world: "DeltaruneWorld"):
   # Macguffin
   if world.is_final_chapter(4):
     set_rule(multiworld.get_entrance(Ch4Entrances.titan_fight_entrance, player), lambda state: state.has(Ch4Items.combination_lock_digit, player, world.options.goal_macguffin_amount))
+    
+def handle_locked_items(world: "DeltaruneWorld"): 
+  player = world.player
+  multiworld = world.multiworld
   
   if not world.is_secret_bosses_randomized():
     multiworld.get_location(Ch4Locations.dark_sanctuary_hammer_of_justice_defeat_item_1, player).place_locked_item(world.create_item(Ch4Items.justiceaxe))

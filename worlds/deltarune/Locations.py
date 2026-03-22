@@ -1,17 +1,26 @@
 from BaseClasses import Location
 from typing import TYPE_CHECKING, NamedTuple, Optional, Callable
-from enum import Enum
+from enum import Enum, StrEnum
 
 if TYPE_CHECKING: from . import DeltaruneWorld
+
+class LocationGroups(StrEnum):
+  castle_town = "Castle Town"
+  chapter1 = "Chapter 1"
+  chapter2 = "Chapter 2"
+  chapter3 = "Chapter 3"
+  chapter4 = "Chapter 4"
 
 class LocationData(NamedTuple):
   id: Optional[int]
   region: str
+  group: Optional[LocationGroups]
 
 class ConditionalLocationData(NamedTuple):
-    id: Optional[int]
-    region: str
-    should_be_included: Callable[["DeltaruneWorld"], bool]
+  id: Optional[int]
+  region: str
+  should_be_included: Callable[["DeltaruneWorld"], bool]
+  group: Optional[LocationGroups]
   
 class DeltaruneLocation(Location):
   game: str = "Deltarune"
@@ -273,3 +282,11 @@ class LocationIDs(Enum):
     ch4_lost_wicabel = 1222
     ch4_lost_winglade = 1223
     ch4_lost_organikk = 1224
+
+def get_location_groups(locations: dict[str, LocationData | ConditionalLocationData]):
+    groups: dict[str : set[str]] = {}
+    
+    for (location_name, location_data) in locations:
+      groups.setdefault(location_data.group, set()).add(location_name)
+    
+    return groups

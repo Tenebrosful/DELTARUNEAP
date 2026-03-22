@@ -63,6 +63,13 @@ def set_rules(world: "DeltaruneWorld"):
     set_rule(multiworld.get_location(Ch3Locations.cold_place_knight_defeat_item_1, player), lambda state: state.has(Ch3Items.shadowmantle, player))
     set_rule(multiworld.get_location(Ch3Locations.cold_place_knight_defeat_item_2, player), lambda state: state.has(Ch3Items.shadowmantle, player))
 
+def can_do_mantle(state: CollectionState, player: int):
+  return state.has(Ch3Items.odd_controller, player) and state.has(Ch3Items.ice_key, player) and state.has(Ch3Items.shelter_key, player)
+
+def handle_locked_items(world: "DeltaruneWorld"): 
+  player = world.player
+  multiworld = world.multiworld
+  
   # MANTLE
   if not (world.is_mantle_randomized() or world.is_mantleless()):
     if world.is_shadow_mantle_included():
@@ -71,7 +78,7 @@ def set_rules(world: "DeltaruneWorld"):
     multiworld.get_location(Ch3Locations.mantle_out_of_bounds_chest, player).place_locked_item(world.create_item(Ch3Items.ice_key))
     multiworld.get_location(Ch3Locations.mantle_northern_light_item, player).place_locked_item(world.create_item(Ch3Items.shelter_key))
     multiworld.get_location(Ch3Locations.s_rank_room_oddcontroller, player).place_locked_item(world.create_item(Ch3Items.odd_controller))
-
+  
   # Secret Bosses
   if not world.is_secret_bosses_randomized():
     multiworld.get_location(Ch3Locations.cold_place_knight_defeat_item_1, player).place_locked_item(world.create_item(Ch3Items.blackshard))
@@ -84,7 +91,3 @@ def set_rules(world: "DeltaruneWorld"):
     if ((not world.is_weird_route()) or world.is_all_routes()):
       multiworld.get_location(Ch3Locations.tv_world_man, player).place_locked_item(world.create_item(Ch3Items.egg))
       multiworld.get_location(Ch3Locations.tv_world_tripticket, player).place_locked_item(world.create_item(Ch3Items.tripticket))
-
-
-def can_do_mantle(state: CollectionState, player: int):
-  return state.has(Ch3Items.odd_controller, player) and state.has(Ch3Items.ice_key, player) and state.has(Ch3Items.shelter_key, player)
