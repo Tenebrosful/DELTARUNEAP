@@ -25,10 +25,10 @@ def set_rules(world: "DeltaruneWorld"):
         
         # TwinRibbon
         if world.has_at_least_one_chapter_included([2, 3]) and world.has_at_least_one_chapter_included([1, 2, 3]):
-            if world.include_chapter(2): # Chapter 2 have white ribbon has starting gear so don't require to acquire it
-                set_rule(multiworld.get_location(CCLocations.castle_town_twin_ribbon_fusion, player), lambda state: state.has(CCItems.pink_ribbon, player))
-            else:
+            if (not world.include_chapter(2)) or (world.include_chapter(1) and world.is_chapters_in_order): # If you play chapter 1 in order then you don't get the white ribbon ralsei starts with
                 set_rule(multiworld.get_location(CCLocations.castle_town_twin_ribbon_fusion, player), lambda state: state.has(CCItems.pink_ribbon, player) and state.has(CCItems.white_ribbon, player))
+            else:
+                set_rule(multiworld.get_location(CCLocations.castle_town_twin_ribbon_fusion, player), lambda state: state.has(CCItems.pink_ribbon, player))
 
         # SpikeBand
         if world.include_chapter(1):
@@ -39,7 +39,7 @@ def set_rules(world: "DeltaruneWorld"):
 
         #TensionBow
         if world.include_chapter(2) and (not world.is_weird_route() or world.is_all_routes()):
-            set_rule(multiworld.get_location(CCLocations.castle_town_twin_ribbon_fusion, player), lambda state: state.has(Ch2Items.bshotbowtie, player) and state.has(Ch2Items.tensionbit, player))
+            set_rule(multiworld.get_location(CCLocations.castle_town_tensionbow_fusion, player), lambda state: state.has(Ch2Items.bshotbowtie, player) and state.has(Ch2Items.tensionbit, player))
     
     
 def get_location(world: "DeltaruneWorld", chapter: int):
