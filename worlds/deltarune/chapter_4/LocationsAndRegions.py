@@ -53,7 +53,7 @@ class Ch4Locations(StrEnum):
   recruit_mizzle        = "CH4: Recruit Mizzle"
   recruit_miss_mizzle   = "CH4: Recruit Miss Mizzle"
   recruit_wicabel       = "CH4: Recruit Wicabel"
-  recruit_wingblade     = "CH4: Recruit Wingblade"
+  recruit_wingblade     = "CH4: Recruit Winglade"
   recruit_organikk      = "CH4: Recruit Organikk"
   
   # Lost
@@ -115,6 +115,7 @@ chapter4_locations = {
   Ch4Locations.dark_sanctuary_hammer_of_justice_defeat_item_2.value:  LocationData(LocationIDs.ch4_dark_sanctuary_hammer_of_justice_defeat_item_2.value,  Ch4Regions.dark_sanctuary_claimbclaws, LocationGroups.chapter4.value),
   
   Ch4Locations.dark_sanctuary_fountain_sealed.value:                  LocationData(LocationIDs.ch4_dark_sanctuary_fountain_seal.value,                     Ch4Regions.second_sanctuary, LocationGroups.chapter4.value),
+  Ch4Locations.second_sanctuary_wall_climbing_chest.value:            LocationData(LocationIDs.ch4_second_sanctuary_wall_climbing_chest.value,            Ch4Regions.second_sanctuary), LocationGroups.chapter4.value)
   Ch4Locations.second_sanctuary_waterfall_chest.value:                LocationData(LocationIDs.ch4_second_sanctuary_waterfall_chest.value,                Ch4Regions.second_sanctuary, LocationGroups.chapter4.value),
   Ch4Locations.second_sanctuary_man.value:                            LocationData(LocationIDs.ch4_second_sanctuary_man.value,                            Ch4Regions.second_sanctuary, LocationGroups.chapter4.value),
   Ch4Locations.second_sanctuary_moss.value:                           LocationData(LocationIDs.ch4_second_sanctuary_moss.value,                           Ch4Regions.second_sanctuary, LocationGroups.chapter4.value),
