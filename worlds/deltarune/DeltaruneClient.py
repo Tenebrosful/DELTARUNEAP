@@ -10,10 +10,28 @@ import Utils
 from NetUtils import NetworkItem, ClientStatus
 from worlds import deltarune
 from MultiServer import mark_raw, Context, Client
-from CommonClient import CommonContext, server_loop, \
-    gui_enabled, ClientCommandProcessor, get_base_parser, logger
 from Utils import async_start
 
+# Try importing gui_enabled in Utils first before trying to import them from CommonClient
+# Core AP will be officially moving it to Utils in the future, so this is in accommodation for that
+gui_loaded_from_utils: bool = False
+try:
+    from Utils import gui_enabled
+    gui_loaded_from_utils = True
+except ImportError:
+    pass
+
+tracker_loaded = False
+try:
+    from worlds.tracker.TrackerClient import ClientCommandProcessor, TrackerGameContext as SuperContext, get_base_parser, server_loop
+    tracker_loaded = True
+    
+    if not gui_loaded_from_utils: from worlds.tracker.TrackerClient import gui_enabled
+    print("Tracker has been found !")
+except ModuleNotFoundError:
+    from CommonClient import ClientCommandProcessor, CommonContext as SuperContext, get_base_parser, server_loop
+    if not gui_loaded_from_utils: from CommonClient import gui_enabled
+    print("Tracker hasn't been found !")
 
 class DeltaruneCommandProcessor(ClientCommandProcessor):
     def __init__(self, ctx):
@@ -100,7 +118,7 @@ Both gaining and losing recruits have been turned into checks.""")
                 self.output("Patching successful!")
 
 
-class DeltaruneContext(CommonContext):
+class DeltaruneContext(SuperContext):
     tags = {"AP"}
     game = "DELTARUNE"
     command_processor = DeltaruneCommandProcessor
@@ -200,27 +218,25 @@ class DeltaruneContext(CommonContext):
         await super().shutdown()
 
     def on_package(self, cmd: str, args: dict):
+        super().on_package(cmd, args)
         if cmd == "Connected":
             self.game = self.slot_info[self.slot].game
         async_start(process_deltarune_cmd(self, cmd, args))
 
-    def run_gui(self):
-        from kvui import GameManager
-
-        class UTManager(GameManager):
-            logging_pairs = [
+    def make_gui(self):
+        ui = super().make_gui()
+        ui.base_title = "Archipelago DELTARUNE Client"
+        ui.logging_pairs = [
                 ("Client", "Archipelago")
             ]
-            base_title = "Archipelago DELTARUNE Client"
-
-        self.ui = UTManager(self)
-        self.ui_task = asyncio.create_task(self.ui.async_run(), name="UI")
+        return ui
 
     def on_deathlink(self, data: typing.Dict[str, typing.Any]):
         self.got_deathlink = True
         super().on_deathlink(data)
 
 async def process_deltarune_cmd(ctx: DeltaruneContext, cmd: str, args: dict):
+    Context.broadcast_text_all(f"{tracker_loaded}, {gui_loaded_from_utils}")
     if cmd == "Connected":
         if not os.path.exists(ctx.save_game_folder):
             os.mkdir(os.path.join(ctx.save_game_folder))\
@@ -508,6 +524,8 @@ def main():
         asyncio.create_task(
             game_watcher(ctx), name="DeltaruneProgressionWatcher")
 
+        if tracker_loaded:
+            ctx.run_generator()
         if gui_enabled:
             ctx.run_gui()
         ctx.run_cli()
