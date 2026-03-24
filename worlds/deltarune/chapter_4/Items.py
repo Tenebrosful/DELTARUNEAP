@@ -24,7 +24,7 @@ class Ch4Items(StrEnum):
   # Weapons
   scarfmark = "ScarfMark"
   absobax = "AbsorbAx"
-  wingblade = "Wingblade"
+  wingblade = "Winglade"
   justiceaxe = "JusticeAxe"
   
   # Macguffin

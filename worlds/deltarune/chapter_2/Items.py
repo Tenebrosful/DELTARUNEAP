@@ -45,19 +45,19 @@ class Ch2Items(StrEnum):
   thornring     = "ThornRing"
   
   egg               = "CH2 Egg"
-  joe_life_savings  = "Joe's Life Savings"
+  joe_life_savings  = "Jigsaw Joe's Life Savings"
   city_moss         = "City Moss"
   dogdollar         = "DogDollar"
   
   emptydisk     = "EmptyDisk"
-  keygen        = "Keygen"
+  keygen        = "KeyGen"
   
   # Blockers
   safety_vest         = "Safety Vest"
   mansion_reservation = "Mansion Reservation"
   
   # Macguffins
-  keygen_2_segment    = "Keygen 2 Segment"
+  keygen_2_segment    = "KeyGen 2 Segment"
   
   # Warps
   cyber_field_warp    = "Cyber Field Warp"
@@ -134,9 +134,9 @@ chapter2_conditional_items = {
   # Secret Boss
   Ch2Items.emptydisk.value:   ConditionalItemData(ItemIDs.emptydisk.value,  ItemClassification.progression, lambda world: (not world.is_weird_route() or world.is_all_routes()) and world.is_hidden_items_randomized(), [ItemGroups.spamton_access]),
   Ch2Items.keygen.value:      ConditionalItemData(ItemIDs.keygen.value,     ItemClassification.progression, lambda world: (not world.is_weird_route() or world.is_all_routes()) and world.is_hidden_items_randomized(), [ItemGroups.spamton_access]),
-  Ch2Items.dealmaker.value:   ConditionalItemData(ItemIDs.dealmaker.value,  ItemClassification.useful,      lambda world: (not world.is_weird_route() or world.is_all_routes()) and world.is_hidden_items_randomized(), [ItemGroups.armors]),
-  Ch2Items.puppetscarf.value: ConditionalItemData(ItemIDs.puppetscarf.value,ItemClassification.useful,      lambda world: world.is_hidden_items_randomized(), [ItemGroups.weapons]),
-  CCItems.shadowcrystal.value:ConditionalItemData(ItemIDs.shadowcrystal.value,ItemClassification.useful,    lambda world: world.is_hidden_items_randomized()),
+  Ch2Items.dealmaker.value:   ConditionalItemData(ItemIDs.dealmaker.value,  ItemClassification.useful,      lambda world: (not world.is_weird_route() or world.is_all_routes()) and world.is_secret_bosses_randomized(), [ItemGroups.armors]),
+  Ch2Items.puppetscarf.value: ConditionalItemData(ItemIDs.puppetscarf.value,ItemClassification.useful,      lambda world: world.is_secret_bosses_randomized(), [ItemGroups.weapons]),
+  CCItems.shadowcrystal.value:ConditionalItemData(ItemIDs.shadowcrystal.value,ItemClassification.useful,    lambda world: world.is_secret_bosses_randomized()),
   
   # Warps
   Ch2Items.cyber_field_warp.value:  ConditionalItemData(ItemIDs.cyber_field_warp.value, ItemClassification.progression, lambda world: world.is_warps_randomized(), [ItemGroups.warps], 0),
