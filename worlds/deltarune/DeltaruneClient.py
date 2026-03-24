@@ -234,7 +234,6 @@ class DeltaruneContext(SuperContext):
         super().on_deathlink(data)
 
 async def process_deltarune_cmd(ctx: DeltaruneContext, cmd: str, args: dict):
-    Context.broadcast_text_all(f"{tracker_loaded}, {gui_loaded_from_utils}")
     if cmd == "Connected":
         if not os.path.exists(ctx.save_game_folder):
             os.mkdir(os.path.join(ctx.save_game_folder))\
