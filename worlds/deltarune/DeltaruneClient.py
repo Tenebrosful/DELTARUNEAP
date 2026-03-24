@@ -27,11 +27,9 @@ try:
     tracker_loaded = True
     
     if not gui_loaded_from_utils: from worlds.tracker.TrackerClient import gui_enabled
-    print("Tracker has been found !")
 except ModuleNotFoundError:
     from CommonClient import ClientCommandProcessor, CommonContext as SuperContext, get_base_parser, server_loop
     if not gui_loaded_from_utils: from CommonClient import gui_enabled
-    print("Tracker hasn't been found !")
 
 class DeltaruneCommandProcessor(ClientCommandProcessor):
     def __init__(self, ctx):
